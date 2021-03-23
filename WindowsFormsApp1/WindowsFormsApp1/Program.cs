@@ -10,6 +10,11 @@ namespace WindowsFormsApp1
     {
         string name;
     }
+    public static class Player
+    {
+
+    }
+
     static class Program
     {
         /// <summary>
