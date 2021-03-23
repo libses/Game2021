@@ -6,6 +6,10 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
+    public class Dima
+    {
+        string name;
+    }
     static class Program
     {
         /// <summary>
