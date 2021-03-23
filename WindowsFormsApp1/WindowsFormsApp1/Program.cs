@@ -6,6 +6,11 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
+    public static class Player
+    {
+
+    }
+
     static class Program
     {
         /// <summary>
