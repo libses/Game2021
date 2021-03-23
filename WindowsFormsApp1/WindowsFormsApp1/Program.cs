@@ -13,6 +13,7 @@ namespace WindowsFormsApp1
     public static class Player
     {
         //new comment
+        // another new comment
     }
 
     static class Program
