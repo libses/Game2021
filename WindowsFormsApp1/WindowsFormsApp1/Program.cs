@@ -8,7 +8,7 @@ namespace WindowsFormsApp1
 {
     public class Dima
     {
-        string name;
+        string name;//12345
     }
     public static class Player
     {
