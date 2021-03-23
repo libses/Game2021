@@ -10,10 +10,9 @@ namespace WindowsFormsApp1
     {
         string name;//12345
     }
-    public static class Player
+    public class Player
     {
-        //new comment
-        // another new comment
+        private string name;
     }
 
     static class Program
