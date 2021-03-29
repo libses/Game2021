@@ -11,4 +11,15 @@ namespace WindowsFormsApp1
         public int X;
         public int Y;
     }
+
+    class Segment
+    {
+        Point Start;
+        Point End;
+    }
+
+    class Point : Vector
+    {
+
+    }
 }
