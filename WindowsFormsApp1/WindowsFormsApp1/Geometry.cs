@@ -6,10 +6,13 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
-    class Vector
+    class Vector : Point
     {
-        public int X;
-        public int Y;
+        public Vector(float x, float y)
+        {
+            X = x;
+            Y = y;
+        }
     }
 
     class Segment
@@ -18,8 +21,9 @@ namespace WindowsFormsApp1
         Point End;
     }
 
-    class Point : Vector
+    class Point
     {
-
+        public float X;
+        public float Y;
     }
 }
