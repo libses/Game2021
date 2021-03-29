@@ -6,6 +6,11 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
+
+    public class Entity
+    {
+        int HP;
+    }
     static class Program
     {
         [STAThread]
