@@ -7,9 +7,11 @@ using System.Windows.Forms;
 namespace WindowsFormsApp1
 {
 
-    public class Entity
+    
+
+    public class Player : Entity
     {
-        int HP;
+
     }
     static class Program
     {
