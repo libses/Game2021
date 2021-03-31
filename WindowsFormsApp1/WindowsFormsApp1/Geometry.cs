@@ -7,7 +7,20 @@ using NUnit.Framework;
 
 namespace WindowsFormsApp1
 {
-
+    public class Rectangle
+    {
+        public Vector LT { get; set; }
+        public Vector RT { get; set; }
+        public Vector LB { get; set; }
+        public Vector RB { get; set; }
+        public Rectangle(Vector LT, Vector RT, Vector LB, Vector RB)
+        {
+            this.LT = LT;
+            this.RT = RT;
+            this.LB = LB;
+            this.RB = RB;
+        }
+    }
     class Segment
     {
         public Vector Start;
