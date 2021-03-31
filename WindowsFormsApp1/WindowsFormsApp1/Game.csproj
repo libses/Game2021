@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LevelEditor.cs" />
     <Compile Include="Demon.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="Entity.cs" />
