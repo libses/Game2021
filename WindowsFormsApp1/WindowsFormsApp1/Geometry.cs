@@ -16,17 +16,17 @@ namespace WindowsFormsApp1
 
     public struct Vector
     {
-        public float X;
-        public float Y;
-        public float Length
+        public double X;
+        public double Y;
+        public double Length
         {
             get
             {
-                return (float)Math.Sqrt(X * X + Y * Y);
+                return Math.Sqrt(X * X + Y * Y);
             }
         }
 
-        public Vector(float x, float y)
+        public Vector(double x, double y)
         {
             X = x;
             Y = y;
@@ -49,9 +49,13 @@ namespace WindowsFormsApp1
         }
         public static Vector operator *(float t, Vector vector) => vector * t;
 
-        public static float operator *(Vector first, Vector second)
+        public static double operator *(Vector first, Vector second)
         {
             return first.X * second.X + first.Y * second.Y;
+        }
+        public double GetAngleWith(Vector other)
+        {
+            return Math.Acos((this * other) / (this.Length * other.Length));
         }
     }
 
