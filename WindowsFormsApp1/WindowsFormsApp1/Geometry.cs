@@ -7,27 +7,19 @@ using NUnit.Framework;
 
 namespace WindowsFormsApp1
 {
-    class Vector : Point
-    {
-        public Vector(float x, float y) : base(x, y)
-        {
-            X = x;
-            Y = y;
-        }
-    }
 
     class Segment
     {
-        public Point Start;
-        public Point End;
+        public Vector Start;
+        public Vector End;
     }
 
-    class Point
+    public struct Vector
     {
         public float X;
         public float Y;
 
-        public Point(float x, float y)
+        public Vector(float x, float y)
         {
             X = x;
             Y = y;
@@ -38,12 +30,11 @@ namespace WindowsFormsApp1
     class Tests
     {
         [Test]
-        public void InitializationTest()
+        public void IsTwoVectorsEqual()
         {
-            var p = new Point(1,1);
-            var v = new Vector(1, 1);
-            Assert.IsTrue(p is Point);
-            Assert.IsTrue(v is Vector);
+            var vector1 = new Vector(1, 1);
+            var vector2 = new Vector(1, 1);
+            Assert.AreEqual(vector1, vector2);
         }
     }
 }
