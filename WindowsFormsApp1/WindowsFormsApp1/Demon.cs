@@ -8,6 +8,8 @@ namespace WindowsFormsApp1
 {
     class Demon : Enemy
     {
-
+        public Demon(int HP, Vector location, double width, double height) : base(HP, location, width, height)
+        {
+        }
     }
 }

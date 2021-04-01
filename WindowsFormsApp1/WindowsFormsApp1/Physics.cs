@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApp1
 {
-    class Physics
+    public class Physics
     {
+        public const double g = 9.8;
     }
 }

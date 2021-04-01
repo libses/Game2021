@@ -62,11 +62,11 @@ namespace WindowsFormsApp1
         {
             return "x:" + X + " y:" + Y;
         }
-        public static Vector operator *(Vector vector, float t)
+        public static Vector operator *(Vector vector, double t)
         {
             return new Vector(vector.X * t, vector.Y * t);
         }
-        public static Vector operator *(float t, Vector vector) => vector * t;
+        public static Vector operator *(double t, Vector vector) => vector * t;
 
         public static double operator *(Vector first, Vector second)
         {
@@ -76,11 +76,42 @@ namespace WindowsFormsApp1
         {
             return Math.Acos((this * other) / (this.Length * other.Length));
         }
+        public static Vector SumAllVectors(params Vector[] vectors)
+        {
+            var result = new Vector(0, 0);
+            foreach (var vector in vectors)
+            {
+                result = result + vector;
+            }
+            return result;
+        }
+        public Vector GetOrt()
+        {
+            var length = this.Length;
+            if (length == 0)
+            {
+                return new Vector(0, 0);
+            }
+            return this * (1 / length);
+        }
+        public override bool Equals(object other1)
+        {
+            var other = (Vector)other1;
+            return (this.X - other.X < 0.0001) && (this.Y - other.Y < 0.0001);
+        }
     }
 
     [TestFixture]
     class Tests
     {
+        [Test]
+        public void DoubleVectorIsEqual()
+        {
+            var vector = new Vector(3999945646633, 0);
+            vector.X = vector.X * vector.X;
+            vector.X = Math.Sqrt(vector.X);
+            Assert.AreEqual(new Vector(3999945646633, 0), vector);
+        }
         [Test]
         public void IsTwoVectorsEqual()
         {
@@ -103,7 +134,7 @@ namespace WindowsFormsApp1
             Assert.AreEqual(vector2 - vector1, new Vector(0, 0));
         }
         [Test]
-        public void VectorOnFloat()
+        public void VectorOnDouble()
         {
             var vector1 = new Vector(1, 1);
             Assert.AreEqual(vector1*2, new Vector(2, 2));
@@ -132,6 +163,20 @@ namespace WindowsFormsApp1
             Assert.AreEqual(rect.LB, new Vector(-1, 1));
             Assert.AreEqual(rect.LT, new Vector(-1, -1));
             Assert.AreEqual(rect.RB, new Vector(1, 1));
+        }
+        [Test]
+        public void SumIsNice()
+        {
+            var res = Vector.SumAllVectors(new Vector(1, 1), new Vector(-1, -1), new Vector(0, 0), new Vector(2, 2));
+            Assert.AreEqual(res, new Vector(2, 2));
+        }
+        [Test] 
+        public void Ort()
+        {
+            var vector = new Vector(3, 0);
+            Assert.AreEqual(vector.GetOrt(), new Vector(1, 0));
+            var vector1 = new Vector(3, 4);
+            Assert.AreEqual(new Vector(0.6, 0.8), vector1.GetOrt());
         }
     }
 }
