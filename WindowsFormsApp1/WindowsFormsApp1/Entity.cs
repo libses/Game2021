@@ -13,11 +13,11 @@ namespace WindowsFormsApp1
     public class Entity
     {
         public int HP  { get; set;}
-        public Vector location { get; set; }
+        public Vector Location { get; set; }
         public Rectangle Hitbox { get; set; }
         public Entity (int HP, Vector location, double width, double height) {
             this.HP = HP;
-            this.location = location;
+            this.Location = location;
             Hitbox = new Rectangle(width, height, location);
         }
     }

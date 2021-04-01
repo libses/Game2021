@@ -27,10 +27,25 @@ namespace WindowsFormsApp1
             RT = center + new Vector(width, -heigth);
         }
     }
-    class Segment
+    public class Segment
     {
         public Vector Start;
         public Vector End;
+        public Segment(Vector start, Vector end)
+        {
+            Start = start;
+            End = end;
+        }
+
+        public override bool Equals(object other1)
+        {
+            var other = (Segment)other1;
+            return Start.Equals(other.Start) && End.Equals(other.End);
+        }
+        public override int GetHashCode()
+        {
+            return Start.GetHashCode() + End.GetHashCode();
+        }
     }
 
     public struct Vector
@@ -81,7 +96,7 @@ namespace WindowsFormsApp1
             var result = new Vector(0, 0);
             foreach (var vector in vectors)
             {
-                result = result + vector;
+                result += vector;
             }
             return result;
         }
@@ -99,6 +114,10 @@ namespace WindowsFormsApp1
             var other = (Vector)other1;
             return (this.X - other.X < 0.0001) && (this.Y - other.Y < 0.0001);
         }
+        public override int GetHashCode()
+        {
+            return X.GetHashCode() + 2000*Y.GetHashCode();
+        }
     }
 
     [TestFixture]
@@ -108,7 +127,7 @@ namespace WindowsFormsApp1
         public void DoubleVectorIsEqual()
         {
             var vector = new Vector(3999945646633, 0);
-            vector.X = vector.X * vector.X;
+            vector.X *= vector.X;
             vector.X = Math.Sqrt(vector.X);
             Assert.AreEqual(new Vector(3999945646633, 0), vector);
         }
