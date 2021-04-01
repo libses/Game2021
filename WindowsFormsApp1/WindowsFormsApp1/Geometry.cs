@@ -79,7 +79,7 @@ namespace WindowsFormsApp1
     }
 
     [TestFixture]
-    class Geometry_should
+    class Tests
     {
         [Test]
         public void IsTwoVectorsEqual()

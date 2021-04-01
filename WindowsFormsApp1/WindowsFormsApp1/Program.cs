@@ -6,10 +6,6 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
-    public class Player : Entity
-    {
-
-    }
     static class Program
     {
         [STAThread]

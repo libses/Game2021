@@ -8,5 +8,9 @@ namespace WindowsFormsApp1
 {
     class Enemy : Entity
     {
+        public Enemy(int HP, Vector location, double width, double height) : base(HP, location, width, height)
+        {
+
+        }
     }
 }
