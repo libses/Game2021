@@ -20,6 +20,12 @@ namespace WindowsFormsApp1
             this.LB = LB;
             this.RB = RB;
         }
+        public Rectangle(double width, double heigth, Vector center) {
+            RB = center + new Vector(width, heigth); //Как и везде, ось y направлена вниз
+            LB = center + new Vector(-width, heigth);
+            LT = center + new Vector(-width, -heigth);
+            RT = center + new Vector(width, -heigth);
+        }
     }
     class Segment
     {
@@ -73,7 +79,7 @@ namespace WindowsFormsApp1
     }
 
     [TestFixture]
-    class Tests
+    class Geometry_should
     {
         [Test]
         public void IsTwoVectorsEqual()
@@ -114,6 +120,18 @@ namespace WindowsFormsApp1
         {
             var vector = new Vector(3, 4);
             Assert.AreEqual(vector.Length, 5, 0.0001);
+        }
+        [Test]
+        public void RectangleCorrect()
+        {
+            var center = new Vector(0,0);
+            var width = 1;
+            var heigth = 1;
+            var rect = new Rectangle(width, heigth, center);
+            Assert.AreEqual(rect.RT, new Vector(1, -1));
+            Assert.AreEqual(rect.LB, new Vector(-1, 1));
+            Assert.AreEqual(rect.LT, new Vector(-1, -1));
+            Assert.AreEqual(rect.RB, new Vector(1, 1));
         }
     }
 }
