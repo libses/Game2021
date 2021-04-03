@@ -31,3 +31,4 @@ C:\Users\Виктор Капкаев\Source\Repos\libses\Game2021\WindowsFormsAp
 C:\Users\Виктор Капкаев\Source\Repos\libses\Game2021\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\Game2021.pdb
 C:\Users\Виктор Капкаев\Source\Repos\libses\Game2021\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\Game2021.exe
 C:\Users\Виктор Капкаев\Source\Repos\libses\Game2021\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\Game2021.pdb
+C:\Users\Виктор Капкаев\Source\Repos\libses\Game2021\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\Game.csprojAssemblyReference.cache
