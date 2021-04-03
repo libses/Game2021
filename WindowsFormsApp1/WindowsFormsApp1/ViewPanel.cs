@@ -19,7 +19,7 @@ namespace WindowsFormsApp1
 		public ViewPanel()
 		{
 			FitToWindow = true;
-			zoomScale = 1f;
+			zoomScale = 1.0f;
 		}
 
 		public PointF CenterLogicalPos
