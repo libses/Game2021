@@ -20,6 +20,8 @@ namespace WindowsFormsApp1
 	{
 		public readonly Block[,] Map;
 		public readonly Point Start;
+		public Entity[] entities;
+
 
 		private Level(Block[,] map, Point start)
 		{
