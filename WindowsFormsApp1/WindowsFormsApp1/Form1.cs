@@ -31,7 +31,7 @@ namespace WindowsFormsApp1
 
         private static IEnumerable<Level> LoadLevels()
         {
-            yield return Level.FromText(Properties.Resources.Map1);
+            yield return Level.FromText(Properties.Resources.Map1, 1);
         }
     }
 }

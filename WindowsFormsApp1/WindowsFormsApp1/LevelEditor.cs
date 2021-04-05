@@ -4,17 +4,18 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NUnit.Framework;
 
 namespace WindowsFormsApp1
 {
 	public enum Block
-    {
+	{
 		Ground,
 		Empty,
 		Player,
 		Demon,
 		Zombie
-    }
+	}
 
 	public class Level
 	{
@@ -23,22 +24,20 @@ namespace WindowsFormsApp1
 		public Entity[] entities;
 
 
-		private Level(Block[,] level, Point start)
+		private Level(Block[,] level)
 		{
 			CurrentLevel = level;
-			Start = start;
 		}
 
-		public static Level FromText(string text)
+		public static Level FromText(string text, int splitting)
 		{
 			var lines = text.Split(new[] { "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
-			return FromLines(lines);
+			return FromLines(lines, splitting);
 		}
 
-		public static Level FromLines(string[] lines)
+		public static Level FromLines(string[] lines, int splitting)
 		{
-			var map = new Block[lines[0].Length, lines.Length];
-			var start = Point.Empty;
+			var map = new Block[lines[0].Length * splitting, lines.Length * splitting];
 			for (var y = 0; y < lines.Length; y++)
 			{
 				for (var x = 0; x < lines[0].Length; x++)
@@ -46,44 +45,27 @@ namespace WindowsFormsApp1
 					switch (lines[y][x])
 					{
 						case 'G':
-							map[x, y] = Block.Ground;
-							break;
+							{
+								for (int dx = 0; dx < splitting; dx++)
+								{
+									for (int dy = 0; dy < splitting;  dy++)
+										map[splitting * x + dx, splitting * y + dy] = Block.Ground;
+								}
+								break;
+							}
 						default:
-							map[x, y] = Block.Empty;
-							break;
+							{
+								for (int dx = 0; dx < splitting; dx++)
+								{
+									for (int dy = 0; dy < splitting; dy++)
+										map[splitting * x + dx, splitting * y + dy] = Block.Empty;
+								}
+								break;
+							}
 					}
 				}
 			}
-			return new Level(map, start);
+			return new Level(map);
 		}
-
-        public static Block[,] GetPointVersion(string[] lines)
-        {
-            var map = new Block[lines[0].Length * 10, lines.Length * 10];
-			for (var y = 0; y < lines.Length; y++)
-			{
-				for (var x = 0; x < lines[0].Length; x++)
-				{
-					for(int dy = y; dy < 10; dy++)
-                    {
-						for(int dx = x; dx < 10;)
-                        {
-							switch (lines[y][x])
-						{
-							case 'G':
-								map[x, y] = Block.Ground;
-								break;
-								default:
-								map[x, y] = Block.Empty;
-								break;
-								}
-                        }
-                    }
-					
-				}
-			}
-			return map;
-		}
-
-    }
+	}
 }
