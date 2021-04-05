@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApp1
 {
-    class Zombie
+    class Zombie : Enemy
     {
+        public Zombie(int HP, Vector location, double width, double height) : base(HP, location, width, height)
+        {
+        }
     }
 }

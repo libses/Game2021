@@ -1,20 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
-    public partial class Form1 : Form
+    public class GameForm : Form
     {
-        public Form1()
+        private readonly Painter painter;
+        private readonly ViewPanel scaledViewPanel;
+
+        protected override void OnLoad(EventArgs e)
         {
-            InitializeComponent();
+            base.OnLoad(e);
+            DoubleBuffered = true;
+            WindowState = FormWindowState.Maximized;
+            Text = "Game2021";
+        }
+
+        public GameForm()
+        {
+            var levels = LoadLevels().ToArray();
+            painter = new Painter(levels);
+            scaledViewPanel = new ViewPanel(painter) { Dock = DockStyle.Fill };
+            Controls.Add(scaledViewPanel);
+        }
+
+        private static IEnumerable<Level> LoadLevels()
+        {
+            yield return Level.FromText(Properties.Resources.Map1);
         }
     }
 }
