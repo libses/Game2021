@@ -23,6 +23,7 @@ namespace WindowsFormsApp1
         public GameForm()
         {
             var levels = LoadLevels().ToArray();
+            var physics = new Physics(levels[0]);
             painter = new Painter(levels);
             scaledViewPanel = new ViewPanel(painter) { Dock = DockStyle.Fill };
             Controls.Add(scaledViewPanel);

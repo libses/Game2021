@@ -8,6 +8,13 @@ namespace WindowsFormsApp1
 {
     public class Physics
     {
+        public Level level;
+        public Physics(Level lvl) {
+            level = lvl;
+        }
         public const double g = 9.8;
+        public void Iterate() {
+            
+        }
     }
 }

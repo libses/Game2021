@@ -32,3 +32,37 @@ C:\Users\Виктор Капкаев\Source\Repos\libses\Game2021\WindowsFormsAp
 C:\Users\Виктор Капкаев\Source\Repos\libses\Game2021\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\Game2021.exe
 C:\Users\Виктор Капкаев\Source\Repos\libses\Game2021\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\Game2021.pdb
 C:\Users\Виктор Капкаев\Source\Repos\libses\Game2021\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\Game.csprojAssemblyReference.cache
+C:\Users\DA.Morozov\Source\Repos\libses\Game2021\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\NUnit3.TestAdapter.dll
+C:\Users\DA.Morozov\Source\Repos\libses\Game2021\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\NUnit3.TestAdapter.pdb
+C:\Users\DA.Morozov\Source\Repos\libses\Game2021\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\nunit.engine.dll
+C:\Users\DA.Morozov\Source\Repos\libses\Game2021\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\nunit.engine.api.dll
+C:\Users\DA.Morozov\Source\Repos\libses\Game2021\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\nunit.engine.core.dll
+C:\Users\DA.Morozov\Source\Repos\libses\Game2021\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\Game2021.exe.config
+C:\Users\DA.Morozov\Source\Repos\libses\Game2021\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\Game2021.exe
+C:\Users\DA.Morozov\Source\Repos\libses\Game2021\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\Game2021.pdb
+C:\Users\DA.Morozov\Source\Repos\libses\Game2021\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\nunit.framework.dll
+C:\Users\DA.Morozov\Source\Repos\libses\Game2021\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\nunit.framework.xml
+C:\Users\DA.Morozov\Source\Repos\libses\Game2021\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\Game.csprojAssemblyReference.cache
+C:\Users\DA.Morozov\Source\Repos\libses\Game2021\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
+C:\Users\DA.Morozov\Source\Repos\libses\Game2021\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\Game.csproj.GenerateResource.cache
+C:\Users\DA.Morozov\Source\Repos\libses\Game2021\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\Game.csproj.CoreCompileInputs.cache
+C:\Users\DA.Morozov\Source\Repos\libses\Game2021\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\Game.csproj.CopyComplete
+C:\Users\DA.Morozov\Source\Repos\libses\Game2021\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\Game2021.exe
+C:\Users\DA.Morozov\Source\Repos\libses\Game2021\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\Game2021.pdb
+C:\Users\Viktor.Kapkaev\Downloads\func-rocket.csproj\tmp\Game2021\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\Game.csprojAssemblyReference.cache
+C:\Users\Viktor.Kapkaev\Downloads\func-rocket.csproj\tmp\Game2021\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
+C:\Users\Viktor.Kapkaev\Downloads\func-rocket.csproj\tmp\Game2021\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\Game.csproj.GenerateResource.cache
+C:\Users\Viktor.Kapkaev\Downloads\func-rocket.csproj\tmp\Game2021\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\Game.csproj.CoreCompileInputs.cache
+C:\Users\Viktor.Kapkaev\Downloads\func-rocket.csproj\tmp\Game2021\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\Game2021.exe
+C:\Users\Viktor.Kapkaev\Downloads\func-rocket.csproj\tmp\Game2021\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\Game2021.pdb
+C:\Users\Viktor.Kapkaev\Downloads\func-rocket.csproj\tmp\Game2021\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\NUnit3.TestAdapter.dll
+C:\Users\Viktor.Kapkaev\Downloads\func-rocket.csproj\tmp\Game2021\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\NUnit3.TestAdapter.pdb
+C:\Users\Viktor.Kapkaev\Downloads\func-rocket.csproj\tmp\Game2021\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\nunit.engine.dll
+C:\Users\Viktor.Kapkaev\Downloads\func-rocket.csproj\tmp\Game2021\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\nunit.engine.api.dll
+C:\Users\Viktor.Kapkaev\Downloads\func-rocket.csproj\tmp\Game2021\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\nunit.engine.core.dll
+C:\Users\Viktor.Kapkaev\Downloads\func-rocket.csproj\tmp\Game2021\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\Game2021.exe.config
+C:\Users\Viktor.Kapkaev\Downloads\func-rocket.csproj\tmp\Game2021\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\Game2021.exe
+C:\Users\Viktor.Kapkaev\Downloads\func-rocket.csproj\tmp\Game2021\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\Game2021.pdb
+C:\Users\Viktor.Kapkaev\Downloads\func-rocket.csproj\tmp\Game2021\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\nunit.framework.dll
+C:\Users\Viktor.Kapkaev\Downloads\func-rocket.csproj\tmp\Game2021\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\nunit.framework.xml
+C:\Users\Viktor.Kapkaev\Downloads\func-rocket.csproj\tmp\Game2021\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\Game.csproj.CopyComplete
