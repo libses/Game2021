@@ -15,6 +15,7 @@ namespace WindowsFormsApp1
         public int HP  { get; set;}
         public Vector Location { get; set; }
         public Rectangle Hitbox { get; set; }
+        public Vector Velocity {get; set;}
         public Entity (int HP, Vector location, double width, double height) {
             this.HP = HP;
             this.Location = location;
