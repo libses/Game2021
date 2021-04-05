@@ -10,7 +10,10 @@ namespace WindowsFormsApp1
 	public enum Block
     {
 		Ground,
-		Empty
+		Empty,
+		Player,
+		Demon,
+		Zombie
     }
 
 	public class Level
