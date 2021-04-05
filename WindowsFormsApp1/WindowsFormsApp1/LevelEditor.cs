@@ -18,14 +18,14 @@ namespace WindowsFormsApp1
 
 	public class Level
 	{
-		public readonly Block[,] Map;
+		public readonly Block[,] CurrentLevel;
 		public readonly Point Start;
 		public Entity[] entities;
 
 
-		private Level(Block[,] map, Point start)
+		private Level(Block[,] level, Point start)
 		{
-			Map = map;
+			CurrentLevel = level;
 			Start = start;
 		}
 
@@ -56,5 +56,11 @@ namespace WindowsFormsApp1
 			}
 			return new Level(map, start);
 		}
+
+		//public static Block[,] GetPointVersion(string[] lines)
+  //      {
+		//	var map = new Block[lines[0].Length, lines.Length];
+		//}
+
 	}
 }

@@ -49,3 +49,9 @@ C:\Users\DA.Morozov\Source\Repos\libses\Game2021\WindowsFormsApp1\WindowsFormsAp
 C:\Users\DA.Morozov\Source\Repos\libses\Game2021\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\Game.csproj.CopyComplete
 C:\Users\DA.Morozov\Source\Repos\libses\Game2021\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\Game2021.exe
 C:\Users\DA.Morozov\Source\Repos\libses\Game2021\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\Game2021.pdb
+C:\Users\Viktor.Kapkaev\Downloads\func-rocket.csproj\tmp\Game2021\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\Game.csprojAssemblyReference.cache
+C:\Users\Viktor.Kapkaev\Downloads\func-rocket.csproj\tmp\Game2021\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
+C:\Users\Viktor.Kapkaev\Downloads\func-rocket.csproj\tmp\Game2021\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\Game.csproj.GenerateResource.cache
+C:\Users\Viktor.Kapkaev\Downloads\func-rocket.csproj\tmp\Game2021\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\Game.csproj.CoreCompileInputs.cache
+C:\Users\Viktor.Kapkaev\Downloads\func-rocket.csproj\tmp\Game2021\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\Game2021.exe
+C:\Users\Viktor.Kapkaev\Downloads\func-rocket.csproj\tmp\Game2021\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\Game2021.pdb
