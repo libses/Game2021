@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,10 +16,12 @@ namespace WindowsFormsApp1
         public int HP  { get; set;}
         public Vector Location { get; set; }
         public Rectangle Hitbox { get; set; }
-        public Entity (int HP, Vector location, double width, double height) {
+        public Image Sprite;
+        public Entity (int HP, Vector location, double width, double height, Image sprite) {
             this.HP = HP;
             this.Location = location;
             Hitbox = new Rectangle(width, height, location);
+            Sprite = sprite;
         }
     }
 }
