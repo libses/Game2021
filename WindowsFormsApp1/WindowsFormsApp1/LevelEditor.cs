@@ -57,10 +57,33 @@ namespace WindowsFormsApp1
 			return new Level(map, start);
 		}
 
-		//public static Block[,] GetPointVersion(string[] lines)
-  //      {
-		//	var map = new Block[lines[0].Length, lines.Length];
-		//}
+        public static Block[,] GetPointVersion(string[] lines)
+        {
+            var map = new Block[lines[0].Length * 10, lines.Length * 10];
+			for (var y = 0; y < lines.Length; y++)
+			{
+				for (var x = 0; x < lines[0].Length; x++)
+				{
+					for(int dy = y; dy < 10; dy++)
+                    {
+						for(int dx = x; dx < 10;)
+                        {
+							switch (lines[y][x])
+						{
+							case 'G':
+								map[x, y] = Block.Ground;
+								break;
+								default:
+								map[x, y] = Block.Empty;
+								break;
+								}
+                        }
+                    }
+					
+				}
+			}
+			return map;
+		}
 
-	}
+    }
 }
