@@ -6,22 +6,15 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
-
-    
-
-    public class Player : Entity
-    {
-
-    }
     static class Program
     {
         [STAThread]
         static void Main()
         {
-            //ssss
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            var form = new GameForm();
+            Application.Run(form);
         }
     }
 }
