@@ -10,11 +10,8 @@ namespace WindowsFormsApp1
 {
 	public enum Block
 	{
-		Ground,
 		Empty,
-		Player,
-		Demon,
-		Zombie
+		Ground
 	}
 
 	public class Level
@@ -24,9 +21,10 @@ namespace WindowsFormsApp1
 		public Entity[] entities;
 
 
-		private Level(Block[,] level)
+		private Level(Block[,] level, Entity[] ents)
 		{
 			CurrentLevel = level;
+			entities = ents;
 		}
 
 		public static Level FromText(string text, int splitting)
@@ -37,6 +35,7 @@ namespace WindowsFormsApp1
 
 		public static Level FromLines(string[] lines, int splitting)
 		{
+			var ents = new List<Entity>();
 			var map = new Block[lines[0].Length * splitting, lines.Length * splitting];
 			for (var y = 0; y < lines.Length; y++)
 			{
@@ -53,6 +52,13 @@ namespace WindowsFormsApp1
 								}
 								break;
 							}
+						case 'P':
+                            {
+								ents.Add(new Player(100, new Vector(x * splitting, y * splitting), splitting, splitting, Image.FromFile
+									(@"C:\Users\liber\Source\Repos\Game2021meow\WindowsFormsApp1\WindowsFormsApp1\Images\2.png")));
+								//отладка. поменяйте.
+								break;
+                            }
 						default:
 							{
 								for (int dx = 0; dx < splitting; dx++)
@@ -65,7 +71,7 @@ namespace WindowsFormsApp1
 					}
 				}
 			}
-			return new Level(map);
+			return new Level(map, ents.ToArray());
 		}
 	}
 }

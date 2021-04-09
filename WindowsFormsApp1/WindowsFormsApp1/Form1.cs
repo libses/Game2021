@@ -27,6 +27,14 @@ namespace WindowsFormsApp1
             painter = new Painter(levels);
             scaledViewPanel = new ViewPanel(painter) { Dock = DockStyle.Fill };
             Controls.Add(scaledViewPanel);
+            var timer = new Timer();
+            timer.Interval = 17;
+            timer.Tick += (sender, args) =>
+            {
+                physics.Iterate();
+                Refresh();
+            };
+            timer.Start();
         }
 
         private static IEnumerable<Level> LoadLevels()
