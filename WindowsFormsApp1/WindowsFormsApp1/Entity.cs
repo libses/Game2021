@@ -21,8 +21,8 @@ namespace WindowsFormsApp1
     }
     public class Entity : IEntity
     {
-        double width;
-        double height;
+        public double Width;
+        public double Height;
         public int HP  { get; set;}
         public Vector Location { get; set; }
         public void ChangeLocation(Vector newLocation)
@@ -35,16 +35,19 @@ namespace WindowsFormsApp1
         }
         public Rectangle Hitbox { get; set; }
         public Vector Velocity {get; set;}
-        public Image Sprite;
-        public Entity (int HP, Vector location, double width, double height, Image sprite) {
+        public Bitmap Sprite;
+        public Entity (int HP, Vector location, double width, double height, Bitmap sprite) 
+        {
             this.HP = HP;
             this.Location = location;
             Hitbox = new Rectangle(width, height, location);
             Sprite = sprite;
+            Width = width;
+            Height = height;
         }
         public void Invalidate()
         {
-            Hitbox = new Rectangle(width, height, Location);
+            Hitbox = new Rectangle(Width, Height, Location);
         }
     }
 }

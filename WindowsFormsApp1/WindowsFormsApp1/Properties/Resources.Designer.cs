@@ -71,13 +71,28 @@ namespace WindowsFormsApp1.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на ##############
-        ///##############
-        ///GGGGGGGGGGGGGG.
+        ///   Ищет локализованную строку, похожую на ####################
+        ///GGG#####GGGG#####GGG
+        ///#########P##########
+        ///####################
+        ///GGGGG##########GGGGG
+        ///####################
+        ///####################
+        ///GGGGGGGGGGGGGGGGGGGG.
         /// </summary>
         internal static string Map1 {
             get {
                 return ResourceManager.GetString("Map1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Player {
+            get {
+                object obj = ResourceManager.GetObject("Player", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }

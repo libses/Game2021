@@ -54,9 +54,9 @@ namespace WindowsFormsApp1
 							}
 						case 'P':
                             {
-								ents.Add(new Player(100, new Vector(x * splitting, y * splitting), splitting, splitting, Image.FromFile
-									(@"C:\Users\liber\Source\Repos\Game2021meow\WindowsFormsApp1\WindowsFormsApp1\Images\2.png")));
-								//отладка. поменяйте.
+								ents.Add(new Player(100, new Vector(x * splitting, y * splitting), 
+									Properties.Resources.Player.Width / 50, Properties.Resources.Player.Height / 75, Properties.Resources.Player));
+								//sadovnichek: я создал тестовое изображение персонажа и закинул в Resources. Так вроде бы лучше.
 								break;
                             }
 						default:
