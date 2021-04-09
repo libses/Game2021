@@ -10,8 +10,8 @@ namespace WindowsFormsApp1
 {
 	public class Painter
 	{
-		private Level currentLevel;
-		private Bitmap mapImage;
+		public Level currentLevel;
+		public Bitmap mapImage;
 
 		public SizeF Size => new SizeF(currentLevel.CurrentLevel.GetLength(0), currentLevel.CurrentLevel.GetLength(1));
 		public Size LevelSize => new Size(currentLevel.CurrentLevel.GetLength(0), currentLevel.CurrentLevel.GetLength(1));
@@ -47,11 +47,16 @@ namespace WindowsFormsApp1
 		private void DrawLevel(Graphics graphics)
         {
 			graphics.DrawImage(mapImage, new RectangleF(0, 0, LevelSize.Width, LevelSize.Height));
+			foreach (var ent in currentLevel.entities)
+            {
+				graphics.DrawLine(new Pen(Brushes.Red), new PointF((float)ent.Location.X, (float)ent.Location.Y),
+					new PointF((float)ent.Location.X +1, (float)ent.Location.Y + 1));
+			}
 		}
 
 		public void Paint(Graphics g)
         {
-			g.SmoothingMode = SmoothingMode.AntiAlias;
+			g.SmoothingMode = SmoothingMode.HighSpeed;
 			DrawLevel(g);
 		}
     }

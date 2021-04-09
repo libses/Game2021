@@ -98,6 +98,10 @@
     <None Include="Levels\Map1.txt" />
     <None Include="Images\Ground.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\2.png" />
+    <Content Include="Images\Безымянный.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
