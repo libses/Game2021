@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace WindowsFormsApp1
-{
+{//переписать, чтобы каждый раз не рисовать левел, а только entities. Медленно работает!
 	public class Painter
 	{
 		public Level currentLevel;
@@ -49,8 +49,6 @@ namespace WindowsFormsApp1
 			graphics.DrawImage(mapImage, new RectangleF(0, 0, LevelSize.Width, LevelSize.Height));
 			foreach (var ent in currentLevel.entities)
             {
-				//graphics.DrawLine(new Pen(Brushes.Red), new PointF((float)ent.Location.X, (float)ent.Location.Y),
-					//new PointF((float)ent.Location.X + 1, (float)ent.Location.Y + 1));
 				graphics.DrawImage(ent.Sprite, (float)ent.Location.X, (float)ent.Location.Y, 
 					(float)ent.Width, (float)ent.Height);
 			}

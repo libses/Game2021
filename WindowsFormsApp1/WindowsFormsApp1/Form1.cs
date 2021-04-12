@@ -11,6 +11,8 @@ namespace WindowsFormsApp1
     {
         private readonly Painter painter;
         private readonly ViewPanel scaledViewPanel;
+        private Physics physics;
+        private Level[] levels;
 
         protected override void OnLoad(EventArgs e)
         {
@@ -18,15 +20,6 @@ namespace WindowsFormsApp1
             DoubleBuffered = true;
             WindowState = FormWindowState.Maximized;
             Text = "Game2021";
-        }
-
-        public GameForm()
-        {
-            var levels = LoadLevels().ToArray();
-            var physics = new Physics(levels[0]);
-            painter = new Painter(levels);
-            scaledViewPanel = new ViewPanel(painter) { Dock = DockStyle.Fill };
-            Controls.Add(scaledViewPanel);
             var timer = new Timer();
             timer.Interval = 17;
             timer.Tick += (sender, args) =>
@@ -35,6 +28,43 @@ namespace WindowsFormsApp1
                 Refresh();
             };
             timer.Start();
+            
+        }
+        private void FormKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Space)
+            {
+                physics.Jump();
+            }
+            if (e.KeyCode == Keys.D)
+            {
+                foreach (var entity in levels[0].entities)
+                {
+                    var x = entity.Location.X;
+                    var y = entity.Location.Y;
+                    entity.ChangeLocation(new Vector(x + 0.1, y));
+                    //переписать на velocity. работает неадекватно + медленно.
+                }
+            }
+            if (e.KeyCode == Keys.A)
+            {
+                foreach (var entity in levels[0].entities)
+                {
+                    var x = entity.Location.X;
+                    var y = entity.Location.Y;
+                    entity.ChangeLocation(new Vector(x - 0.1, y));
+                }
+            }
+        }
+        public GameForm()
+        {
+            
+            levels = LoadLevels().ToArray();
+            physics = new Physics(levels[0]);
+            painter = new Painter(levels);
+            scaledViewPanel = new ViewPanel(painter) { Dock = DockStyle.Fill };
+            Controls.Add(scaledViewPanel);
+            KeyDown += FormKeyDown;
         }
 
         private static IEnumerable<Level> LoadLevels()

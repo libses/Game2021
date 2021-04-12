@@ -49,5 +49,9 @@ namespace WindowsFormsApp1
         {
             Hitbox = new Rectangle(Width, Height, Location);
         }
+        public void Jump()
+        {
+
+        }
     }
 }
