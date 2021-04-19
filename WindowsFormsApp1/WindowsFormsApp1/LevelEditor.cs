@@ -59,6 +59,12 @@ namespace WindowsFormsApp1
 								//sadovnichek: я создал тестовое изображение персонажа и закинул в Resources. Так вроде бы лучше.
 								break;
                             }
+						case 'M':
+                            {
+								ents.Add(new Enemy(100, new Vector(x * splitting, y * splitting),
+									Properties.Resources.Player.Width / 50, Properties.Resources.Player.Height / 71, Properties.Resources.Agressor));
+								break;
+							}
 						default:
 							{
 								for (int dx = 0; dx < splitting; dx++)

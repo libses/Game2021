@@ -101,6 +101,7 @@
   <ItemGroup>
     <Content Include="Images\2.png" />
     <None Include="Images\Player.png" />
+    <None Include="Images\Agressor.png" />
     <Content Include="Images\Безымянный.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -63,6 +63,16 @@ namespace WindowsFormsApp1.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Agressor {
+            get {
+                object obj = ResourceManager.GetObject("Agressor", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Ground {
             get {
                 object obj = ResourceManager.GetObject("Ground", resourceCulture);
@@ -71,14 +81,18 @@ namespace WindowsFormsApp1.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на ####################
-        ///GGG#####GGGG#####GGG
-        ///#########P##########
-        ///####################
-        ///GGGGG##########GGGGG
-        ///####################
-        ///####################
-        ///GGGGGGGGGGGGGGGGGGGG.
+        ///   Ищет локализованную строку, похожую на GGGGGGGGGGGGGGGGGGGGGG
+        ///G####################G
+        ///G####################G
+        ///G####################G
+        ///G#M##################G
+        ///GGGG#####GGGG#####GGGG
+        ///G########P###########G
+        ///G####################G
+        ///GGGGGG##########GGGGGG
+        ///G####################G
+        ///G####################G
+        ///GGGGGGGGGGGGGGGGGGGGGG.
         /// </summary>
         internal static string Map1 {
             get {

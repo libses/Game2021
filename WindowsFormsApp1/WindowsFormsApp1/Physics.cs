@@ -20,12 +20,13 @@ namespace WindowsFormsApp1
             var y = (int)Math.Round(entity.Hitbox.LB.Y);
             if (Math.Abs(y - entity.Hitbox.LB.Y) < 0.16)
             {
-                return (level.CurrentLevel[x, y] == Block.Ground);
+                return level.CurrentLevel[x, y] == Block.Ground;
             }
             return false;
         }
         public Level level;
-        public Physics(Level lvl) {
+        public Physics(Level lvl) 
+        {
             level = lvl;
         }
         public const double g = 0.01;
@@ -35,7 +36,8 @@ namespace WindowsFormsApp1
                 if (!Collide(entity))
                 {
                     DoGravity(entity);
-                } else
+                } 
+                else
                 {
                     var veloX = entity.Velocity.X;
                     entity.ChangeVelocity(new Vector(veloX, 0));
@@ -54,7 +56,6 @@ namespace WindowsFormsApp1
                     DoGravity(entity);
                     entity.Invalidate();
                 }
-                
             }
         }
     }
