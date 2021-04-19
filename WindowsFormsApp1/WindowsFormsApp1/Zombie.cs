@@ -9,7 +9,7 @@ namespace WindowsFormsApp1
 {
     class Zombie : Enemy
     {
-        public Zombie(int HP, Vector location, double width, double height, Image sprite) : base(HP, location, width, height, sprite)
+        public Zombie(int HP, Vector location, double width, double height, Bitmap sprite) : base(HP, location, width, height, sprite)
         {
         }
     }

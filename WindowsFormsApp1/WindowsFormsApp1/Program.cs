@@ -8,6 +8,7 @@ namespace WindowsFormsApp1
 {
     static class Program
     {
+
         [STAThread]
         static void Main()
         {
@@ -15,6 +16,7 @@ namespace WindowsFormsApp1
             Application.SetCompatibleTextRenderingDefault(false);
             var form = new GameForm();
             Application.Run(form);
+
         }
     }
 }
