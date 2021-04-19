@@ -16,3 +16,9 @@ TODO: ???
 Концепция: https://vk.com/away.php?utf=1&to=https%3A%2F%2Fdocs.google.com%2Fdocument%2Fd%2F12fG60935lOuhTZc5UQKjRC0cQ1EeIfXMJ63WJEoeh7M%2Fedit
 
 Что нужно сделать: https://docs.google.com/spreadsheets/d/1_Fa4FLKveNVJf6aeCq5Y_bN45fGehr7hrt5FiGH9lYI/edit#gid=0
+
+# Aлгоритмы:
+* Поиск в ширину/глубина
+* Топологическая сортировка
+* Алгоритм Краскала
+* Алгоритм Дейкстры

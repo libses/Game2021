@@ -38,21 +38,29 @@ namespace WindowsFormsApp1
             }
             if (e.KeyCode == Keys.D)
             {
-                foreach (var entity in levels[0].entities)
+                for (int i = 0; i < 3; i++)
                 {
-                    var x = entity.Location.X;
-                    var y = entity.Location.Y;
-                    entity.ChangeLocation(new Vector(x + 0.1, y));
-                    //переписать на velocity. работает неадекватно + медленно.
+                    foreach (var entity in levels[0].entities)
+                    {
+                        var x = entity.Location.X;
+                        var y = entity.Location.Y;
+                        entity.ChangeLocation(new Vector(x + 0.03, y));
+                        entity.ChangeVelocity(new Vector(entity.Velocity.X + 0.01, entity.Velocity.Y));
+                        //переписать на velocity. работает неадекватно + медленно.
+                    }
                 }
             }
             if (e.KeyCode == Keys.A)
             {
-                foreach (var entity in levels[0].entities)
+                for (int i = 0; i < 3; i++)
                 {
-                    var x = entity.Location.X;
-                    var y = entity.Location.Y;
-                    entity.ChangeLocation(new Vector(x - 0.1, y));
+                    foreach (var entity in levels[0].entities)
+                    {
+                        var x = entity.Location.X;
+                        var y = entity.Location.Y;
+                        entity.ChangeLocation(new Vector(x - 0.03, y));
+                        entity.ChangeVelocity(new Vector(entity.Velocity.X - 0.01, entity.Velocity.Y));
+                    }
                 }
             }
         }
