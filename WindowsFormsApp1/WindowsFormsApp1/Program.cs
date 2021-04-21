@@ -8,7 +8,6 @@ namespace WindowsFormsApp1
 {
     static class Program
     {
-
         [STAThread]
         static void Main()
         {

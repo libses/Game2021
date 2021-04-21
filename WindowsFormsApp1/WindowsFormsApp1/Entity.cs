@@ -19,39 +19,62 @@ namespace WindowsFormsApp1
         void ChangeLocation(Vector newLocaton);
         void ChangeVelocity(Vector newVelocity);
     }
+
     public class Entity : IEntity
     {
         public double Width;
         public double Height;
         public int HP  { get; set;}
         public Vector Location { get; set; }
+        public Rectangle Hitbox { get; set; }
+        public Vector Velocity {get; set;}
+        public Bitmap Sprite;
+
         public void ChangeLocation(Vector newLocation)
         {
             Location = newLocation;
         }
+
         public void ChangeVelocity(Vector newVelocity)
         {
             Velocity = newVelocity;
         }
-        public Rectangle Hitbox { get; set; }
-        public Vector Velocity {get; set;}
-        public Bitmap Sprite;
+
         public Entity (int HP, Vector location, double width, double height, Bitmap sprite) 
         {
             this.HP = HP;
-            this.Location = location;
+            Location = location;
             Hitbox = new Rectangle(width, height, location);
             Sprite = sprite;
             Width = width;
             Height = height;
         }
+
         public void Invalidate()
         {
             Hitbox = new Rectangle(Width, Height, Location);
         }
-        public void Jump()
-        {
 
+        public void Move(double dx)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                var x = Location.X;
+                var y = Location.Y;
+                ChangeLocation(new Vector(x + dx, y));
+                ChangeVelocity(new Vector(Velocity.X + dx, Velocity.Y));
+            }
+        }
+
+        public void Jump(Physics physics)
+        {
+            if (physics.Collide(this))
+            {
+                var p = new Vector(Velocity.X, Velocity.Y - 0.20);
+                ChangeVelocity(p);
+                physics.DoGravity(this);
+                Invalidate();
+            }
         }
     }
 }
