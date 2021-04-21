@@ -13,6 +13,7 @@ namespace WindowsFormsApp1
             entity.ChangeLocation(new Vector(entity.Location.X + entity.Velocity.X, entity.Location.Y + entity.Velocity.Y + g / 2));
             entity.ChangeVelocity(new Vector(entity.Velocity.X, entity.Velocity.Y + g));
         }
+
         public bool Collide(IEntity entity)
         {
             var position = entity.Location;
