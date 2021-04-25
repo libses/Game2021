@@ -62,7 +62,7 @@ namespace WindowsFormsApp1
 						case 'E':
                             {
 								ents.Add(new Enemy(100, new Vector(x * splitting, y * splitting),
-									Properties.Resources.Player.Width / 50, Properties.Resources.Player.Height / 71, Properties.Resources.Agressor));
+									Properties.Resources.Agressor.Width / 50, Properties.Resources.Agressor.Height / 71, Properties.Resources.Agressor));
 								break;
 							}
 						default:

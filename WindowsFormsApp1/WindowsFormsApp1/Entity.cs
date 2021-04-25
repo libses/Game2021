@@ -57,7 +57,7 @@ namespace WindowsFormsApp1
 
         public void Move(double dx)
         {
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 5; i++)
             {
                 var x = Location.X;
                 var y = Location.Y;
@@ -70,7 +70,7 @@ namespace WindowsFormsApp1
         {
             if (physics.Collide(this))
             {
-                var p = new Vector(Velocity.X, Velocity.Y - 0.20);
+                var p = new Vector(Velocity.X, Velocity.Y - 0.2);
                 ChangeVelocity(p);
                 physics.DoGravity(this);
                 Invalidate();

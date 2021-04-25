@@ -25,10 +25,10 @@ namespace WindowsFormsApp1
         public bool Collide(IEntity entity)
         {
             var position = entity.Location;
-            var x = (int)Math.Round(position.X);
-            var y = (int)Math.Round(entity.Hitbox.LB.Y);
-            if (Math.Abs(y - entity.Hitbox.LB.Y) < 0.16) 
-                return level.CurrentLevel[x, y] == Block.Ground;
+            var x = Math.Round(position.X);
+            var y = Math.Round(entity.Hitbox.LB.Y);
+            if (Math.Abs(y - entity.Hitbox.LB.Y) < 0.16)
+                return level.CurrentLevel[(int)x, (int)y] == Block.Ground;
             return false;
         }
 

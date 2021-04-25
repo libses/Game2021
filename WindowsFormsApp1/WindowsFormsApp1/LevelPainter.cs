@@ -10,7 +10,7 @@ namespace WindowsFormsApp1
 {//переписать, чтобы каждый раз не рисовать левел, а только entities. Медленно работает!
 	public class Painter
 	{
-		public bool isDrawn = false;
+		//public bool isDrawn = false;
 		public Level currentLevel;
 		public Bitmap mapImage;
 
@@ -57,11 +57,7 @@ namespace WindowsFormsApp1
 		public void Paint(Graphics g)
         {
 			g.SmoothingMode = SmoothingMode.HighSpeed;
-			if (!isDrawn)
-            {
-				g.DrawImage(mapImage, new RectangleF(0, 0, LevelSize.Width, LevelSize.Height));
-				isDrawn = true;
-			}
+			g.DrawImage(mapImage, new RectangleF(0, 0, LevelSize.Width, LevelSize.Height));
 			DrawLevel(g);
 		}
     }

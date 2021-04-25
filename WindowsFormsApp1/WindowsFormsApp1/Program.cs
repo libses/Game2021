@@ -15,7 +15,6 @@ namespace WindowsFormsApp1
             Application.SetCompatibleTextRenderingDefault(false);
             var form = new GameForm();
             Application.Run(form);
-
         }
     }
 }
