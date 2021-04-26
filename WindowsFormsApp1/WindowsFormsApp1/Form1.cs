@@ -17,6 +17,7 @@ namespace WindowsFormsApp1
         private Entity player;
         private Entity[] enemies;
         private Random random = new Random(new DateTime().Millisecond);
+        private PathFinder PathFinder;
 
         public GameForm()
         {
@@ -25,6 +26,7 @@ namespace WindowsFormsApp1
             player = levels[0].entities.Where(x => x is Player).FirstOrDefault();
             enemies = levels[0].entities.Where(x => x is Enemy).ToArray();
             painter = new Painter(levels);
+            PathFinder = new PathFinder();
             scaledViewPanel = new ViewPanel(painter) { Dock = DockStyle.Fill };
             Controls.Add(scaledViewPanel);
             KeyDown += FormKeyDown;
@@ -37,7 +39,7 @@ namespace WindowsFormsApp1
             WindowState = FormWindowState.Maximized;
             Text = "Game2021";
             var timer = new Timer();
-            timer.Interval = 10;
+            timer.Interval = 1;
             timer.Tick += (sender, args) =>
             {
                 EnemyMoving();
@@ -67,15 +69,20 @@ namespace WindowsFormsApp1
         {
             foreach (var enemy in enemies)
             {
-                var action = random.Next(0, 10);
-                if (enemy != null)
+                var path = PathFinder.FindPaths(levels[0], new Point((int)enemy.Location.X, (int)enemy.Location.Y), new Point((int)player.Location.X, (int)player.Location.Y)).FirstOrDefault();
+                if (path != null)
                 {
-                    if (action == 0)
-                        enemy.Move(0.08);
-                    if (action == 1)
-                        enemy.Move(-0.08);
-                    if (action == 2)
-                        enemy.Jump(physics);
+                    var startPoint = path.First();
+                    foreach (var point in path)
+                    {
+                        if (point.X - startPoint.X == 0 && point.Y - startPoint.Y == -1)
+                            enemy.Jump(physics);
+                        if (point.X - startPoint.X == -1 && point.Y - startPoint.Y == 0)
+                            enemy.Move(0.08);
+                        if (point.X - startPoint.X == 1 && point.Y - startPoint.Y == 0)
+                            enemy.Move(-0.08);
+                        startPoint = point;
+                    }
                 }
             }
         }

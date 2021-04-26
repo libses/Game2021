@@ -16,14 +16,13 @@ namespace WindowsFormsApp1
 
 	public class Level
 	{
-		public readonly Block[,] CurrentLevel;
+		public readonly Block[,] Map;
 		public readonly Point Start;
 		public Entity[] entities;
 
-
 		private Level(Block[,] level, Entity[] ents)
 		{
-			CurrentLevel = level;
+			Map = level;
 			entities = ents;
 		}
 
@@ -79,5 +78,10 @@ namespace WindowsFormsApp1
 			}
 			return new Level(map, ents.ToArray());
 		}
+
+		public bool InBounds(Point point)
+        {
+			return point.X >= 0 && point.X <= Map.GetLength(1) && point.Y >= 0 && point.Y <= Map.GetLength(0);
+        }
 	}
 }

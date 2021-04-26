@@ -14,8 +14,8 @@ namespace WindowsFormsApp1
 		public Level currentLevel;
 		public Bitmap mapImage;
 
-		public SizeF Size => new SizeF(currentLevel.CurrentLevel.GetLength(0), currentLevel.CurrentLevel.GetLength(1));
-		public Size LevelSize => new Size(currentLevel.CurrentLevel.GetLength(0), currentLevel.CurrentLevel.GetLength(1));
+		public SizeF Size => new SizeF(currentLevel.Map.GetLength(0), currentLevel.Map.GetLength(1));
+		public Size LevelSize => new Size(currentLevel.Map.GetLength(0), currentLevel.Map.GetLength(1));
 
         public Painter(Level[] level)
         {
@@ -30,11 +30,11 @@ namespace WindowsFormsApp1
             mapImage = new Bitmap(LevelSize.Width * blockWidth, LevelSize.Height * blockHeight);
 			using (var graphics = Graphics.FromImage(mapImage))
 			{
-				for (var x = 0; x < currentLevel.CurrentLevel.GetLength(0); x++)
+				for (var x = 0; x < currentLevel.Map.GetLength(0); x++)
 				{
-					for (var y = 0; y < currentLevel.CurrentLevel.GetLength(1); y++)
+					for (var y = 0; y < currentLevel.Map.GetLength(1); y++)
 					{
-						if (currentLevel.CurrentLevel[x, y] == Block.Ground)
+						if (currentLevel.Map[x, y] == Block.Ground)
 						{
 							var image = Properties.Resources.Ground;
 							graphics.DrawImage(image,
