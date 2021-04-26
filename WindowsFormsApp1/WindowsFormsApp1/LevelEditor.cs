@@ -53,15 +53,16 @@ namespace WindowsFormsApp1
 							}
 						case 'P':
                             {
-								ents.Add(new Player(100, new Vector(x * splitting, y * splitting), 
-									Properties.Resources.Player.Width / 50, Properties.Resources.Player.Height / 75, Properties.Resources.Player));
+								//ЗАХАРДКОЖЕН СПЛИТТИНГ
+								ents.Add(new Player(100, new Vector(x * 20 + 10, y * 20 + 10), 
+									10, 10, Properties.Resources.Player));
 								//sadovnichek: я создал тестовое изображение персонажа и закинул в Resources. Так вроде бы лучше.
 								break;
                             }
 						case 'E':
                             {
-								ents.Add(new Enemy(100, new Vector(x * splitting, y * splitting),
-									Properties.Resources.Agressor.Width / 50, Properties.Resources.Agressor.Height / 71, Properties.Resources.Agressor));
+								ents.Add(new Enemy(100, new Vector(x * 20 + 10, y * 20 + 10),
+									10, 10, Properties.Resources.Agressor));
 								break;
 							}
 						default:

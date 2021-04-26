@@ -20,7 +20,7 @@ namespace WindowsFormsApp1
             this.LB = LB;
             this.RB = RB;
         }
-        public Rectangle(double width, double heigth, Vector center) {
+        public Rectangle(int width, int heigth, Vector center) {
             RB = center + new Vector(width, heigth); //Как и везде, ось y направлена вниз
             LB = center + new Vector(-width, heigth);
             LT = center + new Vector(-width, -heigth);
@@ -50,17 +50,17 @@ namespace WindowsFormsApp1
 
     public struct Vector
     {
-        public double X;
-        public double Y;
-        public double Length
+        public int X;
+        public int Y;
+        public int Length
         {
             get
             {
-                return Math.Sqrt(X * X + Y * Y);
+                return (int)Math.Sqrt(X * X + Y * Y);
             }
         }
 
-        public Vector(double x, double y)
+        public Vector(int x, int y)
         {
             X = x;
             Y = y;
@@ -80,13 +80,13 @@ namespace WindowsFormsApp1
         }
         public static Vector operator *(Vector vector, double t)
         {
-            return new Vector(vector.X * t, vector.Y * t);
+            return new Vector((int)(vector.X * t), (int)(vector.Y * t));
         }
         public static Vector operator *(double t, Vector vector) => vector * t;
 
-        public static double operator *(Vector first, Vector second)
+        public static int operator *(Vector first, Vector second)
         {
-            return first.X * second.X + first.Y * second.Y;
+            return (int)(first.X * second.X + first.Y * second.Y);
         }
         public double GetAngleWith(Vector other)
         {
@@ -124,14 +124,6 @@ namespace WindowsFormsApp1
     [TestFixture]
     class Tests
     {
-        [Test]
-        public void DoubleVectorIsEqual()
-        {
-            var vector = new Vector(3999945646633, 0);
-            vector.X *= vector.X;
-            vector.X = Math.Sqrt(vector.X);
-            Assert.AreEqual(new Vector(3999945646633, 0), vector);
-        }
         [Test]
         public void IsTwoVectorsEqual()
         {
@@ -189,14 +181,6 @@ namespace WindowsFormsApp1
         {
             var res = Vector.SumAllVectors(new Vector(1, 1), new Vector(-1, -1), new Vector(0, 0), new Vector(2, 2));
             Assert.AreEqual(res, new Vector(2, 2));
-        }
-        [Test] 
-        public void Ort()
-        {
-            var vector = new Vector(3, 0);
-            Assert.AreEqual(vector.GetOrt(), new Vector(1, 0));
-            var vector1 = new Vector(3, 4);
-            Assert.AreEqual(new Vector(0.6, 0.8), vector1.GetOrt());
         }
     }
 }

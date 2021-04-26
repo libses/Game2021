@@ -29,7 +29,8 @@ namespace WindowsFormsApp1
             PathFinder = new PathFinder();
             scaledViewPanel = new ViewPanel(painter) { Dock = DockStyle.Fill };
             Controls.Add(scaledViewPanel);
-            KeyDown += FormKeyDown;
+            KeyUp += FormKeyUp;
+            KeyDown += FormKeyPress;
         }
 
         protected override void OnLoad(EventArgs e)
@@ -39,7 +40,7 @@ namespace WindowsFormsApp1
             WindowState = FormWindowState.Maximized;
             Text = "Game2021";
             var timer = new Timer();
-            timer.Interval = 1;
+            timer.Interval = 15;
             timer.Tick += (sender, args) =>
             {
                 EnemyMoving();
@@ -48,20 +49,41 @@ namespace WindowsFormsApp1
             };
             timer.Start();
         }
-
-        private void FormKeyDown(object sender, KeyEventArgs e)
+        bool press;
+        private void FormKeyPress(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Space)
+            if (e.KeyData == Keys.Space && !press)
             {
-                player.Jump(physics);
+                press = true;
+                player.isJump = true;
             }
-            if (e.KeyCode == Keys.D)
+            if (e.KeyData == Keys.D && !press)
             {
-                player.Move(0.08);
+                press = true;
+                player.isRight = true;
             }
-            if (e.KeyCode == Keys.A)
+            if (e.KeyData == Keys.A && !press)
             {
-                player.Move(-0.08);
+                press = true;
+                player.isLeft = true;
+            }
+        }
+        private void FormKeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Space && press)
+            {
+                press = false;
+                player.isJump = false;
+            }
+            if (e.KeyCode == Keys.D && press)
+            {
+                press = false;
+                player.isRight = false;
+            }
+            if (e.KeyCode == Keys.A && press)
+            {
+                press = false;
+                player.isLeft = false;
             }
         }
 
@@ -78,9 +100,9 @@ namespace WindowsFormsApp1
                         if (point.X - startPoint.X == 0 && point.Y - startPoint.Y == -1)
                             enemy.Jump(physics);
                         if (point.X - startPoint.X == -1 && point.Y - startPoint.Y == 0)
-                            enemy.Move(0.08);
+                            enemy.Run(1, physics);
                         if (point.X - startPoint.X == 1 && point.Y - startPoint.Y == 0)
-                            enemy.Move(-0.08);
+                            enemy.Run(-1, physics);
                         startPoint = point;
                     }
                 }

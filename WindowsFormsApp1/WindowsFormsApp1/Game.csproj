@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Direction.cs" />
+    <Compile Include="IntedMap.cs" />
     <Compile Include="LevelEditor.cs" />
     <Compile Include="Demon.cs" />
     <Compile Include="Enemy.cs" />

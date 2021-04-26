@@ -27,6 +27,7 @@ namespace WindowsFormsApp1
         {
             var blockWidth = Properties.Resources.Ground.Width;
             var blockHeight = Properties.Resources.Ground.Height;
+			//здеь
             mapImage = new Bitmap(LevelSize.Width * blockWidth, LevelSize.Height * blockHeight);
 			using (var graphics = Graphics.FromImage(mapImage))
 			{
@@ -47,10 +48,11 @@ namespace WindowsFormsApp1
 
 		private void DrawLevel(Graphics graphics)
         {
+			//хардкодинг
 			foreach (var ent in currentLevel.entities)
             {
-				graphics.DrawImage(ent.Sprite, (float)ent.Location.X, (float)ent.Location.Y, 
-					(float)ent.Width, (float)ent.Height);
+				graphics.DrawImage(ent.Sprite, ((float)ent.Location.X-10)/20, ((float)ent.Location.Y-10)/20, 
+					1, 1);
 			}
 		}
 

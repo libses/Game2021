@@ -22,8 +22,11 @@ namespace WindowsFormsApp1
 
     public class Entity : IEntity
     {
-        public double Width;
-        public double Height;
+        public bool isLeft;
+        public bool isRight;
+        public bool isJump;
+        public int Width;
+        public int Height;
         public int HP  { get; set;}
         public Vector Location { get; set; }
         public Rectangle Hitbox { get; set; }
@@ -40,7 +43,7 @@ namespace WindowsFormsApp1
             Velocity = newVelocity;
         }
 
-        public Entity (int HP, Vector location, double width, double height, Bitmap sprite) 
+        public Entity (int HP, Vector location, int width, int height, Bitmap sprite) 
         {
             this.HP = HP;
             Location = location;
@@ -54,8 +57,11 @@ namespace WindowsFormsApp1
         {
             Hitbox = new Rectangle(Width, Height, Location);
         }
-
-        public void Move(double dx)
+        public void Run(int direction, Physics physics)
+        {
+            physics.DoRun(this, direction);
+        }
+        public void Move(int dx)
         {
             for (int i = 0; i < 5; i++)
             {
@@ -70,7 +76,7 @@ namespace WindowsFormsApp1
         {
             if (physics.Collide(this))
             {
-                var p = new Vector(Velocity.X, Velocity.Y - 0.2);
+                var p = new Vector(Velocity.X, Velocity.Y - 6);
                 ChangeVelocity(p);
                 physics.DoGravity(this);
                 Invalidate();
