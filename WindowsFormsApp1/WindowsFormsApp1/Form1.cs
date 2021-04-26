@@ -91,20 +91,31 @@ namespace WindowsFormsApp1
         {
             foreach (var enemy in enemies)
             {
-                var path = PathFinder.FindPaths(levels[0], new Point((int)enemy.Location.X, (int)enemy.Location.Y), new Point((int)player.Location.X, (int)player.Location.Y)).FirstOrDefault();
-                if (path != null)
+                if(Math.Abs(enemy.Location.X - player.Location.X) > 20 || Math.Abs(enemy.Location.Y - player.Location.Y) > 20)
                 {
-                    var startPoint = path.First();
-                    foreach (var point in path)
+                    var path = player.Location - enemy.Location;
+                    if (path.X > 0 && path.Y > 0)
+                        enemy.Run(1, physics);
+                    if (path.X < 0 && path.Y < 0)
                     {
-                        if (point.X - startPoint.X == 0 && point.Y - startPoint.Y == -1)
-                            enemy.Jump(physics);
-                        if (point.X - startPoint.X == -1 && point.Y - startPoint.Y == 0)
-                            enemy.Run(1, physics);
-                        if (point.X - startPoint.X == 1 && point.Y - startPoint.Y == 0)
-                            enemy.Run(-1, physics);
-                        startPoint = point;
+                        enemy.Jump(physics);
+                        enemy.Run(-1, physics);
                     }
+                    if (path.X > 0 && path.Y < 0)
+                    {
+                        enemy.Jump(physics);
+                        enemy.Run(1, physics);
+                    }
+                    if (path.X < 0 && path.Y > 0)
+                        enemy.Run(-1, physics);
+                    if (path.X == 0 && path.Y > 0)
+                        enemy.Run(-1, physics);
+                    if (path.X == 0 && path.Y < 0)
+                        enemy.Jump(physics);
+                    if (path.X < 0 && path.Y == 0)
+                        enemy.Run(-1, physics);
+                    if (path.X > 0 && path.Y == 0)
+                        enemy.Run(1, physics);
                 }
             }
         }

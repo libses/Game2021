@@ -6,7 +6,6 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
-    
     static class Program
     {
         [STAThread]
