@@ -74,13 +74,10 @@ namespace WindowsFormsApp1
 
         public void Jump(Physics physics)
         {
-            if (physics.Collide(this))
-            {
-                var p = new Vector(Velocity.X, Velocity.Y - 6);
-                ChangeVelocity(p);
-                physics.DoGravity(this);
-                Invalidate();
-            }
+            var p = new Vector(Velocity.X, Velocity.Y - 25);
+            ChangeVelocity(p);
+            physics.DoGravity(this);
+            Invalidate();
         }
     }
 }

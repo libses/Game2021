@@ -49,6 +49,7 @@ namespace WindowsFormsApp1
             };
             timer.Start();
         }
+
         bool press;
         private void FormKeyPress(object sender, KeyEventArgs e)
         {
@@ -91,31 +92,26 @@ namespace WindowsFormsApp1
         {
             foreach (var enemy in enemies)
             {
-                if(Math.Abs(enemy.Location.X - player.Location.X) > 20 || Math.Abs(enemy.Location.Y - player.Location.Y) > 20)
+                enemy.isJump = false;
+                enemy.isLeft = false;
+                enemy.isRight = false;
+                var path = player.Location - enemy.Location;
+                if (path.Length >= 40)
                 {
-                    var path = player.Location - enemy.Location;
-                    if (path.X > 0 && path.Y > 0)
-                        enemy.Run(1, physics);
+                    if (path.X > 0 && path.Y >= 0)
+                        enemy.isRight = true;
                     if (path.X < 0 && path.Y < 0)
                     {
-                        enemy.Jump(physics);
-                        enemy.Run(-1, physics);
+                        enemy.isJump = true;
+                        enemy.isRight = true;
                     }
                     if (path.X > 0 && path.Y < 0)
                     {
-                        enemy.Jump(physics);
-                        enemy.Run(1, physics);
+                        enemy.isJump = true;
+                        enemy.isRight = true;
                     }
-                    if (path.X < 0 && path.Y > 0)
-                        enemy.Run(-1, physics);
-                    if (path.X == 0 && path.Y > 0)
-                        enemy.Run(-1, physics);
-                    if (path.X == 0 && path.Y < 0)
-                        enemy.Jump(physics);
-                    if (path.X < 0 && path.Y == 0)
-                        enemy.Run(-1, physics);
-                    if (path.X > 0 && path.Y == 0)
-                        enemy.Run(1, physics);
+                    if (path.X < 0 && path.Y >= 0)
+                        enemy.isLeft = true;
                 }
             }
         }

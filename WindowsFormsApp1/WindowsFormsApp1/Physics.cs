@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApp1
 {
-
     public class Physics
     {
-        
         public Level level;
-        public const double g = 1;
+        public const int g = 1;
         public Block[,] map;
         
         public Physics(Level lvl) 
@@ -31,34 +29,47 @@ namespace WindowsFormsApp1
         }
         public void DoGravity(IEntity entity)
         {
-            entity.ChangeLocation(new Vector(entity.Location.X + entity.Velocity.X, (int)(entity.Location.Y + entity.Velocity.Y + g / 2)));
-            entity.ChangeVelocity(new Vector(entity.Velocity.X, (int)(entity.Velocity.Y + g)));
+            var location = entity.Location;
+            var velocity = entity.Velocity;
+            entity.ChangeLocation(new Vector(entity.Location.X + entity.Velocity.X, entity.Location.Y + entity.Velocity.Y + g / 2));
+            entity.ChangeVelocity(new Vector(0, velocity.Y + g));
         }
 
-        public bool Collide(IEntity entity)
+        public IEnumerable<string> CollideObstacle(IEntity entity)
         {
             var LB = entity.Hitbox.LB;
             var RB = entity.Hitbox.RB;
-            return map[LB.X, LB.Y + 1] == Block.Ground || map[RB.X, RB.Y+1] == Block.Ground;
+            var LT = entity.Hitbox.LT;
+            var RT = entity.Hitbox.RT;
+            if (map[LB.X + 4, LB.Y + entity.Velocity.Y] == Block.Ground || map[RB.X - 4, RB.Y + entity.Velocity.Y] == Block.Ground)
+                yield return "down";
+            if (map[LB.X - 5, LB.Y - 1] == Block.Ground)
+                yield return "left";
+            if (map[RB.X + 5, RB.Y - 1] == Block.Ground)
+                yield return "right";
+            if (map[LT.X, LT.Y - 1] == Block.Ground || map[RT.X, RT.Y - 1] == Block.Ground) 
+                yield return "up";
+            yield return null;
         }
 
         public void Iterate() 
         {
             foreach (var entity in level.entities)
             {
-                if (entity.isRight)
+                var obstacles = CollideObstacle(entity).ToList();
+                if (entity.isRight && !obstacles.Contains("right"))
                 {
                     DoRun(entity, 1);
                 }
-                if (entity.isLeft)
+                if (entity.isLeft && !obstacles.Contains("left"))
                 {
                     DoRun(entity, -1);
                 }
-                if (entity.isJump)
+                if (entity.isJump && !obstacles.Contains("up") && obstacles.Contains("down"))
                 {
                     entity.Jump(this);
-                }
-                if (!Collide(entity))
+                }   
+                if (!obstacles.Contains("down"))
                 {
                     DoGravity(entity);
                 }
