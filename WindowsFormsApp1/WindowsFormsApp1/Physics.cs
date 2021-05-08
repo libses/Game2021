@@ -35,28 +35,29 @@ namespace WindowsFormsApp1
             entity.ChangeVelocity(new Vector(0, velocity.Y + g));
         }
 
-        public IEnumerable<string> CollideObstacle(IEntity entity)
+        public IEnumerable<string> CollideObstacle(IEntity entity, Block block)
         {
             var LB = entity.Hitbox.LB;
             var RB = entity.Hitbox.RB;
             var LT = entity.Hitbox.LT;
             var RT = entity.Hitbox.RT;
-            if (map[LB.X + 4, LB.Y + entity.Velocity.Y] == Block.Ground || map[RB.X - 4, RB.Y + entity.Velocity.Y] == Block.Ground)
+            if (map[LB.X + 4, LB.Y + entity.Velocity.Y] == block || map[RB.X - 4, RB.Y + entity.Velocity.Y] == block)
                 yield return "down";
-            if (map[LB.X - 5, LB.Y - 1] == Block.Ground)
+            if (map[LB.X - 5, LB.Y - 1] == block || map[LT.X - 5, LT.Y] == block)
                 yield return "left";
-            if (map[RB.X + 5, RB.Y - 1] == Block.Ground)
+            if (map[RB.X + 5, RB.Y - 1] == block || map[RT.X + 5, RT.Y] == block)
                 yield return "right";
-            if (map[LT.X, LT.Y - 1] == Block.Ground || map[RT.X, RT.Y - 1] == Block.Ground) 
+            if (map[LT.X, LT.Y - 1] == block || map[RT.X - 1, RT.Y - 1] == block) 
                 yield return "up";
-            yield return null;
         }
 
         public void Iterate() 
         {
             foreach (var entity in level.entities)
             {
-                var obstacles = CollideObstacle(entity).ToList();
+                var obstacles = CollideObstacle(entity, Block.Ground)
+                    .Concat(CollideObstacle(entity, Block.Bound))
+                    .ToList();
                 if (entity.isRight && !obstacles.Contains("right"))
                 {
                     DoRun(entity, 1);

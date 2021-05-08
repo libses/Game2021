@@ -11,7 +11,8 @@ namespace WindowsFormsApp1
 	public enum Block
 	{
 		Empty,
-		Ground
+		Ground,
+		Bound
 	}
 
 	public class Level
@@ -63,6 +64,15 @@ namespace WindowsFormsApp1
                             {
 								ents.Add(new Enemy(100, new Vector(x * 20 + 10, y * 20 + 10),
 									10, 10, Properties.Resources.Agressor));
+								break;
+							}
+						case 'B':
+							{
+								for (int dx = 0; dx < splitting; dx++)
+								{
+									for (int dy = 0; dy < splitting; dy++)
+										map[splitting * x + dx, splitting * y + dy] = Block.Bound;
+								}
 								break;
 							}
 						default:
