@@ -25,6 +25,7 @@ namespace WindowsFormsApp1
         public bool isLeft;
         public bool isRight;
         public bool isJump;
+        public bool isFight;
         public int Width;
         public int Height;
         public int HP  { get; set;}
@@ -78,6 +79,23 @@ namespace WindowsFormsApp1
             ChangeVelocity(p);
             physics.DoGravity(this);
             Invalidate();
+        }
+
+        public void ReceiveDamage(int damage)
+        {
+            HP -= damage;
+            if (HP < 0)
+                Die(this);
+        }
+
+        public void Fight(Entity entity)
+        {
+            entity.ReceiveDamage(20);
+        }
+
+        private void Die(Entity entity)
+        {
+            Console.WriteLine("Died");
         }
     }
 }

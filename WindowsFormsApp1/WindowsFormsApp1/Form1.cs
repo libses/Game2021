@@ -16,8 +16,7 @@ namespace WindowsFormsApp1
         private Level[] levels;
         private Entity player;
         private Entity[] enemies;
-        private Random random = new Random(new DateTime().Millisecond);
-        private PathFinder PathFinder;
+        private Timer timer = new Timer();
 
         public GameForm()
         {
@@ -26,7 +25,6 @@ namespace WindowsFormsApp1
             player = levels[0].entities.Where(x => x is Player).FirstOrDefault();
             enemies = levels[0].entities.Where(x => x is Enemy).ToArray();
             painter = new Painter(levels);
-            PathFinder = new PathFinder();
             scaledViewPanel = new ViewPanel(painter) { Dock = DockStyle.Fill };
             Controls.Add(scaledViewPanel);
             KeyUp += FormKeyUp;
@@ -39,11 +37,12 @@ namespace WindowsFormsApp1
             DoubleBuffered = true;
             WindowState = FormWindowState.Maximized;
             Text = "Game2021";
-            var timer = new Timer();
             timer.Interval = 15;
             timer.Tick += (sender, args) =>
             {
                 EnemyMoving();
+                Fighting();
+                Die();
                 physics.Iterate();
                 Refresh();
             };
@@ -68,7 +67,13 @@ namespace WindowsFormsApp1
                 press = true;
                 player.isLeft = true;
             }
+            if (e.KeyData == Keys.S && !press)
+            {
+                press = true;
+                player.isFight = true;
+            }
         }
+
         private void FormKeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Space && press)
@@ -85,6 +90,11 @@ namespace WindowsFormsApp1
             {
                 press = false;
                 player.isLeft = false;
+            }
+            if (e.KeyData == Keys.S && press)
+            {
+                press = false;
+                player.isFight = false;
             }
         }
 
@@ -116,9 +126,41 @@ namespace WindowsFormsApp1
             }
         }
 
+        public void Fighting()
+        {
+            if(player.isFight == true)
+            {
+                foreach(var enemy in enemies)
+                {
+                    var distance = enemy.Location - player.Location;
+                    if(distance.Length < 10)
+                    {
+                        player.Fight(enemy);
+                        Console.WriteLine(enemy.HP);
+                    }
+                }
+            }
+        }
+
+        public void Die()
+        {
+            var level = levels[0];
+            var died = new List<Entity>();
+            foreach(var e in level.entities)
+            {
+                if (e.HP <= 0)
+                    died.Add(e);
+            }
+            foreach(var d in died)
+            {
+                level.Remove(d);
+            }
+        }
+
         private static IEnumerable<Level> LoadLevels()
         {
             yield return Level.FromText(Properties.Resources.Map1, 1);
+            yield return Level.FromText(Properties.Resources.Map2, 1);
         }
     }
 }

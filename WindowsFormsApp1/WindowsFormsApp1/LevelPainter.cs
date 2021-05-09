@@ -27,7 +27,6 @@ namespace WindowsFormsApp1
         {
             var blockWidth = Properties.Resources.Ground.Width;
             var blockHeight = Properties.Resources.Ground.Height;
-			//здеь
             mapImage = new Bitmap(LevelSize.Width * blockWidth, LevelSize.Height * blockHeight);
 			using (var graphics = Graphics.FromImage(mapImage))
 			{
@@ -62,5 +61,11 @@ namespace WindowsFormsApp1
 			g.DrawImage(mapImage, new RectangleF(0, 0, LevelSize.Width, LevelSize.Height));
 			DrawLevel(g);
 		}
-    }
+
+		public void ChangeLevel(Level newMap)
+		{
+			currentLevel = newMap;
+			CreateMap();
+		}
+	}
 }

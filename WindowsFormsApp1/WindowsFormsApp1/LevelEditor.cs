@@ -94,5 +94,12 @@ namespace WindowsFormsApp1
         {
 			return point.X >= 0 && point.X <= Map.GetLength(1) && point.Y >= 0 && point.Y <= Map.GetLength(0);
         }
+
+		public void Remove(Entity entity)
+        {
+			var ents = entities.ToList();
+			ents.Remove(entity);
+			entities = ents.ToArray();
+        }
 	}
 }
