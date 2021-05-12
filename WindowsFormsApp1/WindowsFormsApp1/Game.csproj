@@ -110,6 +110,10 @@
   <ItemGroup>
     <None Include="Levels\Map2.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\sounds\Monkeys-Spinning-Monkeys.mp3" />
+    <Content Include="Images\sounds\Monkeys-Spinning-Monkeys.wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

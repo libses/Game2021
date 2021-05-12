@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -54,6 +55,17 @@ namespace WindowsFormsApp1
                 }
             };
             timer.Start();
+            //here the music goes
+            #region
+            var debug1 = Environment.CurrentDirectory.Split('\\').ToList();
+            debug1.RemoveAt(debug1.Count - 1);
+            debug1.RemoveAt(debug1.Count - 1);
+            string path = "";
+            foreach (var character in debug1) { path = path + character + '\\'; }
+            var resPath = Path.Combine(path, @"Images\sounds\Monkeys-Spinning-Monkeys.wav");
+            System.Media.SoundPlayer playerM = new System.Media.SoundPlayer(resPath);
+            playerM.Play();
+            #endregion
         }
 
         bool press;

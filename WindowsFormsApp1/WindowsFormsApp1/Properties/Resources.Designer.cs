@@ -81,20 +81,17 @@ namespace WindowsFormsApp1.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на B###################B
-        ///B###################B
-        ///B###################B
-        ///B###################B
-        ///B###################B
-        ///B###################B
-        ///B###################B
-        ///B###################B
-        ///B###############P###B
-        ///B#############GGG###B
-        ///B############G######B
-        ///B###########G#######B
-        ///B######E###G##E#####B
-        ///GGGGGGGGGGGGGGGGGGGGG.
+        ///   Ищет локализованную строку, похожую на BBBBBBBBBBBBBBBBBBBBBB
+        ///B####################B
+        ///B####################B
+        ///B####################B
+        ///B####################B
+        ///B###############P####B
+        ///B#############GGG####B
+        ///B############G#######B
+        ///B###########G########B
+        ///BE#########G#########B
+        ///BGGGGGGGGGGGGGGGGGGGGB.
         /// </summary>
         internal static string Map1 {
             get {
@@ -103,7 +100,8 @@ namespace WindowsFormsApp1.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на B###################B
+        ///   Ищет локализованную строку, похожую на BBBBBBBBBBBBBBBBBBBBB
+        ///B###################B
         ///B###################B
         ///B###################B
         ///B##################PB
@@ -116,11 +114,21 @@ namespace WindowsFormsApp1.Properties {
         ///B###################B
         ///B###################B
         ///B###################B
-        ///GGGGGGGGGGGGGGGGGGGGG.
+        ///BGGGGGGGGGGGGGGGGGGGB.
         /// </summary>
         internal static string Map2 {
             get {
                 return ResourceManager.GetString("Map2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Byte[].
+        /// </summary>
+        internal static byte[] Monkeys_Spinning_Monkeys {
+            get {
+                object obj = ResourceManager.GetObject("Monkeys_Spinning_Monkeys", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
