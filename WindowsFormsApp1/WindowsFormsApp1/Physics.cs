@@ -67,6 +67,10 @@ namespace WindowsFormsApp1
                     {
                         entity.currentGun.angle += 0.15;
                     }
+                    if (entity.isUppingGun)
+                    {
+                        entity.currentGun.angle -= 0.15;
+                    }
                     foreach (var bullet in entity.currentGun.bullets)
                     {
                         if (!bullet.isDead)

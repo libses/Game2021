@@ -30,6 +30,7 @@ namespace WindowsFormsApp1
         public bool isFight;
         public bool isFiring;
         public bool isDowningGun;
+        public bool isUppingGun;
         public int Width;
         public int Height;
         public int HP  { get; set;}

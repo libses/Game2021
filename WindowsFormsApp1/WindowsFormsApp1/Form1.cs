@@ -74,6 +74,7 @@ namespace WindowsFormsApp1
         bool pressS;
         bool pressE;
         bool pressR;
+        bool pressF;
         private void FormKeyPress(object sender, KeyEventArgs e)
         {
             if (player != null)
@@ -106,6 +107,11 @@ namespace WindowsFormsApp1
                 if (e.KeyData == Keys.R && !pressR)
                 {
                     pressR = true;
+                    player.isUppingGun = true;
+                }
+                if (e.KeyData == Keys.F && !pressF)
+                {
+                    pressF = true;
                     player.isDowningGun = true;
                 }
             }
@@ -143,6 +149,11 @@ namespace WindowsFormsApp1
                 if (e.KeyData == Keys.R && pressR)
                 {
                     pressR = false;
+                    player.isUppingGun = false;
+                }
+                if (e.KeyData == Keys.F && pressF)
+                {
+                    pressF = false;
                     player.isDowningGun = false;
                 }
             }

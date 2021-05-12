@@ -13,6 +13,8 @@ namespace WindowsFormsApp1
         public bool isDead;
         public Vector location;
         public Vector velocity;
+        public Vector kostilVelocity;
+        public float angle;
         public Bullet(Entity entity)
         {
             isDead = false;
@@ -24,7 +26,7 @@ namespace WindowsFormsApp1
         }
         public void Fly()
         {
-            var kostilVelocity = new Vector((int)Math.Round((double)velocity.X / kostil), (int)Math.Round((double)velocity.Y / kostil));
+            kostilVelocity = new Vector((int)Math.Round((double)velocity.X / kostil), (int)Math.Round((double)velocity.Y / kostil));
             location = location + kostilVelocity;
         }
     }

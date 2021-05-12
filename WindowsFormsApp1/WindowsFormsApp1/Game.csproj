@@ -115,6 +115,7 @@
   <ItemGroup>
     <Content Include="Images\bullet.png" />
     <Content Include="Images\bullet2.png" />
+    <Content Include="Images\gun.png" />
     <Content Include="Images\sounds\Monkeys-Spinning-Monkeys.mp3" />
     <Content Include="Images\sounds\Monkeys-Spinning-Monkeys.wav" />
   </ItemGroup>
