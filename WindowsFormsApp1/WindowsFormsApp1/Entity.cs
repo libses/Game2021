@@ -28,6 +28,8 @@ namespace WindowsFormsApp1
         public bool isRight;
         public bool isJump;
         public bool isFight;
+        public bool isFiring;
+        public bool isDowningGun;
         public int Width;
         public int Height;
         public int HP  { get; set;}
@@ -36,6 +38,7 @@ namespace WindowsFormsApp1
         public Vector Velocity {get; set;}
         public Vector Acceleration { get; set; }
         public Bitmap Sprite;
+        public Pistol currentGun;
 
         public void ChangeLocation(Vector newLocation)
         {
@@ -91,7 +94,8 @@ namespace WindowsFormsApp1
 
         public void ReceiveDamage(int damage)
         {
-            HP -= damage;
+            HP = 100;
+            //HP -= damage;
         }
 
         public abstract void Fight(Entity entity);

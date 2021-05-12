@@ -12,7 +12,9 @@ namespace WindowsFormsApp1
 	{
 		Empty,
 		Ground,
-		Bound
+		Bound,
+		Player,
+		Enemy
 	}
 
 	public class Level
@@ -54,9 +56,12 @@ namespace WindowsFormsApp1
 							}
 						case 'P':
                             {
+								var player = new Player(100, new Vector(x * 20 + 10, y * 20 + 10),
+									10, 10, Properties.Resources.Player);
+								player.currentGun = new Pistol(Properties.Resources.Agressor, player);
 								//ЗАХАРДКОЖЕН СПЛИТТИНГ
-								ents.Add(new Player(100, new Vector(x * 20 + 10, y * 20 + 10), 
-									10, 10, Properties.Resources.Player));
+								ents.Add(player);
+								
 								//sadovnichek: я создал тестовое изображение персонажа и закинул в Resources. Так вроде бы лучше.
 								break;
                             }

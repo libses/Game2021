@@ -52,6 +52,14 @@ namespace WindowsFormsApp1
             {
 				graphics.DrawImage(ent.Sprite, ((float)ent.Location.X-10)/20, ((float)ent.Location.Y-10)/20, 
 					1, 1);
+				if (ent.currentGun != null)
+                {
+					foreach (var bullet in ent.currentGun.bullets)
+					{
+						graphics.DrawImage(Properties.Resources.bullet2, ((float)bullet.location.X - 10) / 20, ((float)bullet.location.Y - 10) / 20,
+						1, 1);
+					}
+				}
 			}
 		}
 

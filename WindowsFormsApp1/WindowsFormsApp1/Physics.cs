@@ -22,7 +22,7 @@ namespace WindowsFormsApp1
         {
             if (true)
             {
-                var n = direction*5;
+                var n = direction*3;
                 entity.ChangeVelocity(new Vector((int)(entity.Velocity.X * 0.6 + n), entity.Velocity.Y));
                 entity.ChangeLocation(new Vector(entity.Location.X + entity.Velocity.X, entity.Location.Y));
             }
@@ -57,6 +57,24 @@ namespace WindowsFormsApp1
                 var obstacles = CollideObstacle(entity, Block.Ground)
                     .Concat(CollideObstacle(entity, Block.Bound))
                     .ToList();
+                if (entity.isFiring)
+                {
+                    entity.currentGun.Fire();
+                }
+                if (entity.currentGun != null)
+                {
+                    if (entity.isDowningGun)
+                    {
+                        entity.currentGun.angle += 0.15;
+                    }
+                    foreach (var bullet in entity.currentGun.bullets)
+                    {
+                        if (!bullet.isDead)
+                        {
+                            bullet.Fly();
+                        }
+                    }
+                }
                 if (entity.isRight && !obstacles.Contains("right"))
                 {
                     DoRun(entity, 1);
