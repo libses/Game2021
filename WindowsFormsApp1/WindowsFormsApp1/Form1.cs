@@ -17,14 +17,17 @@ namespace WindowsFormsApp1
         private Entity player;
         private Entity[] enemies;
         private Timer timer = new Timer();
+        private Label label;
 
         public GameForm()
         {
             levels = LoadLevels().ToArray();
             physics = new Physics(levels[0]);
             painter = new Painter(levels);
+            label = new Label() { Dock = DockStyle.Top, Font = new Font("Arial", 12) };
             scaledViewPanel = new ViewPanel(painter) { Dock = DockStyle.Fill };
             Controls.Add(scaledViewPanel);
+            Controls.Add(label);
             KeyUp += FormKeyUp;
             KeyDown += FormKeyPress;
         }
@@ -40,10 +43,11 @@ namespace WindowsFormsApp1
             {
                 player = levels[0].entities.Where(x => x is Player).FirstOrDefault();
                 enemies = levels[0].entities.Where(x => x is Enemy).ToArray();
-                if (player != null)
+                if (player != null) // Game Over
                 {
                     EnemyMoving();
                     Fighting();
+                    label.Text = "HP: " + player.HP; 
                 }
                 Die();
                 physics.Iterate();
@@ -144,7 +148,6 @@ namespace WindowsFormsApp1
                     }
                     enemy.Fight(player);
                 }
-
             }
         }
 

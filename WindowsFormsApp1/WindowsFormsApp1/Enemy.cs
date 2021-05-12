@@ -16,7 +16,7 @@ namespace WindowsFormsApp1
 
         public override void Fight(Entity entity)
         {
-            entity.ReceiveDamage(50);
+            entity.ReceiveDamage(1);
         }
     }
 }
