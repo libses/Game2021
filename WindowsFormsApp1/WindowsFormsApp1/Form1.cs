@@ -43,15 +43,15 @@ namespace WindowsFormsApp1
             {
                 player = levels[0].entities.Where(x => x is Player).FirstOrDefault();
                 enemies = levels[0].entities.Where(x => x is Enemy).ToArray();
-                if (player != null) // Game Over
+                if (player != null) // null - Game Over
                 {
                     EnemyMoving();
                     Fighting();
-                    label.Text = "HP: " + player.HP; 
+                    label.Text = "HP: " + player.HP;
+                    Die();
+                    physics.Iterate();
+                    Refresh();
                 }
-                Die();
-                physics.Iterate();
-                Refresh();
             };
             timer.Start();
         }
@@ -59,49 +59,55 @@ namespace WindowsFormsApp1
         bool press;
         private void FormKeyPress(object sender, KeyEventArgs e)
         {
-            if (e.KeyData == Keys.Space && !press)
+            if (player != null)
             {
-                press = true;
-                player.isJump = true;
-            }
-            if (e.KeyData == Keys.D && !press)
-            {
-                press = true;
-                player.isRight = true;
-            }
-            if (e.KeyData == Keys.A && !press)
-            {
-                press = true;
-                player.isLeft = true;
-            }
-            if (e.KeyData == Keys.S && !press)
-            {
-                press = true;
-                player.isFight = true;
+                if (e.KeyData == Keys.Space && !press)
+                {
+                    press = true;
+                    player.isJump = true;
+                }
+                if (e.KeyData == Keys.D && !press)
+                {
+                    press = true;
+                    player.isRight = true;
+                }
+                if (e.KeyData == Keys.A && !press)
+                {
+                    press = true;
+                    player.isLeft = true;
+                }
+                if (e.KeyData == Keys.S && !press)
+                {
+                    press = true;
+                    player.isFight = true;
+                }
             }
         }
 
         private void FormKeyUp(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Space && press)
+            if (player != null)
             {
-                press = false;
-                player.isJump = false;
-            }
-            if (e.KeyCode == Keys.D && press)
-            {
-                press = false;
-                player.isRight = false;
-            }
-            if (e.KeyCode == Keys.A && press)
-            {
-                press = false;
-                player.isLeft = false;
-            }
-            if (e.KeyData == Keys.S && press)
-            {
-                press = false;
-                player.isFight = false;
+                if (e.KeyCode == Keys.Space && press)
+                {
+                    press = false;
+                    player.isJump = false;
+                }
+                if (e.KeyCode == Keys.D && press)
+                {
+                    press = false;
+                    player.isRight = false;
+                }
+                if (e.KeyCode == Keys.A && press)
+                {
+                    press = false;
+                    player.isLeft = false;
+                }
+                if (e.KeyData == Keys.S && press)
+                {
+                    press = false;
+                    player.isFight = false;
+                }
             }
         }
 

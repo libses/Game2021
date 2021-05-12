@@ -29,7 +29,6 @@ namespace WindowsFormsApp1
         }
         public void DoGravity(IEntity entity)
         {
-            var location = entity.Location;
             var velocity = entity.Velocity;
             entity.ChangeLocation(new Vector(entity.Location.X + entity.Velocity.X, entity.Location.Y + entity.Velocity.Y + g / 2));
             entity.ChangeVelocity(new Vector(0, velocity.Y + g));
