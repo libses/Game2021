@@ -29,9 +29,9 @@ namespace WindowsFormsApp1
         }
         public void DoGravity(IEntity entity)
         {
-            var velocity = entity.Velocity;
-            entity.ChangeLocation(new Vector(entity.Location.X + entity.Velocity.X, entity.Location.Y + entity.Velocity.Y + g / 2));
-            entity.ChangeVelocity(new Vector(0, velocity.Y + g));
+            entity.ChangeAcceleration(new Vector(entity.Acceleration.X, entity.Acceleration.Y + g));
+            entity.ChangeVelocity(entity.Velocity + entity.Acceleration);
+            entity.ChangeLocation(new Vector(entity.Location.X + entity.Velocity.X, entity.Location.Y + entity.Velocity.Y));
         }
 
         public IEnumerable<string> CollideObstacle(IEntity entity, Block block)
@@ -46,7 +46,7 @@ namespace WindowsFormsApp1
                 yield return "left";
             if (map[RB.X + 5, RB.Y - 1] == block || map[RT.X + 5, RT.Y] == block)
                 yield return "right";
-            if (map[LT.X, LT.Y - 1] == block || map[RT.X - 1, RT.Y - 1] == block) 
+            if (map[LT.X, LT.Y - 1] == block || map[RT.X - 1, RT.Y - 1] == block || map[RB.X, RB.Y - 1] == block) 
                 yield return "up";
         }
 
@@ -65,6 +65,10 @@ namespace WindowsFormsApp1
                 {
                     DoRun(entity, -1);
                 }
+                if (obstacles.Contains("up") && obstacles.Contains("down"))
+                {
+                    entity.ChangeLocation(new Vector(entity.Location.X, entity.Location.Y - 1));
+                }
                 if (entity.isJump && !obstacles.Contains("up") && obstacles.Contains("down"))
                 {
                     entity.Jump(this);
@@ -72,6 +76,10 @@ namespace WindowsFormsApp1
                 if (!obstacles.Contains("down"))
                 {
                     DoGravity(entity);
+                }
+                if (obstacles.Contains("down"))
+                {
+                    entity.ChangeAcceleration(new Vector(entity.Acceleration.X, 0));
                 }
                 else
                 {

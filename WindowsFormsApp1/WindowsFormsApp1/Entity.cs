@@ -13,11 +13,13 @@ namespace WindowsFormsApp1
     вводится только ширина и высота объекта, а хитбокс является свойством, дающим крайние грани от локации.*/
     public interface IEntity
     {
+        Vector Acceleration { get; set; }
         Vector Location { get; set; }
         Rectangle Hitbox { get; set; }
         Vector Velocity { get; set; }
         void ChangeLocation(Vector newLocaton);
         void ChangeVelocity(Vector newVelocity);
+        void ChangeAcceleration(Vector newAcceleration);
     }
 
     public abstract class Entity : IEntity
@@ -32,6 +34,7 @@ namespace WindowsFormsApp1
         public Vector Location { get; set; }
         public Rectangle Hitbox { get; set; }
         public Vector Velocity {get; set;}
+        public Vector Acceleration { get; set; }
         public Bitmap Sprite;
 
         public void ChangeLocation(Vector newLocation)
@@ -42,6 +45,10 @@ namespace WindowsFormsApp1
         public void ChangeVelocity(Vector newVelocity)
         {
             Velocity = newVelocity;
+        }
+        public void ChangeAcceleration(Vector newAcceleration)
+        {
+            Acceleration = newAcceleration;
         }
 
         public Entity (int HP, Vector location, int width, int height, Bitmap sprite) 
@@ -75,8 +82,9 @@ namespace WindowsFormsApp1
 
         public void Jump(Physics physics)
         {
+            var acc = new Vector(Acceleration.X, Acceleration.Y - 10);
             var p = new Vector(Velocity.X, Velocity.Y - 30);
-            ChangeVelocity(p);
+            ChangeAcceleration(acc);
             physics.DoGravity(this);
             Invalidate();
         }

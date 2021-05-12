@@ -19,7 +19,7 @@ namespace WindowsFormsApp1
                 for (int y = 0; y < Map.GetLength(1); y++)
                 {
                     if (x == 6 && y == 6) {
-                        var b = 1 + 1;
+                        var b = 1 + 1; 
                     }
                     for (int i = 0; i < splitting; i++)
                     {

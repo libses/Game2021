@@ -68,29 +68,32 @@ namespace WindowsFormsApp1
             #endregion
         }
 
-        bool press;
+        bool pressSpace;
+        bool pressD;
+        bool pressA;
+        bool pressS;
         private void FormKeyPress(object sender, KeyEventArgs e)
         {
             if (player != null)
             {
-                if (e.KeyData == Keys.Space && !press)
+                if (e.KeyData == Keys.Space && !pressSpace)
                 {
-                    press = true;
+                    pressSpace = true;
                     player.isJump = true;
                 }
-                if (e.KeyData == Keys.D && !press)
+                if (e.KeyData == Keys.D && !pressD)
                 {
-                    press = true;
+                    pressD = true;
                     player.isRight = true;
                 }
-                if (e.KeyData == Keys.A && !press)
+                if (e.KeyData == Keys.A && !pressA)
                 {
-                    press = true;
+                    pressA = true;
                     player.isLeft = true;
                 }
-                if (e.KeyData == Keys.S && !press)
+                if (e.KeyData == Keys.S && !pressS)
                 {
-                    press = true;
+                    pressS = true;
                     player.isFight = true;
                 }
             }
@@ -100,24 +103,24 @@ namespace WindowsFormsApp1
         {
             if (player != null)
             {
-                if (e.KeyCode == Keys.Space && press)
+                if (e.KeyCode == Keys.Space && pressSpace)
                 {
-                    press = false;
+                    pressSpace = false;
                     player.isJump = false;
                 }
-                if (e.KeyCode == Keys.D && press)
+                if (e.KeyCode == Keys.D && pressD)
                 {
-                    press = false;
+                    pressD = false;
                     player.isRight = false;
                 }
-                if (e.KeyCode == Keys.A && press)
+                if (e.KeyCode == Keys.A && pressA)
                 {
-                    press = false;
+                    pressA = false;
                     player.isLeft = false;
                 }
-                if (e.KeyData == Keys.S && press)
+                if (e.KeyData == Keys.S && pressS)
                 {
-                    press = false;
+                    pressS = false;
                     player.isFight = false;
                 }
             }
