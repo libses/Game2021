@@ -20,7 +20,7 @@ namespace WindowsFormsApp1
         void ChangeVelocity(Vector newVelocity);
     }
 
-    public class Entity : IEntity
+    public abstract class Entity : IEntity
     {
         public bool isLeft;
         public bool isRight;
@@ -84,18 +84,8 @@ namespace WindowsFormsApp1
         public void ReceiveDamage(int damage)
         {
             HP -= damage;
-            if (HP < 0)
-                Die(this);
         }
 
-        public void Fight(Entity entity)
-        {
-            entity.ReceiveDamage(20);
-        }
-
-        private void Die(Entity entity)
-        {
-            Console.WriteLine("Died");
-        }
+        public abstract void Fight(Entity entity);
     }
 }

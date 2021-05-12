@@ -22,8 +22,6 @@ namespace WindowsFormsApp1
         {
             levels = LoadLevels().ToArray();
             physics = new Physics(levels[0]);
-            player = levels[0].entities.Where(x => x is Player).FirstOrDefault();
-            enemies = levels[0].entities.Where(x => x is Enemy).ToArray();
             painter = new Painter(levels);
             scaledViewPanel = new ViewPanel(painter) { Dock = DockStyle.Fill };
             Controls.Add(scaledViewPanel);
@@ -40,8 +38,13 @@ namespace WindowsFormsApp1
             timer.Interval = 15;
             timer.Tick += (sender, args) =>
             {
-                EnemyMoving();
-                Fighting();
+                player = levels[0].entities.Where(x => x is Player).FirstOrDefault();
+                enemies = levels[0].entities.Where(x => x is Enemy).ToArray();
+                if (player != null)
+                {
+                    EnemyMoving();
+                    Fighting();
+                }
                 Die();
                 physics.Iterate();
                 Refresh();
@@ -106,7 +109,7 @@ namespace WindowsFormsApp1
                 enemy.isLeft = false;
                 enemy.isRight = false;
                 var path = player.Location - enemy.Location;
-                if (path.Length >= 40)
+                if (path.Length >= 20)
                 {
                     if (path.X > 0 && path.Y >= 0)
                         enemy.isRight = true;
@@ -128,17 +131,20 @@ namespace WindowsFormsApp1
 
         public void Fighting()
         {
-            if(player.isFight == true)
+            foreach(var enemy in enemies)
             {
-                foreach(var enemy in enemies)
+                var distance = player.Location - enemy.Location;
+                if (distance.Length < 20)
                 {
-                    var distance = enemy.Location - player.Location;
-                    if(distance.Length < 10)
+                    if(player.isFight)
                     {
                         player.Fight(enemy);
                         Console.WriteLine(enemy.HP);
+                        player.isFight = false;
                     }
+                    enemy.Fight(player);
                 }
+
             }
         }
 
@@ -146,14 +152,15 @@ namespace WindowsFormsApp1
         {
             var level = levels[0];
             var died = new List<Entity>();
-            foreach(var e in level.entities)
+            foreach(var entity in level.entities)
             {
-                if (e.HP <= 0)
-                    died.Add(e);
+                if (entity.HP <= 0)
+                    died.Add(entity);
             }
-            foreach(var d in died)
+
+            foreach(var entity in died)
             {
-                level.Remove(d);
+                level.Remove(entity);
             }
         }
 
