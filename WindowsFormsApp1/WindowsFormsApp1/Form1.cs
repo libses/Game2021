@@ -18,8 +18,8 @@ namespace WindowsFormsApp1
         private Level[] levels;
         private Entity player;
         private Entity[] enemies;
-        private Timer timer = new Timer();
-        private Label label;
+        private Timer timer;
+        private Label HPlabel;
         private SoundPlayer music;
 
         public GameForm()
@@ -28,10 +28,11 @@ namespace WindowsFormsApp1
             music = new SoundPlayer(Properties.Resources.Monkeys_Spinning_Monkeys1);
             physics = new Physics(levels[0]);
             painter = new Painter(levels);
-            label = new Label() { Dock = DockStyle.Top, Font = new Font("Arial", 12) };
+            HPlabel = new Label() { Dock = DockStyle.Top, Font = new Font("Arial", 12) };
             scaledViewPanel = new ViewPanel(painter) { Dock = DockStyle.Fill };
+            timer = new Timer();
             Controls.Add(scaledViewPanel);
-            Controls.Add(label);
+            Controls.Add(HPlabel);
             KeyUp += FormKeyUp;
             KeyDown += FormKeyPress;
         }
@@ -51,7 +52,7 @@ namespace WindowsFormsApp1
                 {
                     EnemyMoving();
                     Fighting();
-                    label.Text = "HP: " + player.HP;
+                    HPlabel.Text = "HP: " + player.HP;
                     Die();
                     physics.Iterate();
                     Refresh();
@@ -180,7 +181,7 @@ namespace WindowsFormsApp1
             }
         }
 
-        public void Fighting()
+        public void Fighting() // этот класс нужно убрать отсюда
         {
             foreach(var enemy in enemies)
             {
@@ -198,7 +199,7 @@ namespace WindowsFormsApp1
             }
         }
 
-        public void Die()
+        public void Die() // этот класс нужно убрать отсюда
         {
             var level = levels[0];
             var died = new List<Entity>();
