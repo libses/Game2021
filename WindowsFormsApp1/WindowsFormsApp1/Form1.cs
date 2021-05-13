@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Media;
 using System.Windows.Forms;
 
 namespace WindowsFormsApp1
@@ -19,10 +20,12 @@ namespace WindowsFormsApp1
         private Entity[] enemies;
         private Timer timer = new Timer();
         private Label label;
+        private SoundPlayer music;
 
         public GameForm()
         {
             levels = LoadLevels().ToArray();
+            music = new SoundPlayer(Properties.Resources.Monkeys_Spinning_Monkeys1);
             physics = new Physics(levels[0]);
             painter = new Painter(levels);
             label = new Label() { Dock = DockStyle.Top, Font = new Font("Arial", 12) };
@@ -55,17 +58,7 @@ namespace WindowsFormsApp1
                 }
             };
             timer.Start();
-            //here the music goes
-            #region
-            var debug1 = Environment.CurrentDirectory.Split('\\').ToList();
-            debug1.RemoveAt(debug1.Count - 1);
-            debug1.RemoveAt(debug1.Count - 1);
-            string path = "";
-            foreach (var character in debug1) { path = path + character + '\\'; }
-            var resPath = Path.Combine(path, @"Images\sounds\Monkeys-Spinning-Monkeys.wav");
-            System.Media.SoundPlayer playerM = new System.Media.SoundPlayer(resPath);
-            playerM.Play();
-            #endregion
+            music.Play();
         }
 
         bool pressSpace;

@@ -151,3 +151,5 @@ C:\Users\liber\Source\Repos\Game20212939\WindowsFormsApp1\WindowsFormsApp1\obj\D
 C:\Users\liber\Source\Repos\Game20212939\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\Game.csproj.CopyComplete
 C:\Users\liber\Source\Repos\Game20212939\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\Game2021.exe
 C:\Users\liber\Source\Repos\Game20212939\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\Game2021.pdb
+C:\Users\Виктор Капкаев\source\repos\libses\Game2021\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\Interop.WMPLib.dll
+C:\Users\Виктор Капкаев\source\repos\libses\Game2021\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\Game.csproj.ResolveComReference.cache

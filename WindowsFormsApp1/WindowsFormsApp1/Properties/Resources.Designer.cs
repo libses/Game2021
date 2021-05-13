@@ -123,9 +123,9 @@ namespace WindowsFormsApp1.Properties {
         ///B#############################B
         ///B#############################B
         ///B#############################B
-        ///B#############################B
-        ///B#############################B
-        ///B######E##############P#######B
+        ///B#######G#####################B
+        ///B#########G###################B
+        ///B##E#######G##############P###B
         ///BGGGGGGGGGGGGGGGG [остаток строки не уместился]&quot;;.
         /// </summary>
         internal static string Map1 {
@@ -164,6 +164,15 @@ namespace WindowsFormsApp1.Properties {
             get {
                 object obj = ResourceManager.GetObject("Monkeys_Spinning_Monkeys", resourceCulture);
                 return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.IO.UnmanagedMemoryStream, аналогичного System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Monkeys_Spinning_Monkeys1 {
+            get {
+                return ResourceManager.GetStream("Monkeys_Spinning_Monkeys1", resourceCulture);
             }
         }
         
