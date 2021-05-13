@@ -40,7 +40,7 @@ namespace WindowsFormsApp1
             var RB = entity.Hitbox.RB;
             var LT = entity.Hitbox.LT;
             var RT = entity.Hitbox.RT;
-            if (map[LB.X + 4, LB.Y + entity.Velocity.Y] == block || map[RB.X - 4, RB.Y + entity.Velocity.Y] == block)
+            if (map[LB.X + 4, LB.Y + entity.Acceleration.Y] == block || map[RB.X - 4, RB.Y + entity.Acceleration.Y] == block)
                 yield return "down";
             if (map[LB.X - 5, LB.Y - 1] == block || map[LT.X - 5, LT.Y] == block)
                 yield return "left";
@@ -87,10 +87,10 @@ namespace WindowsFormsApp1
                 {
                     DoRun(entity, -1);
                 }
-                if (obstacles.Contains("up") && obstacles.Contains("down"))
-                {
-                    entity.ChangeLocation(new Vector(entity.Location.X, entity.Location.Y - 1));
-                }
+                //if (obstacles.Contains("up") && obstacles.Contains("down"))
+                //{
+                //    entity.ChangeLocation(new Vector(entity.Location.X, entity.Location.Y - 1));
+                //}
                 if (entity.isJump && !obstacles.Contains("up") && obstacles.Contains("down"))
                 {
                     entity.Jump(this);

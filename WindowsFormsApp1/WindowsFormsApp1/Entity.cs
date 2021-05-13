@@ -86,7 +86,7 @@ namespace WindowsFormsApp1
 
         public void Jump(Physics physics)
         {
-            var acc = new Vector(Acceleration.X, Acceleration.Y - 10);
+            var acc = new Vector(Acceleration.X, Acceleration.Y - 20);
             var p = new Vector(Velocity.X, Velocity.Y - 30);
             ChangeAcceleration(acc);
             physics.DoGravity(this);
