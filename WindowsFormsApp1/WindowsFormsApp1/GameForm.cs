@@ -53,7 +53,7 @@ namespace WindowsFormsApp1
                     EnemyMoving();
                     Fighting();
                     HPlabel.Text = "HP: " + player.HP;
-                    Die();
+                    RemoveDied();
                     physics.Iterate();
                     Refresh();
                 }
