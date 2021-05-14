@@ -95,8 +95,7 @@ namespace WindowsFormsApp1
 
         public void ReceiveDamage(int damage)
         {
-            HP = 100;
-            //HP -= damage;
+            HP -= damage;
         }
 
         public abstract void Fight(Entity entity);

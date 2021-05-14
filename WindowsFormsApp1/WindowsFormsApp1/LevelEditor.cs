@@ -29,6 +29,12 @@ namespace WindowsFormsApp1
 			entities = ents;
 		}
 
+		public Level(Level source)
+        {
+			Map = source.Map;
+			entities = source.entities;
+        }
+
 		public static Level FromText(string text, int splitting)
 		{
 			var lines = text.Split(new[] { "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);

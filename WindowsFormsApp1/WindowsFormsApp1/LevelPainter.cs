@@ -17,9 +17,9 @@ namespace WindowsFormsApp1
 		public SizeF Size => new SizeF(currentLevel.Map.GetLength(0), currentLevel.Map.GetLength(1));
 		public Size LevelSize => new Size(currentLevel.Map.GetLength(0), currentLevel.Map.GetLength(1));
 
-        public Painter(Level[] level)
+        public Painter(Level level)
         {
-			currentLevel = level[0];
+			currentLevel = level;
 			CreateMap();
         }
 

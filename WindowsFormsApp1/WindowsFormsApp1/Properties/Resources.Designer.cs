@@ -111,6 +111,16 @@ namespace WindowsFormsApp1.Properties {
         }
         
         /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap logo {
+            get {
+                object obj = ResourceManager.GetObject("logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
         ///B#############################B
         ///B#############################B
@@ -139,16 +149,12 @@ namespace WindowsFormsApp1.Properties {
         ///B###################B
         ///B###################B
         ///B###################B
-        ///B##################PB
-        ///B#############GGGGGGB
         ///B###################B
         ///B###################B
-        ///B######E############B
-        ///B###################B
-        ///B###################B
-        ///B###################B
-        ///B###################B
-        ///B###################B
+        ///B##########P########B
+        ///B########GGGGGG####GB
+        ///B#######G###########B
+        ///B######G#######E####B
         ///BGGGGGGGGGGGGGGGGGGGB.
         /// </summary>
         internal static string Map2 {

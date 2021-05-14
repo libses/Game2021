@@ -13,8 +13,7 @@ namespace WindowsFormsApp1
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            var form = new GameForm();
-            Application.Run(form);
+            Application.Run(new StartForm());
         }
     }
 }
