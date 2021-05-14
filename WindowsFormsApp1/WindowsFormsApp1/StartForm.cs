@@ -77,6 +77,7 @@ namespace WindowsFormsApp1
 				{
 					UpdateLinks(level, linkLabels);
 					ChangeLevel((Level)link.Tag);
+					Show();
 				};
 				menuPanel.Controls.Add(link);
 				linkLabels.Add(link);
@@ -86,6 +87,7 @@ namespace WindowsFormsApp1
 
 		private void ChangeLevel(Level newLevel)
 		{
+			Hide();
 			var game = new GameForm(newLevel);
 			game.ShowDialog();
 		}

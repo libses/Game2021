@@ -61,7 +61,7 @@ namespace WindowsFormsApp1
                     Close();
             };
             timer.Start();
-            //music.Play();
+            music.Play();
         }
 
         bool pressSpace;
