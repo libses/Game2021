@@ -24,7 +24,7 @@ namespace WindowsFormsApp1
 
     public abstract class Entity : IEntity
     {
-        public bool isLeft;
+        public bool isLeft; // надо подумать, что делать с таким колличеством bool-ов
         public bool isRight;
         public bool isJump;
         public bool isFight;
@@ -50,6 +50,7 @@ namespace WindowsFormsApp1
         {
             Velocity = newVelocity;
         }
+
         public void ChangeAcceleration(Vector newAcceleration)
         {
             Acceleration = newAcceleration;
@@ -69,10 +70,12 @@ namespace WindowsFormsApp1
         {
             Hitbox = new Rectangle(Width, Height, Location);
         }
+
         public void Run(int direction, Physics physics)
         {
             physics.DoRun(this, direction);
         }
+
         public void Move(int dx)
         {
             for (int i = 0; i < 5; i++)
@@ -87,17 +90,32 @@ namespace WindowsFormsApp1
         public void Jump(Physics physics)
         {
             var acc = new Vector(Acceleration.X, Acceleration.Y - 20);
-            var p = new Vector(Velocity.X, Velocity.Y - 30);
             ChangeAcceleration(acc);
             physics.DoGravity(this);
             Invalidate();
         }
 
-        public void ReceiveDamage(int damage)
+        private void ReceiveDamage(int damage)
         {
             HP -= damage;
         }
 
-        public abstract void Fight(Entity entity);
+        public void Fight(Entity entity, int damage)
+        {
+            var distance = Location - entity.Location;
+            if (distance.Length < 20)
+            {
+                if (isFight && this is Player)
+                {
+                    var player = (Player)this;
+                    entity.ReceiveDamage(damage);
+                    player.isFight = false;
+                }
+                else
+                {
+                    entity.ReceiveDamage(damage);
+                }
+            }
+        }
     }
 }

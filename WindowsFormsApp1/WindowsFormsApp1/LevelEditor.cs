@@ -67,8 +67,6 @@ namespace WindowsFormsApp1
 								player.currentGun = new Pistol(Properties.Resources.Agressor, player);
 								//ЗАХАРДКОЖЕН СПЛИТТИНГ
 								ents.Add(player);
-								
-								//sadovnichek: я создал тестовое изображение персонажа и закинул в Resources. Так вроде бы лучше.
 								break;
                             }
 						case 'E':

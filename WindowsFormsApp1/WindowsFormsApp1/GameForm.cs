@@ -14,18 +14,18 @@ namespace WindowsFormsApp1
     {
         private readonly Painter painter;
         private readonly ViewPanel scaledViewPanel;
-        private Physics physics;
-        private Level currentLevel;
+        private readonly Physics physics;
+        private readonly Level currentLevel;
         private Entity player;
         private Entity[] enemies;
-        private Timer timer;
-        private Label HPlabel;
-        private SoundPlayer music;
+        private readonly Timer timer;
+        private readonly Label HPlabel;
+        private readonly SoundPlayer music;
 
         public GameForm(Level newLevel)
         {
             currentLevel = newLevel;
-            music = new SoundPlayer(Properties.Resources.Monkeys_Spinning_Monkeys1);
+            music = new SoundPlayer(Properties.Resources.Monkeys_Spinning_Monkeys1); // рандомная музыка на уровень?
             physics = new Physics(currentLevel);
             painter = new Painter(currentLevel);
             HPlabel = new Label() { Dock = DockStyle.Top, Font = new Font("Arial", 12) };
@@ -157,51 +157,23 @@ namespace WindowsFormsApp1
 
         private void EnemyMoving()
         {
-            foreach (var enemy in enemies)
+            foreach (Enemy enemy in enemies)
             {
-                enemy.isJump = false;
-                enemy.isLeft = false;
-                enemy.isRight = false;
-                var path = player.Location - enemy.Location;
-                if (path.Length >= 20)
-                {
-                    if (path.X > 0 && path.Y >= 0)
-                        enemy.isRight = true;
-                    if (path.X < 0 && path.Y < 0)
-                    {
-                        enemy.isJump = true;
-                        enemy.isRight = true;
-                    }
-                    if (path.X > 0 && path.Y < 0)
-                    {
-                        enemy.isJump = true;
-                        enemy.isRight = true;
-                    }
-                    if (path.X < 0 && path.Y >= 0)
-                        enemy.isLeft = true;
-                }
+                enemy.Moving((Player)player);
             }
         }
 
-        public void Fighting() // этот класс нужно убрать отсюда
+        public void Fighting()
         {
             foreach(var enemy in enemies)
             {
-                var distance = player.Location - enemy.Location;
-                if (distance.Length < 20)
-                {
-                    if(player.isFight)
-                    {
-                        player.Fight(enemy);
-                        Console.WriteLine(enemy.HP);
-                        player.isFight = false;
-                    }
-                    enemy.Fight(player);
-                }
+                enemy.Fight(player, 1);
+                if (player.isFight)
+                    player.Fight(enemy, 20);
             }
         }
 
-        public void Die() // этот класс нужно убрать отсюда
+        public void RemoveDied()
         {
             var died = new List<Entity>();
             foreach(var entity in currentLevel.entities)
