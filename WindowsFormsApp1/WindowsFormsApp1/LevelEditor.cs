@@ -63,8 +63,21 @@ namespace WindowsFormsApp1
 						case 'P':
                             {
 								var player = new Player(100, new Vector(x * 20 + 10, y * 20 + 10),
-									10, 10, Properties.Resources.Player);
-								player.currentGun = new Pistol(Properties.Resources.Agressor, player);
+									10, 10, Properties.Resources.PlayerStay,
+									new Dictionary<string, Bitmap[]>()
+									{
+										{ "run", new Bitmap[]
+											{
+												Properties.Resources.PlayerRun1,
+												Properties.Resources.PlayerRun2,
+												Properties.Resources.PlayerRun3,
+												Properties.Resources.PlayerRun4,
+												Properties.Resources.PlayerRun5,
+												Properties.Resources.PlayerRun6
+											}
+										} 
+									});
+								player.currentGun = new Pistol(Properties.Resources.EnemyStay, player);
 								//ЗАХАРДКОЖЕН СПЛИТТИНГ
 								ents.Add(player);
 								break;
@@ -72,7 +85,7 @@ namespace WindowsFormsApp1
 						case 'E':
                             {
 								ents.Add(new Enemy(100, new Vector(x * 20 + 10, y * 20 + 10),
-									10, 10, Properties.Resources.Agressor));
+									10, 10, Properties.Resources.EnemyStay, null));
 								break;
 							}
 						case 'B':

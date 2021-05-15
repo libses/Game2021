@@ -7,10 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace WindowsFormsApp1
-{//переписать, чтобы каждый раз не рисовать левел, а только entities. Медленно работает!
+{
 	public class Painter
 	{
-		//public bool isDrawn = false;
 		public Level currentLevel;
 		public Bitmap mapImage;
 

@@ -39,6 +39,7 @@ namespace WindowsFormsApp1
         public Vector Velocity {get; set;}
         public Vector Acceleration { get; set; }
         public Bitmap Sprite;
+        public Dictionary<string, Bitmap[]> Animations; // name and animation
         public Pistol currentGun;
 
         public void ChangeLocation(Vector newLocation)
@@ -56,7 +57,7 @@ namespace WindowsFormsApp1
             Acceleration = newAcceleration;
         }
 
-        public Entity (int HP, Vector location, int width, int height, Bitmap sprite) 
+        public Entity (int HP, Vector location, int width, int height, Bitmap sprite, Dictionary<string, Bitmap[]> animation) 
         {
             this.HP = HP;
             Location = location;
@@ -64,6 +65,7 @@ namespace WindowsFormsApp1
             Sprite = sprite;
             Width = width;
             Height = height;
+            Animations = animation;
         }
 
         public void Invalidate()
@@ -74,17 +76,6 @@ namespace WindowsFormsApp1
         public void Run(int direction, Physics physics)
         {
             physics.DoRun(this, direction);
-        }
-
-        public void Move(int dx)
-        {
-            for (int i = 0; i < 5; i++)
-            {
-                var x = Location.X;
-                var y = Location.Y;
-                ChangeLocation(new Vector(x + dx, y));
-                ChangeVelocity(new Vector(Velocity.X + dx, Velocity.Y));
-            }
         }
 
         public void Jump(Physics physics)

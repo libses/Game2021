@@ -11,6 +11,7 @@ namespace WindowsFormsApp1
         public Level level;
         public const int g = 1;
         public Block[,] map;
+        private double frame = 0;
         
         public Physics(Level lvl) 
         {
@@ -18,15 +19,23 @@ namespace WindowsFormsApp1
             map = new IntedMap(lvl.Map, 20).intMap;
         }
 
-        public void DoRun(IEntity entity, int direction)
+        public void DoRun(Entity entity, int direction)
         {
-            if (true)
+            if (entity != null)
             {
-                var n = direction*3;
+                if (frame >= 6)
+                    frame = 0;
+                if (direction != 0)
+                {
+                    entity.Sprite = entity.Animations["run"][(int)frame];
+                    frame += 0.3;
+                }
+                var n = direction * 3;
                 entity.ChangeVelocity(new Vector((int)(entity.Velocity.X * 0.6 + n), entity.Velocity.Y));
                 entity.ChangeLocation(new Vector(entity.Location.X + entity.Velocity.X, entity.Location.Y));
             }
         }
+
         public void DoGravity(IEntity entity)
         {
             entity.ChangeAcceleration(new Vector(entity.Acceleration.X, entity.Acceleration.Y + g));
@@ -87,10 +96,6 @@ namespace WindowsFormsApp1
                 {
                     DoRun(entity, -1);
                 }
-                //if (obstacles.Contains("up") && obstacles.Contains("down"))
-                //{
-                //    entity.ChangeLocation(new Vector(entity.Location.X, entity.Location.Y - 1));
-                //}
                 if (entity.isJump && !obstacles.Contains("up") && obstacles.Contains("down"))
                 {
                     entity.Jump(this);

@@ -118,23 +118,23 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Agressor" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\Agressor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="bullet" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\images\bullet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Assets\Sprites\bullet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="bullet2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\images\bullet2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Assets\Sprites\bullet2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="EnemyStay" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Sprites\Characters\Enemy\EnemyStay.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Ground" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\Ground.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Assets\Sprites\Ground.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="gun" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\images\gun.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Assets\Sprites\gun.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Assets\logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Map1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Levels\Map1.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
@@ -142,13 +142,28 @@
   <data name="Map2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Levels\Map2.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
-  <data name="Monkeys_Spinning_Monkeys" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\images\sounds\monkeys-spinning-monkeys.mp3;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="Monkeys_Spinning_Monkeys1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\sounds\Monkeys-Spinning-Monkeys.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\Assets\Sounds\Monkeys-Spinning-Monkeys.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="Player" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\Player.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="PlayerRun1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Sprites\Characters\Player\PlayerRun1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PlayerRun2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Sprites\Characters\Player\PlayerRun2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PlayerRun3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Sprites\Characters\Player\PlayerRun3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PlayerRun4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Sprites\Characters\Player\PlayerRun4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PlayerRun5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Sprites\Characters\Player\PlayerRun5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PlayerRun6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Sprites\Characters\Player\PlayerRun6.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PlayerStay" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Sprites\Characters\Player\PlayerStay.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

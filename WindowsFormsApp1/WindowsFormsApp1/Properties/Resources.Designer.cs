@@ -63,16 +63,6 @@ namespace WindowsFormsApp1.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Agressor {
-            get {
-                object obj = ResourceManager.GetObject("Agressor", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap bullet {
             get {
                 object obj = ResourceManager.GetObject("bullet", resourceCulture);
@@ -86,6 +76,16 @@ namespace WindowsFormsApp1.Properties {
         internal static System.Drawing.Bitmap bullet2 {
             get {
                 object obj = ResourceManager.GetObject("bullet2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap EnemyStay {
+            get {
+                object obj = ResourceManager.GetObject("EnemyStay", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -127,7 +127,7 @@ namespace WindowsFormsApp1.Properties {
         ///B###################B
         ///B###################B
         ///B###################B
-        ///BE#########P########B
+        ///BE#################PB
         ///BGGGGGGGGGGGGGGGGGGGB.
         /// </summary>
         internal static string Map1 {
@@ -140,25 +140,15 @@ namespace WindowsFormsApp1.Properties {
         ///   Ищет локализованную строку, похожую на BBBBBBBBBBBBBBBBBBBBB
         ///B###################B
         ///B###################B
-        ///B###################B
-        ///B#############G##GG#B
+        ///B##################PB
+        ///B################GG#B
         ///B############G######B
-        ///BE##########G######PB
+        ///B###########G#######B
         ///BGGGGGGGGGGGGGGGGGGGB.
         /// </summary>
         internal static string Map2 {
             get {
                 return ResourceManager.GetString("Map2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Byte[].
-        /// </summary>
-        internal static byte[] Monkeys_Spinning_Monkeys {
-            get {
-                object obj = ResourceManager.GetObject("Monkeys_Spinning_Monkeys", resourceCulture);
-                return ((byte[])(obj));
             }
         }
         
@@ -174,9 +164,69 @@ namespace WindowsFormsApp1.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Player {
+        internal static System.Drawing.Bitmap PlayerRun1 {
             get {
-                object obj = ResourceManager.GetObject("Player", resourceCulture);
+                object obj = ResourceManager.GetObject("PlayerRun1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap PlayerRun2 {
+            get {
+                object obj = ResourceManager.GetObject("PlayerRun2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap PlayerRun3 {
+            get {
+                object obj = ResourceManager.GetObject("PlayerRun3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap PlayerRun4 {
+            get {
+                object obj = ResourceManager.GetObject("PlayerRun4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap PlayerRun5 {
+            get {
+                object obj = ResourceManager.GetObject("PlayerRun5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap PlayerRun6 {
+            get {
+                object obj = ResourceManager.GetObject("PlayerRun6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap PlayerStay {
+            get {
+                object obj = ResourceManager.GetObject("PlayerStay", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
