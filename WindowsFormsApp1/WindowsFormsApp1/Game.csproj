@@ -68,12 +68,10 @@
     </Compile>
     <Compile Include="Geometry.cs" />
     <Compile Include="LevelPainter.cs" />
-    <Compile Include="PathFinder.cs" />
     <Compile Include="Physics.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SinglyLinkedList.cs" />
     <Compile Include="StartForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,7 +119,7 @@
     <Content Include="Images\gun.png" />
     <Content Include="Images\sounds\Monkeys-Spinning-Monkeys.mp3" />
     <Content Include="Images\sounds\Monkeys-Spinning-Monkeys.wav" />
-    <None Include="Resources\logo.png" />
+    <None Include="Images\logo.png" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="WMPLib">

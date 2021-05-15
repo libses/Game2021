@@ -1,8 +1,8 @@
 ﻿BBBBBBBBBBBBBBBBBBBBB
 B###################B
 B###################B
-B###################B
-B#############G##GG#B
+B##################PB
+B################GG#B
 B############G######B
-BE#########PG#######B
-GGGGGGGGGGGGGGGGGGGGG
+B###########G#######B
+BGGGGGGGGGGGGGGGGGGGB
