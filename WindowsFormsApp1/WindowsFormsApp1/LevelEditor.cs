@@ -73,6 +73,8 @@ namespace WindowsFormsApp1
 												Properties.Resources.PlayerRun4,
 												Properties.Resources.PlayerRun5,
 												Properties.Resources.PlayerRun6,
+												Properties.Resources.PlayerRun7,
+												Properties.Resources.PlayerRun8,
 												Properties.Resources.PlayerStay
 											}
 										} 
@@ -103,6 +105,9 @@ namespace WindowsFormsApp1
 											{
 												Properties.Resources.EnemyFight1,
 												Properties.Resources.EnemyFight2,
+												Properties.Resources.EnemyFight3,
+												Properties.Resources.EnemyFight4,
+												Properties.Resources.EnemyFight5,
 												Properties.Resources.EnemyStay
 											}
 										}
