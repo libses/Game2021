@@ -19,7 +19,7 @@ namespace WindowsFormsApp1
         {
             isDead = false;
             location = entity.Location;
-            var gun = entity.currentGun;
+            var gun = entity.CurrentGun;
             var xVel = Math.Cos(gun.angle) * 6 * kostil;
             var yVel = Math.Sin(gun.angle) * 6 * kostil;
             velocity = new Vector((int)xVel, (int)yVel);

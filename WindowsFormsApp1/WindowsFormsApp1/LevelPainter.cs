@@ -78,21 +78,21 @@ namespace WindowsFormsApp1
 			//хардкодинг
 			foreach (var ent in currentLevel.entities)
             {
-				graphics.DrawImage(ent.Sprite, ((float)ent.Location.X-10)/20, ((float)ent.Location.Y-10)/20, 
+				graphics.DrawImage(ent.currentSprite, ((float)ent.Location.X-10)/20, ((float)ent.Location.Y-10)/20, 
 					1, 1);
-				if (ent.currentGun != null)
+				if (ent.CurrentGun != null)
                 {
 					Bitmap rotatedGun;
-					if (ent.currentGun.angle == 0)
+					if (ent.CurrentGun.angle == 0)
                     {
 						rotatedGun = Properties.Resources.gun;
                     } else
                     {
-						rotatedGun = RotateImage(Properties.Resources.gun, (float)ent.currentGun.angle);
+						rotatedGun = RotateImage(Properties.Resources.gun, (float)ent.CurrentGun.angle);
 					}
 					graphics.DrawImage(rotatedGun, ((float)ent.Location.X - 10) / 20, ((float)ent.Location.Y - 10) / 20,
 						1, 1);
-					foreach (var bullet in ent.currentGun.bullets)
+					foreach (var bullet in ent.CurrentGun.bullets)
 					{
 						graphics.DrawImage(Properties.Resources.bullet2, ((float)bullet.location.X - 10) / 20, ((float)bullet.location.Y - 10) / 20,
 						1, 1);

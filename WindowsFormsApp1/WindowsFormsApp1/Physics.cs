@@ -8,10 +8,9 @@ namespace WindowsFormsApp1
 {
     public class Physics
     {
-        public Level level;
-        public const int g = 1;
-        public Block[,] map;
-        private double frame = 0;
+        private Level level;
+        private const int g = 1;
+        private Block[,] map;
         
         public Physics(Level lvl) 
         {
@@ -21,15 +20,8 @@ namespace WindowsFormsApp1
 
         public void DoRun(Entity entity, int direction)
         {
-            if (entity != null)
-            {
-                if (frame >= 6)
-                    frame = 0;
-                if (direction != 0)
-                {
-                    entity.Sprite = entity.Animations["run"][(int)frame];
-                    frame += 0.3;
-                }
+            if (true)
+            { 
                 var n = direction * 3;
                 entity.ChangeVelocity(new Vector((int)(entity.Velocity.X * 0.6 + n), entity.Velocity.Y));
                 entity.ChangeLocation(new Vector(entity.Location.X + entity.Velocity.X, entity.Location.Y));
@@ -49,7 +41,7 @@ namespace WindowsFormsApp1
             var RB = entity.Hitbox.RB;
             var LT = entity.Hitbox.LT;
             var RT = entity.Hitbox.RT;
-            if (map[LB.X + 1, LB.Y + entity.Acceleration.Y] == block || map[RB.X - 1, RB.Y + entity.Acceleration.Y] == block)
+            if (map[LB.X + 4, LB.Y + entity.Acceleration.Y] == block || map[RB.X - 4, RB.Y + entity.Acceleration.Y] == block)
                 yield return "down";
             if (map[LB.X - 1, LB.Y - 1] == block || map[LT.X - 1, LT.Y] == block)
                 yield return "left";
@@ -59,28 +51,28 @@ namespace WindowsFormsApp1
                 yield return "up";
         }
 
-        public void Iterate() 
+        public void Iterate() // need to refactoring
         {
             foreach (var entity in level.entities)
             {
                 var obstacles = CollideObstacle(entity, Block.Ground)
                     .Concat(CollideObstacle(entity, Block.Bound))
                     .ToList();
-                if (entity.isFiring)
+                if (entity.IsFiring)
                 {
-                    entity.currentGun.Fire();
+                    entity.CurrentGun.Fire();
                 }
-                if (entity.currentGun != null)
+                if (entity.CurrentGun != null)
                 {
-                    if (entity.isDowningGun)
+                    if (entity.IsDowningGun)
                     {
-                        entity.currentGun.angle += 0.15;
+                        entity.CurrentGun.angle += 0.15;
                     }
-                    if (entity.isUppingGun)
+                    if (entity.IsUppingGun)
                     {
-                        entity.currentGun.angle -= 0.15;
+                        entity.CurrentGun.angle -= 0.15;
                     }
-                    foreach (var bullet in entity.currentGun.bullets)
+                    foreach (var bullet in entity.CurrentGun.bullets)
                     {
                         if (!bullet.isDead)
                         {
@@ -88,15 +80,15 @@ namespace WindowsFormsApp1
                         }
                     }
                 }
-                if (entity.isRight && !obstacles.Contains("right"))
+                if (entity.IsRight && !obstacles.Contains("right"))
                 {
-                    DoRun(entity, 1);
+                    entity.Run(1, this);
                 }
-                if (entity.isLeft && !obstacles.Contains("left"))
+                if (entity.IsLeft && !obstacles.Contains("left"))
                 {
-                    DoRun(entity, -1);
+                    entity.Run(-1, this);
                 }
-                if (entity.isJump && !obstacles.Contains("up") && obstacles.Contains("down"))
+                if (entity.IsJump && !obstacles.Contains("up") && obstacles.Contains("down"))
                 {
                     entity.Jump(this);
                 }   
@@ -111,9 +103,10 @@ namespace WindowsFormsApp1
                 else
                 {
                     var veloX = entity.Velocity.X;
+                    entity.currentSprite = entity.originalSprite;
                     entity.ChangeVelocity(new Vector(veloX, 0));
                 }
-                DoRun(entity, 0);
+                entity.Run(0, this);
                 entity.Invalidate();
             }
         }

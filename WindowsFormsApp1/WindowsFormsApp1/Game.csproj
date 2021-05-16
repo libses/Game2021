@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Gun.cs" />
+    <Compile Include="IEntity.cs" />
     <Compile Include="IGun.cs" />
     <Compile Include="IntedMap.cs" />
     <Compile Include="LevelEditor.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="StartForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Tests\Geometry_should.cs" />
     <Compile Include="ViewPanel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -152,6 +154,34 @@
   <ItemGroup>
     <None Include="Assets\Sprites\Characters\Enemy\EnemyStay.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Sprites\Characters\Enemy\EnemyRun1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Sprites\Characters\Enemy\EnemyRun2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Sprites\Characters\Enemy\EnemyRun3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Sprites\Characters\Enemy\EnemyRun4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Sprites\Characters\Enemy\EnemyRun6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Sprites\Characters\Enemy\EnemyRun7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Levels\Map3.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Sprites\Characters\Enemy\EnemyFight1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Sprites\Characters\Enemy\EnemyFight2.png" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

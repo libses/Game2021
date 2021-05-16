@@ -78,37 +78,37 @@ namespace WindowsFormsApp1
                 if (e.KeyData == Keys.Space && !pressSpace)
                 {
                     pressSpace = true;
-                    player.isJump = true;
+                    player.IsJump = true;
                 }
                 if (e.KeyData == Keys.D && !pressD)
                 {
                     pressD = true;
-                    player.isRight = true;
+                    player.IsRight = true;
                 }
                 if (e.KeyData == Keys.A && !pressA)
                 {
                     pressA = true;
-                    player.isLeft = true;
+                    player.IsLeft = true;
                 }
                 if (e.KeyData == Keys.S && !pressS)
                 {
                     pressS = true;
-                    player.isFight = true;
+                    player.IsFight = true;
                 }
                 if (e.KeyData == Keys.E && !pressE)
                 {
                     pressE = true;
-                    player.isFiring = true;
+                    player.IsFiring = true;
                 }
                 if (e.KeyData == Keys.R && !pressR)
                 {
                     pressR = true;
-                    player.isUppingGun = true;
+                    player.IsUppingGun = true;
                 }
                 if (e.KeyData == Keys.F && !pressF)
                 {
                     pressF = true;
-                    player.isDowningGun = true;
+                    player.IsDowningGun = true;
                 }
             }
         }
@@ -120,37 +120,37 @@ namespace WindowsFormsApp1
                 if (e.KeyCode == Keys.Space && pressSpace)
                 {
                     pressSpace = false;
-                    player.isJump = false;
+                    player.IsJump = false;
                 }
                 if (e.KeyCode == Keys.D && pressD)
                 {
                     pressD = false;
-                    player.isRight = false;
+                    player.IsRight = false;
                 }
                 if (e.KeyCode == Keys.A && pressA)
                 {
                     pressA = false;
-                    player.isLeft = false;
+                    player.IsLeft = false;
                 }
                 if (e.KeyData == Keys.S && pressS)
                 {
                     pressS = false;
-                    player.isFight = false;
+                    player.IsFight = false;
                 }
                 if (e.KeyData == Keys.E && pressE)
                 {
                     pressE = false;
-                    player.isFiring = false;
+                    player.IsFiring = false;
                 }
                 if (e.KeyData == Keys.R && pressR)
                 {
                     pressR = false;
-                    player.isUppingGun = false;
+                    player.IsUppingGun = false;
                 }
                 if (e.KeyData == Keys.F && pressF)
                 {
                     pressF = false;
-                    player.isDowningGun = false;
+                    player.IsDowningGun = false;
                 }
             }
         }
@@ -163,17 +163,17 @@ namespace WindowsFormsApp1
             }
         }
 
-        public void Fighting()
+        private void Fighting()
         {
             foreach(var enemy in enemies)
             {
                 enemy.Fight(player, 1);
-                if (player.isFight)
+                if (player.IsFight)
                     player.Fight(enemy, 20);
             }
         }
 
-        public void RemoveDied()
+        private void RemoveDied()
         {
             var died = new List<Entity>();
             foreach(var entity in currentLevel.entities)

@@ -83,6 +83,86 @@ namespace WindowsFormsApp1.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap EnemyFight1 {
+            get {
+                object obj = ResourceManager.GetObject("EnemyFight1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap EnemyFight2 {
+            get {
+                object obj = ResourceManager.GetObject("EnemyFight2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap EnemyRun1 {
+            get {
+                object obj = ResourceManager.GetObject("EnemyRun1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap EnemyRun2 {
+            get {
+                object obj = ResourceManager.GetObject("EnemyRun2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap EnemyRun3 {
+            get {
+                object obj = ResourceManager.GetObject("EnemyRun3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap EnemyRun4 {
+            get {
+                object obj = ResourceManager.GetObject("EnemyRun4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap EnemyRun5 {
+            get {
+                object obj = ResourceManager.GetObject("EnemyRun5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap EnemyRun6 {
+            get {
+                object obj = ResourceManager.GetObject("EnemyRun6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap EnemyStay {
             get {
                 object obj = ResourceManager.GetObject("EnemyStay", resourceCulture);
@@ -140,15 +220,31 @@ namespace WindowsFormsApp1.Properties {
         ///   Ищет локализованную строку, похожую на BBBBBBBBBBBBBBBBBBBBB
         ///B###################B
         ///B###################B
-        ///B##################PB
+        ///B###################B
         ///B################GG#B
         ///B############G######B
-        ///B###########G#######B
+        ///B##E########G####P##B
         ///BGGGGGGGGGGGGGGGGGGGB.
         /// </summary>
         internal static string Map2 {
             get {
                 return ResourceManager.GetString("Map2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+        ///B###################BB###################B
+        ///B###################BB###################B
+        ///B################E##BB###################B
+        ///B################GG#BB###################B
+        ///B############G######BB###################B
+        ///B##E#####E##G#######BB#################P#B
+        ///BGGGGGGGGGGGGGGGGGGGBBGGGGGGGGGGGGGGGGGGGB.
+        /// </summary>
+        internal static string Map3 {
+            get {
+                return ResourceManager.GetString("Map3", resourceCulture);
             }
         }
         

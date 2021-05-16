@@ -22,26 +22,26 @@ namespace WindowsFormsApp1
 
         public void Moving(Player player)
         {
-            isJump = false;
-            isLeft = false;
-            isRight = false;
+            IsJump = false;
+            IsLeft = false;
+            IsRight = false;
             var path = player.Location - Location;
             if (path.Length >= 20 && path.Length < 200)
             {
                 if (path.X > 0 && path.Y >= 0)
-                    isRight = true;
+                    IsRight = true;
                 if (path.X < 0 && path.Y < 0)
                 {
-                    isJump = true;
-                    isRight = true;
+                    IsJump = true;
+                    IsRight = true;
                 }
                 if (path.X > 0 && path.Y < 0)
                 {
-                    isJump = true;
-                    isRight = true;
+                    IsJump = true;
+                    IsRight = true;
                 }
                 if (path.X < 0 && path.Y >= 0)
-                    isLeft = true;
+                    IsLeft = true;
             }
             else if (path.Length >= 200)
                 OrdinaryMove();
@@ -51,17 +51,18 @@ namespace WindowsFormsApp1
         {
             timer.Tick += (sender, args) => { action = (random.Next(0, 4) + GetHashCode()) % 4; };
             if (action == 0)
-                isLeft = true;
+                IsLeft = true;
             if (action == 1)
-                isRight = true;
+                IsRight = true;
             if (action == 2)
             {
-                isJump = false;
-                isLeft = false;
-                isRight = false;
+                IsJump = false;
+                IsLeft = false;
+                IsRight = false;
+                currentSprite = originalSprite;
             }
             if (action == 3)
-                isJump = true;
+                IsJump = true;
         }
     }
 }

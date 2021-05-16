@@ -20,7 +20,6 @@ namespace WindowsFormsApp1
 	public class Level
 	{
 		public readonly Block[,] Map;
-		public readonly Point Start;
 		public Entity[] entities;
 
 		private Level(Block[,] level, Entity[] ents)
@@ -73,11 +72,12 @@ namespace WindowsFormsApp1
 												Properties.Resources.PlayerRun3,
 												Properties.Resources.PlayerRun4,
 												Properties.Resources.PlayerRun5,
-												Properties.Resources.PlayerRun6
+												Properties.Resources.PlayerRun6,
+												Properties.Resources.PlayerStay
 											}
 										} 
 									});
-								player.currentGun = new Pistol(Properties.Resources.EnemyStay, player);
+								player.CurrentGun = new Pistol(Properties.Resources.EnemyStay, player);
 								//ЗАХАРДКОЖЕН СПЛИТТИНГ
 								ents.Add(player);
 								break;
@@ -85,7 +85,28 @@ namespace WindowsFormsApp1
 						case 'E':
                             {
 								ents.Add(new Enemy(100, new Vector(x * 20 + 10, y * 20 + 10),
-									10, 10, Properties.Resources.EnemyStay, null));
+									10, 10, Properties.Resources.EnemyStay, 
+									new Dictionary<string, Bitmap[]>()
+									{
+										{ "run", new Bitmap[]
+											{
+												Properties.Resources.EnemyRun1,
+												Properties.Resources.EnemyRun2,
+												Properties.Resources.EnemyRun3,
+												Properties.Resources.EnemyRun4,
+												Properties.Resources.EnemyRun5,
+												Properties.Resources.EnemyRun6,
+												Properties.Resources.EnemyStay
+											}
+										},
+										{ "fight", new Bitmap[]
+											{
+												Properties.Resources.EnemyFight1,
+												Properties.Resources.EnemyFight2,
+												Properties.Resources.EnemyStay
+											}
+										}
+									}));
 								break;
 							}
 						case 'B':

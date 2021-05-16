@@ -7,40 +7,27 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApp1
 {
-    /*что имеет любое более-менее живое существо? 
-     Здоровье, а также местоположение. Что-то ещё? Добавьте, если будут идеи.
-    Хитбокс не должен быть отдельно изменяемым свойством. Должен быть отдельный конструктор для хитбокса, куда
-    вводится только ширина и высота объекта, а хитбокс является свойством, дающим крайние грани от локации.*/
-    public interface IEntity
+    public class Entity : IEntity
     {
-        Vector Acceleration { get; set; }
-        Vector Location { get; set; }
-        Rectangle Hitbox { get; set; }
-        Vector Velocity { get; set; }
-        void ChangeLocation(Vector newLocaton);
-        void ChangeVelocity(Vector newVelocity);
-        void ChangeAcceleration(Vector newAcceleration);
-    }
-
-    public abstract class Entity : IEntity
-    {
-        public bool isLeft; // надо подумать, что делать с таким колличеством bool-ов
-        public bool isRight;
-        public bool isJump;
-        public bool isFight;
-        public bool isFiring;
-        public bool isDowningGun;
-        public bool isUppingGun;
+        public bool IsLeft; // надо подумать, что делать с таким колличеством bool-ов
+        public bool IsRight;
+        public bool IsJump;
+        public bool IsFight;
+        public bool IsFiring;
+        public bool IsDowningGun;
+        public bool IsUppingGun;
         public int Width;
         public int Height;
+        private double frame = 0;
         public int HP  { get; set;}
         public Vector Location { get; set; }
         public Rectangle Hitbox { get; set; }
         public Vector Velocity {get; set;}
         public Vector Acceleration { get; set; }
-        public Bitmap Sprite;
-        public Dictionary<string, Bitmap[]> Animations; // name and animation
-        public Pistol currentGun;
+        public Bitmap originalSprite;
+        public Bitmap currentSprite;
+        private Dictionary<string, Bitmap[]> animations; // name and animation
+        public Pistol CurrentGun;
 
         public void ChangeLocation(Vector newLocation)
         {
@@ -62,10 +49,11 @@ namespace WindowsFormsApp1
             this.HP = HP;
             Location = location;
             Hitbox = new Rectangle(width, height, location);
-            Sprite = sprite;
+            originalSprite = sprite;
+            currentSprite = sprite;
             Width = width;
             Height = height;
-            Animations = animation;
+            animations = animation;
         }
 
         public void Invalidate()
@@ -75,6 +63,13 @@ namespace WindowsFormsApp1
 
         public void Run(int direction, Physics physics)
         {
+            if (frame >= animations["run"].Length)
+                frame = 0;
+            if (direction != 0)
+            {
+                currentSprite = animations["run"][(int)frame];
+                frame += 0.3;
+            }
             physics.DoRun(this, direction);
         }
 
@@ -96,15 +91,19 @@ namespace WindowsFormsApp1
             var distance = Location - entity.Location;
             if (distance.Length < 20)
             {
-                if (isFight && this is Player)
+                if (IsFight && this is Player)
                 {
                     var player = (Player)this;
                     entity.ReceiveDamage(damage);
-                    player.isFight = false;
+                    player.IsFight = false;
                 }
                 else
                 {
                     entity.ReceiveDamage(damage);
+                    if (frame >= animations["fight"].Length)
+                        frame = 0;
+                    currentSprite = animations["fight"][(int)frame];
+                    frame++;
                 }
             }
         }

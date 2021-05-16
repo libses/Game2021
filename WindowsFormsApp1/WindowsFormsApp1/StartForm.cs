@@ -56,6 +56,7 @@ namespace WindowsFormsApp1
         {
             yield return Level.FromText(Properties.Resources.Map1, 1);
             yield return Level.FromText(Properties.Resources.Map2, 1);
+            yield return Level.FromText(Properties.Resources.Map3, 1);
         }
 
         private void DrawLevelSwitch(Level[] levels, FlowLayoutPanel menuPanel)
