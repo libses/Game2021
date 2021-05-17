@@ -45,7 +45,7 @@ namespace WindowsFormsApp1
 		}
 		public static Bitmap RotateImage(Bitmap img, float rotationAngle)
 		{
-			rotationAngle = rotationAngle * 56;
+			rotationAngle = rotationAngle * 57.3f;
 			//create an empty Bitmap image
 			Bitmap bmp = new Bitmap(img.Width, img.Height);
 

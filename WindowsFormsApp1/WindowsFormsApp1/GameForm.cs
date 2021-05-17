@@ -100,15 +100,13 @@ namespace WindowsFormsApp1
                     pressE = true;
                     player.IsFiring = true;
                 }
-                if (e.KeyData == Keys.R && !pressR)
+                if (e.KeyData == Keys.F && !pressR)
                 {
-                    pressR = true;
-                    player.IsUppingGun = true;
+                    player.CurrentGun.angle += 0.78539816339744830961566084581988;
                 }
-                if (e.KeyData == Keys.F && !pressF)
+                if (e.KeyData == Keys.R && !pressF)
                 {
-                    pressF = true;
-                    player.IsDowningGun = true;
+                    player.CurrentGun.angle -= 0.78539816339744830961566084581988;
                 }
             }
         }

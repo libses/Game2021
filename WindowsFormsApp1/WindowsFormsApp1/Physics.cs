@@ -58,6 +58,26 @@ namespace WindowsFormsApp1
 
         public void Iterate() // need to refactoring
         {
+            var p = level.entities.Where(x => x is Player);
+            if (p.Count() > 0)
+            {
+                var gun = p.ToList()[0].CurrentGun;
+                foreach (var bullet in gun.bullets)
+                {
+                    foreach (var ent in level.entities)
+                    {
+                        if (!(ent is Player))
+                        {
+                            if (bullet.location.X >= ent.Hitbox.LB.X && bullet.location.X <= ent.Hitbox.RB.X &&
+                                bullet.location.Y >= ent.Hitbox.LT.Y && bullet.location.Y <= ent.Hitbox.LB.Y)
+                            {
+                                ent.HP = ent.HP - 20;
+                            }
+                        }
+                    }
+
+                }
+            }
             foreach (var entity in level.entities)
             {
                 var obstacles = CollideObstacle(entity, Block.Ground)
@@ -71,11 +91,11 @@ namespace WindowsFormsApp1
                 {
                     if (entity.IsDowningGun)
                     {
-                        entity.CurrentGun.angle += 0.15;
+                        entity.CurrentGun.angle += 1;
                     }
                     if (entity.IsUppingGun)
                     {
-                        entity.CurrentGun.angle -= 0.15;
+                        entity.CurrentGun.angle -= 1;
                     }
                     foreach (var bullet in entity.CurrentGun.bullets)
                     {
