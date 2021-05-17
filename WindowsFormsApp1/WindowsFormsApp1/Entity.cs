@@ -9,6 +9,7 @@ namespace WindowsFormsApp1
 {
     public class Entity : IEntity
     {
+        public int tiredness;
         public bool IsLeft; // надо подумать, что делать с таким колличеством bool-ов
         public bool IsRight;
         public bool IsJump;
@@ -66,6 +67,7 @@ namespace WindowsFormsApp1
             Hitbox = new Rectangle(Width, Height, Location);
         }
 
+
         public void Run(int direction, Physics physics)
         {
             if (IsLeftOriented)
@@ -94,9 +96,10 @@ namespace WindowsFormsApp1
 
         public void Jump(Physics physics)
         {
-            var acc = new Vector(Acceleration.X, Acceleration.Y - 20);
+            var acc = new Vector(Acceleration.X, Acceleration.Y - 45);
             ChangeAcceleration(acc);
             physics.DoGravity(this);
+            tiredness = 26;
             Invalidate();
         }
 

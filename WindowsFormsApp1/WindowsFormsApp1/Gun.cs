@@ -9,6 +9,8 @@ namespace WindowsFormsApp1
 {
     public class Bullet
     {
+        public Entity owner;
+        public int damage = 8;
         int kostil = 100;
         public bool isDead;
         public Vector location;
@@ -23,6 +25,7 @@ namespace WindowsFormsApp1
             var xVel = Math.Cos(gun.angle) * 6 * kostil;
             var yVel = Math.Sin(gun.angle) * 6 * kostil;
             velocity = new Vector((int)xVel, (int)yVel);
+            owner = entity;
         }
         public void Fly()
         {

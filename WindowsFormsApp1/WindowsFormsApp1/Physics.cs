@@ -9,6 +9,7 @@ namespace WindowsFormsApp1
 {
     public class Physics
     {
+        public double hard = 1;
         private Level level;
         private const int g = 1;
         private Block[,] map;
@@ -25,7 +26,7 @@ namespace WindowsFormsApp1
             double runSpeed = 3;
             if (entity is Enemy)
             {
-                runSpeed = 2;
+                runSpeed = 1*hard;
             }
             if (true)
             { 
@@ -48,7 +49,7 @@ namespace WindowsFormsApp1
             var RB = entity.Hitbox.RB;
             var LT = entity.Hitbox.LT;
             var RT = entity.Hitbox.RT;
-            if (LB.X > 4 && LB.Y > 4 && RB.X > 4 && RB.Y > 4 && LT.X > 4 && LT.Y > 4 && RT.X > 4 && RT.Y > 4)
+            if (LB.X > 6 && LB.Y > 6 && RB.X > 6 && RB.Y > 6 && LT.X > 6 && LT.Y > 6 && RT.X > 6 && RT.Y > 6)
             {
                 if (map[LB.X + 4, LB.Y + entity.Acceleration.Y] == block || map[RB.X - 4, RB.Y + entity.Acceleration.Y] == block)
                     yield return "down";
@@ -63,60 +64,82 @@ namespace WindowsFormsApp1
 
         public void Iterate() // need to refactoring
         {
-            if (random.NextDouble() > 0.95)
+            var player = level.entities.Where(x => x is Player).FirstOrDefault();
+            var e = level.entities.Where(x => x is Enemy);
+            foreach (var enemy in e)
             {
-                var dictB = new Dictionary<string, Bitmap[]>()
-									{
-										{ "run", new Bitmap[]
-											{
-												Properties.Resources.EnemyRun1,
-												Properties.Resources.EnemyRun2,
-												Properties.Resources.EnemyRun3,
-												Properties.Resources.EnemyRun4,
-												Properties.Resources.EnemyRun5,
-												Properties.Resources.EnemyRun6,
-												Properties.Resources.EnemyStay
-											}
-										},
-										{ "fight", new Bitmap[]
-											{
-												Properties.Resources.EnemyFight1,
-												Properties.Resources.EnemyFight2,
-												Properties.Resources.EnemyFight3,
-												Properties.Resources.EnemyFight4,
-												Properties.Resources.EnemyFight5,
-												Properties.Resources.EnemyStay
-											}
-										}
-									};
-                level.entities.Add(new Enemy(100, new Vector(random.Next(0, level.Map.GetLength(0) *19), random.Next(0, level.Map.GetLength(1) * 19)),
-                                    10, 10, Properties.Resources.EnemyStay,
-                                    dictB, dictB, Properties.Resources.EnemyStay));
+                var abc = (Enemy)enemy;
+                if (random.NextDouble() > 0.98) abc.Shoot((Player)player);
             }
-            var p = level.entities.Where(x => x is Player);
+            if (hard < 2.5)
+            {
+                hard = hard * 1.0001;
+            }
+            foreach (var spawner in level.spawners)
+            {
+                bool ten = false;
+                if (level.entities.Count > 10*hard) ten = true;
+                if (random.NextDouble() > 0.99 && !ten)
+                {
+                    var dictB = new Dictionary<string, Bitmap[]>()
+                                    {
+                                        { "run", new Bitmap[]
+                                            {
+                                                Properties.Resources.EnemyRun1,
+                                                Properties.Resources.EnemyRun2,
+                                                Properties.Resources.EnemyRun3,
+                                                Properties.Resources.EnemyRun4,
+                                                Properties.Resources.EnemyRun5,
+                                                Properties.Resources.EnemyRun6,
+                                                Properties.Resources.EnemyStay
+                                            }
+                                        },
+                                        { "fight", new Bitmap[]
+                                            {
+                                                Properties.Resources.EnemyFight1,
+                                                Properties.Resources.EnemyFight2,
+                                                Properties.Resources.EnemyFight3,
+                                                Properties.Resources.EnemyFight4,
+                                                Properties.Resources.EnemyFight5,
+                                                Properties.Resources.EnemyStay
+                                            }
+                                        }
+                                    };
+                    level.entities.Add(new Enemy(100, new Vector(spawner.location.X, spawner.location.Y),
+                                        10, 10, Properties.Resources.EnemyStay,
+                                        dictB, dictB, Properties.Resources.EnemyStay));
+                }
+            }
+            
+            var p = level.entities;
             if (p.Count() > 0)
             {
-                var gun = p.ToList()[0].CurrentGun;
-                foreach (var bullet in gun.bullets)
+                foreach (var guns in p)
                 {
-                    foreach (var ent in level.entities)
+                    var gun = guns.CurrentGun;
+                    foreach (var bullet in gun.bullets)
                     {
-                        if (!(ent is Player))
+                        foreach (var ent in level.entities)
                         {
-                            if (bullet.location.X >= ent.Hitbox.LB.X && bullet.location.X <= ent.Hitbox.RB.X &&
-                                bullet.location.Y >= ent.Hitbox.LT.Y && bullet.location.Y <= ent.Hitbox.LB.Y)
+                            if (!(ent == bullet.owner))
                             {
-                                ent.HP = ent.HP - 4;
+                                if (bullet.location.X >= ent.Hitbox.LB.X && bullet.location.X <= ent.Hitbox.RB.X &&
+                                    bullet.location.Y >= ent.Hitbox.LT.Y && bullet.location.Y <= ent.Hitbox.LB.Y)
+                                {
+                                    ent.HP = ent.HP - bullet.damage;
+                                    bullet.damage = bullet.damage / 2;
+                                }
+                                if (bullet.location.X > map.GetLength(0) * 20 || bullet.location.Y > map.GetLength(1) * 20 ||
+                                    bullet.location.X < 0 || bullet.location.Y < 0) bullet.isDead = true;
                             }
-                            if (bullet.location.X > map.GetLength(0)*20 || bullet.location.Y > map.GetLength(1)*20 ||
-                                bullet.location.X < 0 || bullet.location.Y < 0) bullet.isDead = true;
                         }
+                        gun.bullets = gun.bullets.Where(x => x.isDead == false).ToList();
                     }
-                    gun.bullets = gun.bullets.Where(x => x.isDead == false).ToList();
                 }
             }
             foreach (var entity in level.entities)
             {
+                if (entity.tiredness > 0) entity.tiredness--;
                 var obstacles = CollideObstacle(entity, Block.Ground)
                     .Concat(CollideObstacle(entity, Block.Bound))
                     .ToList();
@@ -150,7 +173,7 @@ namespace WindowsFormsApp1
                 {
                     entity.Run(-1, this);
                 }
-                if (entity.IsJump && !obstacles.Contains("up") && obstacles.Contains("down"))
+                if (entity.IsJump && !obstacles.Contains("up") && obstacles.Contains("down") && entity.tiredness == 0)
                 {
                     entity.Jump(this);
                 }   

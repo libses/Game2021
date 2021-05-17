@@ -21,11 +21,13 @@ namespace WindowsFormsApp1
 	{
 		public readonly Block[,] Map;
 		public List<Entity> entities;
+		public List<Spawner> spawners;
 
-		private Level(Block[,] level, List<Entity> ents)
+		private Level(Block[,] level, List<Entity> ents, List<Spawner> spwn)
 		{
 			Map = level;
 			entities = ents;
+			spawners = spwn;
 		}
 
 		public Level(Level source)
@@ -42,6 +44,7 @@ namespace WindowsFormsApp1
 
 		public static Level FromLines(string[] lines, int splitting)
 		{
+			var spwn = new List<Spawner>();
 			var ents = new List<Entity>();
 			var map = new Block[lines[0].Length * splitting, lines.Length * splitting];
 			for (var y = 0; y < lines.Length; y++)
@@ -50,6 +53,13 @@ namespace WindowsFormsApp1
 				{
 					switch (lines[y][x])
 					{
+						case 'S':
+                            {
+								var v = new Vector(x * 20 + 10, y * 20 + 10);
+								var s = new Spawner(v);
+								spwn.Add(s);
+								break;
+                            }
 						case 'G':
 							{
 								for (int dx = 0; dx < splitting; dx++)
@@ -61,7 +71,7 @@ namespace WindowsFormsApp1
 							}
 						case 'P':
                             {
-								var player = new Player(300, new Vector(x * 20 + 10, y * 20 + 10),
+								var player = new Player(1000, new Vector(x * 20 + 10, y * 20 + 10),
 									10, 10, Properties.Resources.PlayerStay,
 									new Dictionary<string, Bitmap[]>()
 									{
@@ -152,7 +162,7 @@ namespace WindowsFormsApp1
 					}
 				}
 			}
-			return new Level(map, ents.ToList());
+			return new Level(map, ents.ToList(), spwn);
 		}
 
 		public bool InBounds(Point point)

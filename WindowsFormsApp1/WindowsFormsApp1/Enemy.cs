@@ -18,8 +18,15 @@ namespace WindowsFormsApp1
         {
             timer.Interval = 1000;
             timer.Start();
+            CurrentGun = new Pistol(Properties.Resources.gun, this);
         }
-
+        public void Shoot(Player player)
+        {
+            var r = (player.Location.X - Location.X)/(double)((player.Location - Location).Length);
+            var angle = Math.Acos(r);
+            CurrentGun.angle = angle;
+            CurrentGun.Fire();
+        }
         public void Moving(Player player)
         {
             IsJump = false;
@@ -30,7 +37,7 @@ namespace WindowsFormsApp1
             // bool hasGround = pathDerscrete.Contains(Block.Ground);
             bool hasGround = true;
             //тут чето сломалось
-            if (path.Length >= 20 && path.Length < 200 && hasGround)
+            if (path.Length >= 20 && path.Length < 20000 && hasGround) //для отладки
             {
                 //if (random.NextDouble() < 0.7)
                 //{
