@@ -46,6 +46,7 @@ namespace WindowsFormsApp1
             timer.Interval = 15;
             timer.Tick += (sender, args) =>
             {
+                MMouseMove();
                 player = currentLevel.entities.Where(x => x is Player).FirstOrDefault();
                 enemies = currentLevel.entities.Where(x => x is Enemy).ToArray();
                 if (player != null) // null - Game Over
@@ -71,6 +72,12 @@ namespace WindowsFormsApp1
         bool pressE;
         bool pressR;
         bool pressF;
+        private void MMouseMove()
+        {
+            var pos = Cursor.Position;
+            var vector = new Vector(pos.X, pos.Y);
+            currentLevel.mousePosition = vector;
+        }
         private void FormKeyPress(object sender, KeyEventArgs e)
         {
             if (player != null)
@@ -84,20 +91,12 @@ namespace WindowsFormsApp1
                 {
                     pressD = true;
                     player.IsRight = true;
-                    if (!player.IsLeftOriented)
-                    {
-                        player.CurrentGun.angle -= Math.PI;
-                    }
                     player.IsLeftOriented = true;
                 }
                 if (e.KeyData == Keys.A && !pressA)
                 {
                     pressA = true;
                     player.IsLeft = true;
-                    if (player.IsLeftOriented)
-                    {
-                        player.CurrentGun.angle += Math.PI;
-                    }
                     player.IsLeftOriented = false;
                 }
                 if (e.KeyData == Keys.S && !pressS)

@@ -19,6 +19,7 @@ namespace WindowsFormsApp1
 
 	public class Level
 	{
+		public Vector mousePosition;
 		public readonly Block[,] Map;
 		public List<Entity> entities;
 		public List<Spawner> spawners;

@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
@@ -119,6 +120,8 @@ namespace WindowsFormsApp1
                     var gun = guns.CurrentGun;
                     foreach (var bullet in gun.bullets)
                     {
+                        if (bullet.location.X > map.GetLength(0) * 20 || bullet.location.Y > map.GetLength(1) * 20 ||
+                                    bullet.location.X < 0 || bullet.location.Y < 0) bullet.isDead = true;
                         foreach (var ent in level.entities)
                         {
                             if (!(ent == bullet.owner))
@@ -129,12 +132,11 @@ namespace WindowsFormsApp1
                                     ent.HP = ent.HP - bullet.damage;
                                     bullet.damage = bullet.damage / 2;
                                 }
-                                if (bullet.location.X > map.GetLength(0) * 20 || bullet.location.Y > map.GetLength(1) * 20 ||
-                                    bullet.location.X < 0 || bullet.location.Y < 0) bullet.isDead = true;
                             }
-                        }
-                        gun.bullets = gun.bullets.Where(x => x.isDead == false).ToList();
+                            
+                        } 
                     }
+                    gun.bullets = gun.bullets.Where(x => x.isDead == false).ToList();
                 }
             }
             foreach (var entity in level.entities)
@@ -194,6 +196,21 @@ namespace WindowsFormsApp1
                 entity.Run(0, this);
                 entity.Invalidate();
             }
+            var res = Screen.PrimaryScreen.Bounds;
+            var xx = (level.mousePosition.X / (double)(res.Width)) * map.GetLength(0);
+            var yy = ((level.mousePosition.Y - SystemInformation.BorderSize.Height * 2) / (double)(res.Height - SystemInformation.BorderSize.Height * 2)) * map.GetLength(1);
+            var mouse = new Vector((int)(xx), (int)(yy));
+            var a = (player.Location.X - mouse.X) / (double)((player.Location - mouse).Length);
+            var b = (player.Location.Y - mouse.Y);
+            var angle = 0d;
+            if (b >= 0)
+            {
+                angle = Math.Acos(a);
+            } else
+            {
+                angle = 0 - Math.Acos(a);
+            }
+            player.CurrentGun.angle = angle + Math.PI;
         }
     }
 }

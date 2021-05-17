@@ -80,7 +80,7 @@ namespace WindowsFormsApp1
             {
 				graphics.DrawImage(ent.currentSprite, ((float)ent.Location.X-10)/20, ((float)ent.Location.Y-10)/20, 
 					1, 1);
-				if (ent.CurrentGun != null)
+				if (ent.CurrentGun != null && !Double.IsNaN(ent.CurrentGun.angle))
                 {
 					Bitmap rotatedGun;
 					if (ent.CurrentGun.angle == 0)
