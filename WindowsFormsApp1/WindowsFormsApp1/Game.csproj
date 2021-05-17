@@ -196,6 +196,17 @@
   <ItemGroup>
     <None Include="Assets\Sprites\Characters\Enemy\EnemyFight5.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Sprites\Characters\Player\versa\PlayerRun1v.png" />
+    <Content Include="Assets\Sprites\Characters\Player\versa\PlayerRun2v.png" />
+    <Content Include="Assets\Sprites\Characters\Player\versa\PlayerRun3v.png" />
+    <Content Include="Assets\Sprites\Characters\Player\versa\PlayerRun4v.png" />
+    <Content Include="Assets\Sprites\Characters\Player\versa\PlayerRun5v.png" />
+    <Content Include="Assets\Sprites\Characters\Player\versa\PlayerRun6v.png" />
+    <Content Include="Assets\Sprites\Characters\Player\versa\PlayerRun7v.png" />
+    <Content Include="Assets\Sprites\Characters\Player\versa\PlayerRun8v.png" />
+    <Content Include="Assets\Sprites\Characters\Player\versa\PlayerStayv.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

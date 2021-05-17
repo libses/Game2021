@@ -16,6 +16,7 @@ namespace WindowsFormsApp1
         public bool IsFiring;
         public bool IsDowningGun;
         public bool IsUppingGun;
+        public bool IsLeftOriented = true;
         public int Width;
         public int Height;
         private double frame = 0;
@@ -24,9 +25,11 @@ namespace WindowsFormsApp1
         public Rectangle Hitbox { get; set; }
         public Vector Velocity {get; set;}
         public Vector Acceleration { get; set; }
+        public Bitmap originalSpriteV;
         public Bitmap originalSprite;
         public Bitmap currentSprite;
         private Dictionary<string, Bitmap[]> animations; // name and animation
+        private Dictionary<string, Bitmap[]> animationsV;
         public Pistol CurrentGun;
 
         public void ChangeLocation(Vector newLocation)
@@ -44,7 +47,7 @@ namespace WindowsFormsApp1
             Acceleration = newAcceleration;
         }
 
-        public Entity (int HP, Vector location, int width, int height, Bitmap sprite, Dictionary<string, Bitmap[]> animation) 
+        public Entity (int HP, Vector location, int width, int height, Bitmap sprite, Dictionary<string, Bitmap[]> animation, Dictionary<string, Bitmap[]> animationV, Bitmap spriteV) 
         {
             this.HP = HP;
             Location = location;
@@ -54,6 +57,8 @@ namespace WindowsFormsApp1
             Width = width;
             Height = height;
             animations = animation;
+            animationsV = animationV;
+            originalSpriteV = spriteV;
         }
 
         public void Invalidate()
@@ -63,14 +68,28 @@ namespace WindowsFormsApp1
 
         public void Run(int direction, Physics physics)
         {
-            if (frame >= animations["run"].Length)
-                frame = 0;
-            if (direction != 0)
+            if (IsLeftOriented)
             {
-                currentSprite = animations["run"][(int)frame];
-                frame += 0.3;
+                if (frame >= animations["run"].Length)
+                    frame = 0;
+                if (direction != 0)
+                {
+                    currentSprite = animations["run"][(int)frame];
+                    frame += 0.3;
+                }
+                physics.DoRun(this, direction);
+            } else
+            {
+                if (frame >= animationsV["run"].Length)
+                    frame = 0;
+                if (direction != 0)
+                {
+                    currentSprite = animationsV["run"][(int)frame];
+                    frame += 0.3;
+                }
+                physics.DoRun(this, direction);
             }
-            physics.DoRun(this, direction);
+            
         }
 
         public void Jump(Physics physics)

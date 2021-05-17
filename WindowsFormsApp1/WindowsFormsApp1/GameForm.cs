@@ -84,11 +84,21 @@ namespace WindowsFormsApp1
                 {
                     pressD = true;
                     player.IsRight = true;
+                    if (!player.IsLeftOriented)
+                    {
+                        player.CurrentGun.angle -= Math.PI;
+                    }
+                    player.IsLeftOriented = true;
                 }
                 if (e.KeyData == Keys.A && !pressA)
                 {
                     pressA = true;
                     player.IsLeft = true;
+                    if (player.IsLeftOriented)
+                    {
+                        player.CurrentGun.angle += Math.PI;
+                    }
+                    player.IsLeftOriented = false;
                 }
                 if (e.KeyData == Keys.S && !pressS)
                 {

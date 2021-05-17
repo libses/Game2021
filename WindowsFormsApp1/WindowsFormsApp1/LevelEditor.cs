@@ -77,8 +77,24 @@ namespace WindowsFormsApp1
 												Properties.Resources.PlayerRun8,
 												Properties.Resources.PlayerStay
 											}
-										} 
-									});
+										}
+									}
+									,
+									new Dictionary<string, Bitmap[]>()
+									{
+										{ "run", new Bitmap[]
+											{
+												Properties.Resources.PlayerRun1v,
+												Properties.Resources.PlayerRun2v,
+												Properties.Resources.PlayerRun3v,
+												Properties.Resources.PlayerRun4v,
+												Properties.Resources.PlayerRun5v,
+												Properties.Resources.PlayerRun8v
+
+											}
+										}
+									}, Properties.Resources.PlayerStayv
+										);
 								player.CurrentGun = new Pistol(Properties.Resources.EnemyStay, player);
 								//ЗАХАРДКОЖЕН СПЛИТТИНГ
 								ents.Add(player);
@@ -86,9 +102,7 @@ namespace WindowsFormsApp1
                             }
 						case 'E':
                             {
-								ents.Add(new Enemy(100, new Vector(x * 20 + 10, y * 20 + 10),
-									10, 10, Properties.Resources.EnemyStay, 
-									new Dictionary<string, Bitmap[]>()
+								var dictB = new Dictionary<string, Bitmap[]>()
 									{
 										{ "run", new Bitmap[]
 											{
@@ -111,7 +125,10 @@ namespace WindowsFormsApp1
 												Properties.Resources.EnemyStay
 											}
 										}
-									}));
+									};
+								ents.Add(new Enemy(100, new Vector(x * 20 + 10, y * 20 + 10),
+									10, 10, Properties.Resources.EnemyStay, 
+									dictB, dictB, Properties.Resources.EnemyStay));
 								break;
 							}
 						case 'B':

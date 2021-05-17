@@ -71,7 +71,7 @@ namespace WindowsFormsApp1
                             if (bullet.location.X >= ent.Hitbox.LB.X && bullet.location.X <= ent.Hitbox.RB.X &&
                                 bullet.location.Y >= ent.Hitbox.LT.Y && bullet.location.Y <= ent.Hitbox.LB.Y)
                             {
-                                ent.HP = ent.HP - 20;
+                                ent.HP = ent.HP - 4;
                             }
                         }
                     }

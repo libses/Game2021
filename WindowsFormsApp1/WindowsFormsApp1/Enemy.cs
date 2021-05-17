@@ -14,7 +14,7 @@ namespace WindowsFormsApp1
         private Timer timer = new Timer();
         private int action;
 
-        public Enemy(int HP, Vector location, int width, int height, Bitmap sprite, Dictionary<string, Bitmap[]> animations) : base(HP, location, width, height, sprite, animations)
+        public Enemy(int HP, Vector location, int width, int height, Bitmap sprite, Dictionary<string, Bitmap[]> animation, Dictionary<string, Bitmap[]> animationV, Bitmap spriteV) : base(HP, location, width, height, sprite, animation, animationV, spriteV)
         {
             timer.Interval = 1000;
             timer.Start();
