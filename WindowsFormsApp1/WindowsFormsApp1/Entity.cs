@@ -10,7 +10,7 @@ namespace WindowsFormsApp1
     public class Entity : IEntity
     {
         public int tiredness;
-        public bool IsLeft; // надо подумать, что делать с таким колличеством bool-ов
+        public bool IsLeft; 
         public bool IsRight;
         public bool IsJump;
         public bool IsFight;
@@ -20,6 +20,7 @@ namespace WindowsFormsApp1
         public bool IsLeftOriented = true;
         public int Width;
         public int Height;
+        public int Score;
         private double frame = 0;
         public int HP  { get; set;}
         public Vector Location { get; set; }
@@ -62,6 +63,16 @@ namespace WindowsFormsApp1
             originalSpriteV = spriteV;
         }
 
+        public Entity(int hP, Vector location, int width, int height, Bitmap sprite)
+        {
+            HP = hP;
+            Location = location;
+            Width = width;
+            Height = height;
+            originalSprite = sprite;
+            currentSprite = sprite;
+        }
+
         public void Invalidate()
         {
             Hitbox = new Rectangle(Width, Height, Location);
@@ -96,7 +107,7 @@ namespace WindowsFormsApp1
 
         public void Jump(Physics physics)
         {
-            var acc = new Vector(Acceleration.X, Acceleration.Y - 45);
+            var acc = new Vector(Acceleration.X, Acceleration.Y - 40);
             ChangeAcceleration(acc);
             physics.DoGravity(this);
             tiredness = 26;

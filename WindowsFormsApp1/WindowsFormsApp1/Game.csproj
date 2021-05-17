@@ -56,6 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Coin.cs" />
     <Compile Include="Gun.cs" />
     <Compile Include="IEntity.cs" />
     <Compile Include="IGun.cs" />
@@ -207,6 +208,7 @@
     <Content Include="Assets\Sprites\Characters\Player\versa\PlayerRun7v.png" />
     <Content Include="Assets\Sprites\Characters\Player\versa\PlayerRun8v.png" />
     <Content Include="Assets\Sprites\Characters\Player\versa\PlayerStayv.png" />
+    <None Include="Assets\Sprites\coin.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

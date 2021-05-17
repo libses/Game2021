@@ -76,11 +76,17 @@ namespace WindowsFormsApp1
 		private void DrawLevel(Graphics graphics)
         {
 			//хардкодинг
-			foreach (var ent in currentLevel.entities)
+			foreach (var coin in currentLevel.Coins)
+			{
+				graphics.DrawImage(coin.Sprite, ((float)coin.Location.X - 10) / 20, ((float)coin.Location.Y - 10) / 20,
+					1, 1);
+			}
+
+			foreach (var ent in currentLevel.Entities)
             {
 				graphics.DrawImage(ent.currentSprite, ((float)ent.Location.X-10)/20, ((float)ent.Location.Y-10)/20, 
 					1, 1);
-				if (ent.CurrentGun != null && !Double.IsNaN(ent.CurrentGun.angle))
+				if (ent.CurrentGun != null && !double.IsNaN(ent.CurrentGun.angle))
                 {
 					Bitmap rotatedGun;
 					if (ent.CurrentGun.angle == 0)

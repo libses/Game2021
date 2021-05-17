@@ -52,7 +52,7 @@ namespace WindowsFormsApp1
             var RT = entity.Hitbox.RT;
             if (LB.X > 6 && LB.Y > 6 && RB.X > 6 && RB.Y > 6 && LT.X > 6 && LT.Y > 6 && RT.X > 6 && RT.Y > 6)
             {
-                if (map[LB.X + 4, LB.Y + entity.Acceleration.Y] == block || map[RB.X - 4, RB.Y + entity.Acceleration.Y] == block)
+                if (map[LB.X + 5, LB.Y + entity.Acceleration.Y] == block || map[RB.X - 5, RB.Y + entity.Acceleration.Y] == block)
                     yield return "down";
                 if (map[LB.X - 1, LB.Y - 1] == block || map[LT.X - 1, LT.Y] == block)
                     yield return "left";
@@ -63,23 +63,23 @@ namespace WindowsFormsApp1
             }
         }
 
-        public void Iterate() // need to refactoring
+        public void Iterate()
         {
-            var player = level.entities.Where(x => x is Player).FirstOrDefault();
-            var e = level.entities.Where(x => x is Enemy);
+            var player = level.Entities.Where(x => x is Player).FirstOrDefault();
+            var e = level.Entities.Where(x => x is Enemy);
             foreach (var enemy in e)
             {
                 var abc = (Enemy)enemy;
-                if (random.NextDouble() > 0.98) abc.Shoot((Player)player);
+                if (random.NextDouble() >= 0.99) abc.Shoot((Player)player);
             }
             if (hard < 2.5)
             {
                 hard = hard * 1.0001;
             }
-            foreach (var spawner in level.spawners)
+            foreach (var spawner in level.Spawners)
             {
                 bool ten = false;
-                if (level.entities.Count > 10*hard) ten = true;
+                if (level.Entities.Count > 10*hard) ten = true;
                 if (random.NextDouble() > 0.99 && !ten)
                 {
                     var dictB = new Dictionary<string, Bitmap[]>()
@@ -106,23 +106,23 @@ namespace WindowsFormsApp1
                                             }
                                         }
                                     };
-                    level.entities.Add(new Enemy(100, new Vector(spawner.location.X, spawner.location.Y),
+                    level.Entities.Add(new Enemy(100, new Vector(spawner.location.X, spawner.location.Y),
                                         10, 10, Properties.Resources.EnemyStay,
-                                        dictB, dictB, Properties.Resources.EnemyStay));
+                                        dictB, dictB, Properties.Resources.EnemyStay, map));
                 }
             }
             
-            var p = level.entities;
+            var p = level.Entities;
             if (p.Count() > 0)
             {
-                foreach (var guns in p)
+                foreach (var guns in p.Where(x => !(x is Coin)))
                 {
                     var gun = guns.CurrentGun;
                     foreach (var bullet in gun.bullets)
                     {
                         if (bullet.location.X > map.GetLength(0) * 20 || bullet.location.Y > map.GetLength(1) * 20 ||
                                     bullet.location.X < 0 || bullet.location.Y < 0) bullet.isDead = true;
-                        foreach (var ent in level.entities)
+                        foreach (var ent in level.Entities)
                         {
                             if (!(ent == bullet.owner))
                             {
@@ -139,7 +139,7 @@ namespace WindowsFormsApp1
                     gun.bullets = gun.bullets.Where(x => x.isDead == false).ToList();
                 }
             }
-            foreach (var entity in level.entities)
+            foreach (var entity in level.Entities)
             {
                 if (entity.tiredness > 0) entity.tiredness--;
                 var obstacles = CollideObstacle(entity, Block.Ground)
@@ -200,17 +200,21 @@ namespace WindowsFormsApp1
             var xx = (level.mousePosition.X / (double)(res.Width)) * map.GetLength(0);
             var yy = ((level.mousePosition.Y - SystemInformation.BorderSize.Height * 2) / (double)(res.Height - SystemInformation.BorderSize.Height * 2)) * map.GetLength(1);
             var mouse = new Vector((int)(xx), (int)(yy));
-            var a = (player.Location.X - mouse.X) / (double)((player.Location - mouse).Length);
-            var b = (player.Location.Y - mouse.Y);
-            var angle = 0d;
-            if (b >= 0)
+            if (player != null)
             {
-                angle = Math.Acos(a);
-            } else
-            {
-                angle = 0 - Math.Acos(a);
+                var a = (player.Location.X - mouse.X) / (double)((player.Location - mouse).Length);
+                var b = (player.Location.Y - mouse.Y);
+                var angle = 0d;
+                if (b >= 0)
+                {
+                    angle = Math.Acos(a);
+                }
+                else
+                {
+                    angle = 0 - Math.Acos(a);
+                }
+                player.CurrentGun.angle = angle + Math.PI;
             }
-            player.CurrentGun.angle = angle + Math.PI;
         }
     }
 }

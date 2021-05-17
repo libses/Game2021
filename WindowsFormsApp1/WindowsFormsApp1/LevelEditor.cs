@@ -14,27 +14,30 @@ namespace WindowsFormsApp1
 		Ground,
 		Bound,
 		Player,
-		Enemy
+		Enemy,
+		Coin
 	}
 
 	public class Level
 	{
 		public Vector mousePosition;
 		public readonly Block[,] Map;
-		public List<Entity> entities;
-		public List<Spawner> spawners;
+		public List<Entity> Entities;
+		public List<Spawner> Spawners;
+		public List<Coin> Coins;
 
-		private Level(Block[,] level, List<Entity> ents, List<Spawner> spwn)
+		private Level(Block[,] level, List<Entity> ents, List<Spawner> spwn, List<Coin> coins)
 		{
 			Map = level;
-			entities = ents;
-			spawners = spwn;
+			Entities = ents;
+			Spawners = spwn;
+			Coins = coins;
 		}
 
 		public Level(Level source)
         {
 			Map = source.Map;
-			entities = source.entities;
+			Entities = source.Entities;
         }
 
 		public static Level FromText(string text, int splitting)
@@ -47,6 +50,7 @@ namespace WindowsFormsApp1
 		{
 			var spwn = new List<Spawner>();
 			var ents = new List<Entity>();
+			var coins = new List<Coin>();
 			var map = new Block[lines[0].Length * splitting, lines.Length * splitting];
 			for (var y = 0; y < lines.Length; y++)
 			{
@@ -61,6 +65,12 @@ namespace WindowsFormsApp1
 								spwn.Add(s);
 								break;
                             }
+						case 'C':
+							{
+								var coin = new Coin(new Vector(x * 20 + 10, y * 20 + 10), Properties.Resources.coin);
+								coins.Add(coin);
+								break;
+							}
 						case 'G':
 							{
 								for (int dx = 0; dx < splitting; dx++)
@@ -139,7 +149,7 @@ namespace WindowsFormsApp1
 									};
 								ents.Add(new Enemy(100, new Vector(x * 20 + 10, y * 20 + 10),
 									10, 10, Properties.Resources.EnemyStay, 
-									dictB, dictB, Properties.Resources.EnemyStay));
+									dictB, dictB, Properties.Resources.EnemyStay, map));
 								break;
 							}
 						case 'B':
@@ -163,7 +173,7 @@ namespace WindowsFormsApp1
 					}
 				}
 			}
-			return new Level(map, ents.ToList(), spwn);
+			return new Level(map, ents.ToList(), spwn, coins);
 		}
 
 		public bool InBounds(Point point)
@@ -173,9 +183,9 @@ namespace WindowsFormsApp1
 
 		public void Remove(Entity entity)
         {
-			var ents = entities.ToList();
+			var ents = Entities.ToList();
 			ents.Remove(entity);
-			entities = ents.ToList();
+			Entities = ents.ToList();
         }
 	}
 }

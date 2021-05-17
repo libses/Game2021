@@ -47,14 +47,14 @@ namespace WindowsFormsApp1
             timer.Tick += (sender, args) =>
             {
                 MMouseMove();
-                player = currentLevel.entities.Where(x => x is Player).FirstOrDefault();
-                enemies = currentLevel.entities.Where(x => x is Enemy).ToArray();
+                player = currentLevel.Entities.Where(x => x is Player).FirstOrDefault();
+                enemies = currentLevel.Entities.Where(x => x is Enemy).ToArray();
                 if (player != null) // null - Game Over
                 {
                     EnemyMoving();
                     Fighting();
-                    HPlabel.Text = "HP: " + player.HP;
-                    RemoveDied();
+                    HPlabel.Text = "HP: " + player.HP + "  Score: " + player.Score;
+                    RemoveEntities();
                     physics.Iterate();
                     Refresh();
                 }
@@ -180,10 +180,10 @@ namespace WindowsFormsApp1
             }
         }
 
-        private void RemoveDied()
+        private void RemoveEntities()
         {
             var died = new List<Entity>();
-            foreach(var entity in currentLevel.entities)
+            foreach(var entity in currentLevel.Entities)
             {
                 if (entity.HP <= 0)
                     died.Add(entity);
@@ -192,6 +192,16 @@ namespace WindowsFormsApp1
             foreach(var entity in died)
             {
                 currentLevel.Remove(entity);
+            }
+
+           var coin = currentLevel.Coins
+                .Where(x => Math.Abs(x.Location.X - player.Location.X) <= 3)
+                .Where(x => Math.Abs(x.Location.X - player.Location.X) <= 3)
+                .FirstOrDefault();
+            if (coin != null)
+            {
+                currentLevel.Coins.Remove(coin);
+                player.Score++;
             }
         }
     }

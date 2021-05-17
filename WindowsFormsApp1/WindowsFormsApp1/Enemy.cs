@@ -13,31 +13,35 @@ namespace WindowsFormsApp1
         private Random random = new Random(DateTime.Now.Millisecond);
         private Timer timer = new Timer();
         private int action;
+        private Block[,] Map;
 
-        public Enemy(int HP, Vector location, int width, int height, Bitmap sprite, Dictionary<string, Bitmap[]> animation, Dictionary<string, Bitmap[]> animationV, Bitmap spriteV) : base(HP, location, width, height, sprite, animation, animationV, spriteV)
+        public Enemy(int HP, Vector location, int width, int height, Bitmap sprite, 
+            Dictionary<string, Bitmap[]> animation, Dictionary<string, Bitmap[]> animationV, Bitmap spriteV, Block[,] map) : base(HP, location, width, height, sprite, animation, animationV, spriteV)
         {
             timer.Interval = 1000;
             timer.Start();
             CurrentGun = new Pistol(Properties.Resources.gun, this);
+            Map = map;
         }
+
         public void Shoot(Player player)
         {
-            var r = (player.Location.X - Location.X)/(double)((player.Location - Location).Length);
+            var r = (player.Location.X - Location.X) / (double)((player.Location - Location).Length);
             var angle = Math.Acos(r);
             CurrentGun.angle = angle;
             CurrentGun.Fire();
         }
+
         public void Moving(Player player)
         {
             IsJump = false;
             IsLeft = false;
             IsRight = false;
             var path = player.Location - Location;
-            //var pathDerscrete = BresenhamAlgorithm((Location - new Vector(10, 10)) * 0.05, (player.Location - new Vector(10, 10)) * 0.05, Map);
-            // bool hasGround = pathDerscrete.Contains(Block.Ground);
-            bool hasGround = true;
+            var pathDerscrete = BresenhamAlgorithm((Location - new Vector(10, 10)) * 0.05, (player.Location - new Vector(10, 10)) * 0.05, Map);
+            bool hasGround = pathDerscrete.Contains(Block.Ground);
             //тут чето сломалось
-            if (path.Length >= 20 && path.Length < 20000 && hasGround) //для отладки
+            if (path.Length >= 20 && path.Length < 200 && !hasGround) //для отладки
             {
                 //if (random.NextDouble() < 0.7)
                 //{
@@ -106,7 +110,8 @@ namespace WindowsFormsApp1
             var err = dx + dy;  /* error value e_xy */
             while (true)
             {
-                yield return map[x0, y0];
+                if(x0 > 0 && y0 > 0)
+                    yield return map[x0, y0];
                 if (x0 == x1 && y0 == y1)
                     break;
                 var e2 = 2 * err;

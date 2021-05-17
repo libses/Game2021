@@ -83,6 +83,16 @@ namespace WindowsFormsApp1.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap coin {
+            get {
+                object obj = ResourceManager.GetObject("coin", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap EnemyFight1 {
             get {
                 object obj = ResourceManager.GetObject("EnemyFight1", resourceCulture);
@@ -231,14 +241,17 @@ namespace WindowsFormsApp1.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на BBBBBBBBBBBBBBBBBBBBB
-        ///B###################B
-        ///B###################B
-        ///B###################B
-        ///B###################B
-        ///B###################B
-        ///BE#################PB
-        ///BGGGGGGGGGGGGGGGGGGGB.
+        ///   Ищет локализованную строку, похожую на BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+        ///B#############################################B
+        ///B#########################################S###B
+        ///B#####S################################GGGGGGGB
+        ///B##GGGGGG#####################################B
+        ///B######################GGG###GGGGGGG##########B
+        ///B############GGGGGGG##########################B
+        ///B#############################################B
+        ///BGGGGGG#######################################B
+        ///B#####################GGGGG###################B
+        ///B#######GGG########### [остаток строки не уместился]&quot;;.
         /// </summary>
         internal static string Map1 {
             get {
@@ -250,10 +263,10 @@ namespace WindowsFormsApp1.Properties {
         ///   Ищет локализованную строку, похожую на BBBBBBBBBBBBBBBBBBBBB
         ///B###################B
         ///B###################B
-        ///B###################B
-        ///B################GG#B
+        ///B#################P#B
+        ///B#############GGGGG#B
         ///B############G######B
-        ///B##E########G####P##B
+        ///B##E########G#######B
         ///BGGGGGGGGGGGGGGGGGGGB.
         /// </summary>
         internal static string Map2 {
