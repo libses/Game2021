@@ -82,6 +82,8 @@
     <Compile Include="StartForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Tests\Physics_should.cs" />
+    <Compile Include="Tests\Entity_should.cs" />
     <Compile Include="Tests\Geometry_should.cs" />
     <Compile Include="ViewPanel.cs">
       <SubType>Component</SubType>

@@ -115,7 +115,7 @@ namespace WindowsFormsApp1
             var p = level.Entities;
             if (p.Count() > 0)
             {
-                foreach (var guns in p.Where(x => !(x is Coin)))
+                foreach (var guns in p)
                 {
                     var gun = guns.CurrentGun;
                     foreach (var bullet in gun.bullets)

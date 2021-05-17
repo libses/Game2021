@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace WindowsFormsApp1
 {
     [TestFixture]
-    class Tests
+    class Geometry_should
     {
         [Test]
         public void IsTwoVectorsEqual()

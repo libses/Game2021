@@ -55,6 +55,7 @@ namespace WindowsFormsApp1
                     Fighting();
                     HPlabel.Text = "HP: " + player.HP + "  Score: " + player.Score;
                     RemoveEntities();
+                    Console.WriteLine(player.Location.ToString());
                     physics.Iterate();
                     Refresh();
                 }
