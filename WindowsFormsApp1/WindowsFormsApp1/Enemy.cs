@@ -28,6 +28,23 @@ namespace WindowsFormsApp1
             var path = player.Location - Location;
             if (path.Length >= 20 && path.Length < 200)
             {
+                //if (random.NextDouble() < 0.7)
+                //{
+                //    if (path.X > 0 && path.Y >= 0)
+                //        IsRight = true;
+                //    if (path.X < 0 && path.Y < 0)
+                //    {
+                //        IsJump = true;
+                //        IsRight = true;
+                //    }
+                //    if (path.X > 0 && path.Y < 0)
+                //    {
+                //        IsJump = true;
+                //        IsRight = true;
+                //    }
+                //    if (path.X < 0 && path.Y >= 0)
+                //        IsLeft = true;
+                //}
                 if (path.X > 0 && path.Y >= 0)
                     IsRight = true;
                 if (path.X < 0 && path.Y < 0)

@@ -20,9 +20,14 @@ namespace WindowsFormsApp1
 
         public void DoRun(Entity entity, int direction)
         {
+            double runSpeed = 3;
+            if (entity is Enemy)
+            {
+                runSpeed = 2;
+            }
             if (true)
             { 
-                var n = direction * 3;
+                var n = direction * runSpeed;
                 entity.ChangeVelocity(new Vector((int)(entity.Velocity.X * 0.6 + n), entity.Velocity.Y));
                 entity.ChangeLocation(new Vector(entity.Location.X + entity.Velocity.X, entity.Location.Y));
             }
