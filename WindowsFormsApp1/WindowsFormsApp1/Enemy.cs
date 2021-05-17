@@ -26,8 +26,10 @@ namespace WindowsFormsApp1
             IsLeft = false;
             IsRight = false;
             var path = player.Location - Location;
-            var pathDerscrete = BresenhamAlgorithm((Location - new Vector(10, 10)) * 0.05, (player.Location - new Vector(10, 10)) * 0.05, Map);
-            bool hasGround = pathDerscrete.Contains(Block.Ground);
+            //var pathDerscrete = BresenhamAlgorithm((Location - new Vector(10, 10)) * 0.05, (player.Location - new Vector(10, 10)) * 0.05, Map);
+            // bool hasGround = pathDerscrete.Contains(Block.Ground);
+            bool hasGround = true;
+            //тут чето сломалось
             if (path.Length >= 20 && path.Length < 200 && hasGround)
             {
                 //if (random.NextDouble() < 0.7)

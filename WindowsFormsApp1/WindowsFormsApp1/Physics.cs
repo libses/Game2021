@@ -108,9 +108,11 @@ namespace WindowsFormsApp1
                             {
                                 ent.HP = ent.HP - 4;
                             }
+                            if (bullet.location.X > map.GetLength(0)*20 || bullet.location.Y > map.GetLength(1)*20 ||
+                                bullet.location.X < 0 || bullet.location.Y < 0) bullet.isDead = true;
                         }
                     }
-
+                    gun.bullets = gun.bullets.Where(x => x.isDead == false).ToList();
                 }
             }
             foreach (var entity in level.entities)
