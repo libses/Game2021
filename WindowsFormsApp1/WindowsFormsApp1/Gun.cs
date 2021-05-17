@@ -14,7 +14,7 @@ namespace WindowsFormsApp1
         public Vector location;
         public Vector velocity;
         public Vector kostilVelocity;
-        public float angle;
+        public float angle; // ПОФИКСИТЬ УДАЛЕНИЕ ПУЛЬ!!!!!!!!
         public Bullet(Entity entity)
         {
             isDead = false;

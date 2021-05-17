@@ -20,9 +20,9 @@ namespace WindowsFormsApp1
 	public class Level
 	{
 		public readonly Block[,] Map;
-		public Entity[] entities;
+		public List<Entity> entities;
 
-		private Level(Block[,] level, Entity[] ents)
+		private Level(Block[,] level, List<Entity> ents)
 		{
 			Map = level;
 			entities = ents;
@@ -61,7 +61,7 @@ namespace WindowsFormsApp1
 							}
 						case 'P':
                             {
-								var player = new Player(100, new Vector(x * 20 + 10, y * 20 + 10),
+								var player = new Player(300, new Vector(x * 20 + 10, y * 20 + 10),
 									10, 10, Properties.Resources.PlayerStay,
 									new Dictionary<string, Bitmap[]>()
 									{
@@ -152,7 +152,7 @@ namespace WindowsFormsApp1
 					}
 				}
 			}
-			return new Level(map, ents.ToArray());
+			return new Level(map, ents.ToList());
 		}
 
 		public bool InBounds(Point point)
@@ -164,7 +164,7 @@ namespace WindowsFormsApp1
         {
 			var ents = entities.ToList();
 			ents.Remove(entity);
-			entities = ents.ToArray();
+			entities = ents.ToList();
         }
 	}
 }

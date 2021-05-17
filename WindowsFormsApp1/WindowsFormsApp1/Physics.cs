@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ namespace WindowsFormsApp1
         private Level level;
         private const int g = 1;
         private Block[,] map;
+        Random random = new Random();
         
         public Physics(Level lvl) 
         {
@@ -46,18 +48,51 @@ namespace WindowsFormsApp1
             var RB = entity.Hitbox.RB;
             var LT = entity.Hitbox.LT;
             var RT = entity.Hitbox.RT;
-            if (map[LB.X + 4, LB.Y + entity.Acceleration.Y] == block || map[RB.X - 4, RB.Y + entity.Acceleration.Y] == block)
-                yield return "down";
-            if (map[LB.X - 1, LB.Y - 1] == block || map[LT.X - 1, LT.Y] == block)
-                yield return "left";
-            if (map[RB.X + 1, RB.Y - 1] == block || map[RT.X + 1, RT.Y] == block)
-                yield return "right";
-            if (map[LT.X + 1, LT.Y - 1] == block || map[RT.X - 1, RT.Y - 1] == block) 
-                yield return "up";
+            if (LB.X > 4 && LB.Y > 4 && RB.X > 4 && RB.Y > 4 && LT.X > 4 && LT.Y > 4 && RT.X > 4 && RT.Y > 4)
+            {
+                if (map[LB.X + 4, LB.Y + entity.Acceleration.Y] == block || map[RB.X - 4, RB.Y + entity.Acceleration.Y] == block)
+                    yield return "down";
+                if (map[LB.X - 1, LB.Y - 1] == block || map[LT.X - 1, LT.Y] == block)
+                    yield return "left";
+                if (map[RB.X + 1, RB.Y - 1] == block || map[RT.X + 1, RT.Y] == block)
+                    yield return "right";
+                if (map[LT.X + 1, LT.Y - 1] == block || map[RT.X - 1, RT.Y - 1] == block)
+                    yield return "up";
+            }
         }
 
         public void Iterate() // need to refactoring
         {
+            if (random.NextDouble() > 0.95)
+            {
+                var dictB = new Dictionary<string, Bitmap[]>()
+									{
+										{ "run", new Bitmap[]
+											{
+												Properties.Resources.EnemyRun1,
+												Properties.Resources.EnemyRun2,
+												Properties.Resources.EnemyRun3,
+												Properties.Resources.EnemyRun4,
+												Properties.Resources.EnemyRun5,
+												Properties.Resources.EnemyRun6,
+												Properties.Resources.EnemyStay
+											}
+										},
+										{ "fight", new Bitmap[]
+											{
+												Properties.Resources.EnemyFight1,
+												Properties.Resources.EnemyFight2,
+												Properties.Resources.EnemyFight3,
+												Properties.Resources.EnemyFight4,
+												Properties.Resources.EnemyFight5,
+												Properties.Resources.EnemyStay
+											}
+										}
+									};
+                level.entities.Add(new Enemy(100, new Vector(random.Next(0, level.Map.GetLength(0) *19), random.Next(0, level.Map.GetLength(1) * 19)),
+                                    10, 10, Properties.Resources.EnemyStay,
+                                    dictB, dictB, Properties.Resources.EnemyStay));
+            }
             var p = level.entities.Where(x => x is Player);
             if (p.Count() > 0)
             {
