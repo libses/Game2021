@@ -63,16 +63,6 @@ namespace WindowsFormsApp1
             originalSpriteV = spriteV;
         }
 
-        public Entity(int hP, Vector location, int width, int height, Bitmap sprite)
-        {
-            HP = hP;
-            Location = location;
-            Width = width;
-            Height = height;
-            originalSprite = sprite;
-            currentSprite = sprite;
-        }
-
         public void Invalidate()
         {
             Hitbox = new Rectangle(Width, Height, Location);
@@ -98,7 +88,7 @@ namespace WindowsFormsApp1
                 if (direction != 0)
                 {
                     currentSprite = animationsV["run"][(int)frame];
-                    frame += 0.3;
+                    frame += 0.2;
                 }
                 physics.DoRun(this, direction);
             }

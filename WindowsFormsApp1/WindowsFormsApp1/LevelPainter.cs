@@ -12,6 +12,7 @@ namespace WindowsFormsApp1
 	{
 		public Level currentLevel;
 		public Bitmap mapImage;
+		private Bitmap rotatedGun = Properties.Resources.gun;
 
 		public SizeF Size => new SizeF(currentLevel.Map.GetLength(0), currentLevel.Map.GetLength(1));
 		public Size LevelSize => new Size(currentLevel.Map.GetLength(0), currentLevel.Map.GetLength(1));
@@ -86,22 +87,71 @@ namespace WindowsFormsApp1
             {
 				graphics.DrawImage(ent.currentSprite, ((float)ent.Location.X-10)/20, ((float)ent.Location.Y-10)/20, 
 					1, 1);
-				if (ent.CurrentGun != null && !double.IsNaN(ent.CurrentGun.angle))
-                {
-					Bitmap rotatedGun;
-					if (ent.CurrentGun.angle == 0)
-                    {
-						rotatedGun = Properties.Resources.gun;
-                    } else
-                    {
-						rotatedGun = RotateImage(Properties.Resources.gun, (float)ent.CurrentGun.angle);
-					}
-					graphics.DrawImage(rotatedGun, ((float)ent.Location.X - 10) / 20, ((float)ent.Location.Y - 10) / 20,
-						1, 1);
-					foreach (var bullet in ent.CurrentGun.bullets)
+				if (!ent.IsLeftOriented)
+				{
+					ent.CurrentGun.angle -= Math.PI;
+					ent.CurrentGun.sprite = Properties.Resources.gunv;
+					if (ent.CurrentGun != null && !double.IsNaN(ent.CurrentGun.angle))
 					{
-						graphics.DrawImage(Properties.Resources.bullet2, ((float)bullet.location.X - 10) / 20, ((float)bullet.location.Y - 10) / 20,
-						1, 1);
+						if (ent.CurrentGun.angle >= - Math.PI / 2 && ent.CurrentGun.angle <= Math.PI / 2)
+						{
+							
+							if (ent.CurrentGun.angle == 0)
+								rotatedGun = Properties.Resources.gunv;
+							else
+								rotatedGun = RotateImage(Properties.Resources.gunv, (float)ent.CurrentGun.angle);
+
+							graphics.DrawImage(rotatedGun, ((float)ent.Location.X - 15) / 20, ((float)ent.Location.Y - 12) / 20,
+								1, 1);
+						}
+						else
+						{
+							graphics.DrawImage(rotatedGun, ((float)ent.Location.X - 15) / 20, ((float)ent.Location.Y - 12) / 20,
+								1, 1);
+                            if (ent.CurrentGun.angle <= -Math.PI / 2)
+                                ent.CurrentGun.angle = -Math.PI / 2;
+                            else if (ent.CurrentGun.angle >= Math.PI / 2)
+                                ent.CurrentGun.angle = Math.PI / 2;
+                        }
+						foreach (var bullet in ent.CurrentGun.bullets)
+						{
+							graphics.DrawImage(Properties.Resources.bullet2, ((float)bullet.location.X - 15) / 20, ((float)bullet.location.Y - 12) / 20,
+							1, 1);
+						}
+					}
+				}
+
+				else
+				{
+					if (ent.CurrentGun != null && !double.IsNaN(ent.CurrentGun.angle))
+					{
+						ent.CurrentGun.sprite = Properties.Resources.gun;
+						if ((ent.CurrentGun.angle <= Math.PI / 2 && ent.CurrentGun.angle >= 0) 
+							|| (ent.CurrentGun.angle <= 2 * Math.PI && ent.CurrentGun.angle >= 1.5 * Math.PI))
+						{
+							if (ent.CurrentGun.angle == 0)
+								rotatedGun = Properties.Resources.gun;
+							else
+								rotatedGun = RotateImage(Properties.Resources.gun, (float)ent.CurrentGun.angle);
+							
+							graphics.DrawImage(rotatedGun, ((float)ent.Location.X - 5) / 20, ((float)ent.Location.Y - 15) / 20,
+							1, 1);
+						}
+						else
+						{
+							graphics.DrawImage(rotatedGun, ((float)ent.Location.X - 5) / 20, ((float)ent.Location.Y - 15) / 20,
+								1, 1);
+							if (ent.CurrentGun.angle > Math.PI / 2)
+								ent.CurrentGun.angle = Math.PI / 2;
+							if (ent.CurrentGun.angle >= 1.5 * Math.PI)
+								ent.CurrentGun.angle = 1.5 * Math.PI;
+						}
+
+						foreach (var bullet in ent.CurrentGun.bullets)
+						{
+							graphics.DrawImage(Properties.Resources.bullet2, ((float)bullet.location.X - 5) / 20, ((float)bullet.location.Y - 15) / 20,
+							1, 1);
+						}
 					}
 				}
 			}

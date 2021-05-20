@@ -55,7 +55,6 @@ namespace WindowsFormsApp1
                     Fighting();
                     HPlabel.Text = "HP: " + player.HP + "  Score: " + player.Score;
                     RemoveEntities();
-                    Console.WriteLine(player.Location.ToString());
                     physics.Iterate();
                     Refresh();
                 }
@@ -197,7 +196,7 @@ namespace WindowsFormsApp1
 
            var coin = currentLevel.Coins
                 .Where(x => Math.Abs(x.Location.X - player.Location.X) <= 3)
-                .Where(x => Math.Abs(x.Location.X - player.Location.X) <= 3)
+                .Where(x => Math.Abs(x.Location.Y - player.Location.Y) <= 3)
                 .FirstOrDefault();
             if (coin != null)
             {

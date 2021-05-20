@@ -11,10 +11,10 @@ namespace WindowsFormsApp1
     public class Physics
     {
         public double hard = 1;
-        private Level level;
+        private readonly Level level;
         private const int g = 1;
-        private Block[,] map;
-        Random random = new Random();
+        private readonly Block[,] map;
+        readonly Random random = new Random();
         
         public Physics(Level lvl) 
         {
@@ -74,7 +74,7 @@ namespace WindowsFormsApp1
             }
             if (hard < 2.5)
             {
-                hard = hard * 1.0001;
+                hard *= 1.0001;
             }
             foreach (var spawner in level.Spawners)
             {
@@ -129,8 +129,8 @@ namespace WindowsFormsApp1
                                 if (bullet.location.X >= ent.Hitbox.LB.X && bullet.location.X <= ent.Hitbox.RB.X &&
                                     bullet.location.Y >= ent.Hitbox.LT.Y && bullet.location.Y <= ent.Hitbox.LB.Y)
                                 {
-                                    ent.HP = ent.HP - bullet.damage;
-                                    bullet.damage = bullet.damage / 2;
+                                    ent.HP -= bullet.damage;
+                                    bullet.damage /= 2;
                                 }
                             }
                             
@@ -211,7 +211,7 @@ namespace WindowsFormsApp1
                 }
                 else
                 {
-                    angle = 0 - Math.Acos(a);
+                    angle = -Math.Acos(a);
                 }
                 player.CurrentGun.angle = angle + Math.PI;
             }

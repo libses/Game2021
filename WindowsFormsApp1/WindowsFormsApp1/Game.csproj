@@ -108,10 +108,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Levels\Map1.txt" />
+    <None Include="Levels\Map2.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Levels\Map2.txt" />
+    <None Include="Levels\Map1.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\logo.png" />
@@ -150,12 +150,6 @@
     <None Include="Assets\Sprites\Characters\Player\PlayerRun4.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Sprites\Characters\Player\PlayerRun5.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Assets\Sprites\Characters\Player\PlayerRun6.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Assets\Sprites\Characters\Enemy\EnemyStay.png" />
   </ItemGroup>
   <ItemGroup>
@@ -186,12 +180,6 @@
     <None Include="Assets\Sprites\Characters\Enemy\EnemyFight2.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Sprites\Characters\Player\PlayerRun7.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Assets\Sprites\Characters\Player\PlayerRun8.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Assets\Sprites\Characters\Enemy\EnemyFight3.png" />
   </ItemGroup>
   <ItemGroup>
@@ -210,6 +198,7 @@
     <Content Include="Assets\Sprites\Characters\Player\versa\PlayerRun7v.png" />
     <Content Include="Assets\Sprites\Characters\Player\versa\PlayerRun8v.png" />
     <Content Include="Assets\Sprites\Characters\Player\versa\PlayerStayv.png" />
+    <None Include="Assets\Sprites\gunv.png" />
     <None Include="Assets\Sprites\coin.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -10,8 +10,9 @@ namespace WindowsFormsApp1
     public class Bullet
     {
         public Entity owner;
+        private Pistol gun;
         public int damage = 8;
-        int kostil = 100;
+        readonly int kostil = 10;
         public bool isDead;
         public Vector location;
         public Vector velocity;
@@ -21,16 +22,19 @@ namespace WindowsFormsApp1
         {
             isDead = false;
             location = entity.Location;
-            var gun = entity.CurrentGun;
-            var xVel = Math.Cos(gun.angle) * 6 * kostil;
-            var yVel = Math.Sin(gun.angle) * 6 * kostil;
+            gun = entity.CurrentGun;
+            var xVel = Math.Cos(gun.angle) * kostil * 6;
+            var yVel = Math.Sin(gun.angle) * kostil * 6;
             velocity = new Vector((int)xVel, (int)yVel);
             owner = entity;
         }
         public void Fly()
         {
-            kostilVelocity = new Vector((int)Math.Round((double)velocity.X / kostil), (int)Math.Round((double)velocity.Y / kostil));
-            location = location + kostilVelocity;
+            if (owner.IsLeftOriented)
+                kostilVelocity = new Vector((int)Math.Round((double)velocity.X / kostil), (int)Math.Round((double)velocity.Y / kostil));
+            else
+                kostilVelocity = -1 * new Vector((int)Math.Round((double)velocity.X / kostil), (int)Math.Round((double)velocity.Y / kostil));
+            location += kostilVelocity;
         }
     }
     public class Pistol : IGun

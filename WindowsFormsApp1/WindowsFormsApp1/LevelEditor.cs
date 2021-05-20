@@ -82,7 +82,7 @@ namespace WindowsFormsApp1
 							}
 						case 'P':
                             {
-								var player = new Player(1000, new Vector(x * 20 + 10, y * 20 + 10),
+								var player = new Player(200, new Vector(x * 20 + 10, y * 20 + 10),
 									10, 10, Properties.Resources.PlayerStay,
 									new Dictionary<string, Bitmap[]>()
 									{
@@ -92,10 +92,6 @@ namespace WindowsFormsApp1
 												Properties.Resources.PlayerRun2,
 												Properties.Resources.PlayerRun3,
 												Properties.Resources.PlayerRun4,
-												Properties.Resources.PlayerRun5,
-												Properties.Resources.PlayerRun6,
-												Properties.Resources.PlayerRun7,
-												Properties.Resources.PlayerRun8,
 												Properties.Resources.PlayerStay
 											}
 										}
@@ -109,9 +105,6 @@ namespace WindowsFormsApp1
 												Properties.Resources.PlayerRun2v,
 												Properties.Resources.PlayerRun3v,
 												Properties.Resources.PlayerRun4v,
-												Properties.Resources.PlayerRun5v,
-												Properties.Resources.PlayerRun8v
-
 											}
 										}
 									}, Properties.Resources.PlayerStayv
