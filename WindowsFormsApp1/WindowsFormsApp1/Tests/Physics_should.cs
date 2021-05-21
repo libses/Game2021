@@ -29,10 +29,10 @@ namespace WindowsFormsApp1
         [Test]
         public void DoGravity()
         {
-            var map = new string[] { "BBB",
-                                     "BPB",
-                                     "B#B",
-                                     "BGB"};
+            var map = new string[] { "BBBBB",
+                                     "B#P#B",
+                                     "B###B",
+                                     "BGGGB"};
             var level = Level.FromLines(map, 1);
             var physics = new Physics(level);
             var player = level.Entities.Where(x => x is Player).FirstOrDefault();

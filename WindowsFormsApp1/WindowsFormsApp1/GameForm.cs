@@ -17,9 +17,9 @@ namespace WindowsFormsApp1
     {
         private readonly Painter painter;
         private readonly ViewPanel scaledViewPanel;
-        private readonly Physics physics;
+        public Physics physics;
         private readonly Level currentLevel;
-        private Entity player;
+        public Entity player;
         private Entity[] enemies;
         private readonly System.Windows.Forms.Timer timer;
         private readonly Label TextLabel;
@@ -59,7 +59,7 @@ namespace WindowsFormsApp1
                     TextLabel.Text = "Game over:(";
                     music.controls.stop();
                 }
-                else if(player.Score == initialCoins)
+                else if(player.Score == initialCoins && initialCoins != 0)
                 {
                     TextLabel.Text = "You win!";
                     music.controls.stop();
@@ -79,10 +79,10 @@ namespace WindowsFormsApp1
         }
 
         bool pressSpace;
-        bool pressD;
+        public bool pressD;
         bool pressA;
         bool pressS;
-        bool pressE;
+        public bool pressE;
         bool pressR;
         bool pressF;
         private void MMouseMove()

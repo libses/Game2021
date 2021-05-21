@@ -38,7 +38,7 @@ namespace WindowsFormsApp1
             IsLeft = false;
             IsRight = false;
             var path = player.Location - Location;
-            var pathDerscrete = BresenhamAlgorithm((Location - new Vector(10, 10)) * 0.05, (player.Location - new Vector(10, 10)) * 0.05, Map);
+            var pathDerscrete = BresenhamAlgorithm(Location, player.Location, Map);
             bool hasGround = pathDerscrete.Contains(Block.Ground);
             //тут чето сломалось
             if (path.Length >= 20 && path.Length < 200 && !hasGround) //для отладки
@@ -99,6 +99,8 @@ namespace WindowsFormsApp1
         
         public IEnumerable<Block> BresenhamAlgorithm(Vector start, Vector end, Block[,] map)
         {
+            start = (start - new Vector(10, 10)) * 0.05;
+            end = (end - new Vector(10, 10)) * 0.05;
             var x0 = start.X;
             var x1 = end.X;
             var y0 = start.Y;
