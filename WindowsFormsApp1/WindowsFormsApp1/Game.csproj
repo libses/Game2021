@@ -189,6 +189,7 @@
     <None Include="Assets\Sprites\Characters\Enemy\EnemyFight5.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\MenuPicture.png" />
     <Content Include="Assets\Sprites\Characters\Player\versa\PlayerRun1v.png" />
     <Content Include="Assets\Sprites\Characters\Player\versa\PlayerRun2v.png" />
     <Content Include="Assets\Sprites\Characters\Player\versa\PlayerRun3v.png" />

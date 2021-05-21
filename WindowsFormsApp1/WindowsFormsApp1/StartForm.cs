@@ -23,21 +23,22 @@ namespace WindowsFormsApp1
                 FlowDirection = FlowDirection.LeftToRight,
                 Dock = DockStyle.Left,
                 Width = 200,
-                BackColor = Color.YellowGreen,
+                BackColor = Color.FromArgb(244, 196, 148),
                 Padding = new Padding(8),
                 Font = new Font(SystemFonts.DefaultFont.FontFamily, 16, FontStyle.Bold)
             };
             menuPanel.Controls.Add(new Label
             {
                 Text = "Choose level:",
-                ForeColor = Color.FloralWhite,
+                ForeColor = Color.FromArgb(151, 57, 75),
                 AutoSize = true,
                 Margin = new Padding(8)
             });
             menuPicture = new PictureBox
             {
                 Dock = DockStyle.Fill,
-                Image = Properties.Resources.logo
+                Image = Properties.Resources.MenuPicture,
+                SizeMode = PictureBoxSizeMode.StretchImage
             };
             Controls.Add(menuPanel);
             Controls.Add(menuPicture);
@@ -69,7 +70,7 @@ namespace WindowsFormsApp1
                 var link = new LinkLabel
                 {
                     Text = $"Level {i + 1}",
-                    ActiveLinkColor = Color.Beige,
+                    ActiveLinkColor = Color.FromArgb(105, 94, 101),
                     TextAlign = ContentAlignment.MiddleCenter,
                     AutoSize = true,
                     Margin = new Padding(32, 16, 8, 16),
@@ -99,7 +100,7 @@ namespace WindowsFormsApp1
             int i = 0;
             foreach (var linkLabel in linkLabels)
             {
-                linkLabel.LinkColor = linkLabel.Tag == level ? Color.LimeGreen : Color.Brown;
+                linkLabel.LinkColor = linkLabel.Tag == level ? Color.Black : Color.Brown;
                 linkLabel.Tag = levels[i];
                 i++;
             }

@@ -241,20 +241,10 @@ namespace WindowsFormsApp1.Properties {
         }
         
         /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap logo {
-            get {
-                object obj = ResourceManager.GetObject("logo", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Ищет локализованную строку, похожую на BBBBBBBBBBBBBBBBBBBBB
         ///B###################B
         ///B###################B
-        ///B#################C#B
+        ///B#############S###C#B
         ///B#############GGGGG#B
         ///B###################B
         ///BP####C#############B
@@ -292,12 +282,22 @@ namespace WindowsFormsApp1.Properties {
         ///B################E##BB###################B
         ///B################GG#BB###################B
         ///B############G######BB###################B
-        ///B##E#####E##G#######BB#################P#B
+        ///B##E#####E##G#######BB############C####P#B
         ///BGGGGGGGGGGGGGGGGGGGBBGGGGGGGGGGGGGGGGGGGB.
         /// </summary>
         internal static string Map3 {
             get {
                 return ResourceManager.GetString("Map3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MenuPicture {
+            get {
+                object obj = ResourceManager.GetObject("MenuPicture", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
