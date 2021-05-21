@@ -6,7 +6,10 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Media;
+using System.Threading;
 using System.Windows.Forms;
+using System.Windows.Media;
+using WMPLib;
 
 namespace WindowsFormsApp1
 {
@@ -18,20 +21,20 @@ namespace WindowsFormsApp1
         private readonly Level currentLevel;
         private Entity player;
         private Entity[] enemies;
-        private readonly Timer timer;
+        private readonly System.Windows.Forms.Timer timer;
         private readonly Label TextLabel;
-        private readonly SoundPlayer music;
         private int initialCoins;
+        private WindowsMediaPlayer music = new WindowsMediaPlayer();
 
         public GameForm(Level newLevel)
         {
             currentLevel = newLevel;
-            music = new SoundPlayer(Properties.Resources.Monkeys_Spinning_Monkeys1); // рандомная музыка на уровень?
             physics = new Physics(currentLevel);
             painter = new Painter(currentLevel);
             TextLabel = new Label() { Dock = DockStyle.Top, Font = new Font("Arial", 15), Size = new Size(0,30) };
             scaledViewPanel = new ViewPanel(painter) { Dock = DockStyle.Fill };
-            timer = new Timer();
+            timer = new System.Windows.Forms.Timer();
+            music.URL = @".\Monkeys-Spinning-Monkeys.wav";
             Controls.Add(scaledViewPanel);
             Controls.Add(TextLabel);
             KeyUp += FormKeyUp;
@@ -54,14 +57,14 @@ namespace WindowsFormsApp1
                 if(player == null)
                 {
                     TextLabel.Text = "Game over:(";
+                    music.controls.stop();
                 }
-                else if(player.Score == initialCoins) // winner
+                else if(player.Score == initialCoins)
                 {
                     TextLabel.Text = "You win!";
-                    physics.Iterate();
-                    Refresh();
+                    music.controls.stop();
                 }
-                else if (player != null)
+                else
                 {
                     EnemyMoving();
                     Fighting();
@@ -72,7 +75,7 @@ namespace WindowsFormsApp1
                 }
             };
             timer.Start();
-            music.Play();
+            music.controls.play();
         }
 
         bool pressSpace;
@@ -90,6 +93,8 @@ namespace WindowsFormsApp1
         }
         private void FormKeyPress(object sender, KeyEventArgs e)
         {
+            Thread shot = new Thread(PlayMusic);
+
             if (player != null)
             {
                 if (e.KeyData == Keys.Space && !pressSpace)
@@ -117,6 +122,7 @@ namespace WindowsFormsApp1
                 if (e.KeyData == Keys.E && !pressE)
                 {
                     pressE = true;
+                    shot.Start(Properties.Resources.shot);
                     player.IsFiring = true;
                 }
                 if (e.KeyData == Keys.F && !pressR)
@@ -128,6 +134,12 @@ namespace WindowsFormsApp1
                     player.CurrentGun.angle -= 0.78539816339744830961566084581988;
                 }
             }
+        }
+
+        private void PlayMusic(object sound)
+        {
+            var music = new SoundPlayer((UnmanagedMemoryStream)sound);
+            music.Play();
         }
 
         private void FormKeyUp(object sender, KeyEventArgs e)

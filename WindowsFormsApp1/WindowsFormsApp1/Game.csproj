@@ -43,6 +43,7 @@
     <Reference Include="nunit.framework, Version=3.13.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.3.13.1\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -54,6 +55,7 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Coin.cs" />
@@ -114,7 +116,6 @@
     <None Include="Levels\Map1.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\logo.png" />
     <None Include="Assets\Sprites\Ground.png" />
     <None Include="Assets\Sprites\gun.png" />
     <None Include="Assets\Sprites\bullet.png" />
@@ -190,6 +191,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\MenuPicture.png" />
+    <None Include="Assets\Sounds\aplause.wav" />
+    <None Include="Assets\Sounds\shot.wav" />
     <Content Include="Assets\Sprites\Characters\Player\versa\PlayerRun1v.png" />
     <Content Include="Assets\Sprites\Characters\Player\versa\PlayerRun2v.png" />
     <Content Include="Assets\Sprites\Characters\Player\versa\PlayerRun3v.png" />
