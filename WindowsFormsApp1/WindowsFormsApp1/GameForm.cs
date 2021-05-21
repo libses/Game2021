@@ -19,8 +19,9 @@ namespace WindowsFormsApp1
         private Entity player;
         private Entity[] enemies;
         private readonly Timer timer;
-        private readonly Label HPlabel;
+        private readonly Label TextLabel;
         private readonly SoundPlayer music;
+        private int initialCoins;
 
         public GameForm(Level newLevel)
         {
@@ -28,11 +29,11 @@ namespace WindowsFormsApp1
             music = new SoundPlayer(Properties.Resources.Monkeys_Spinning_Monkeys1); // рандомная музыка на уровень?
             physics = new Physics(currentLevel);
             painter = new Painter(currentLevel);
-            HPlabel = new Label() { Dock = DockStyle.Top, Font = new Font("Arial", 12) };
+            TextLabel = new Label() { Dock = DockStyle.Top, Font = new Font("Arial", 15), Size = new Size(0,30) };
             scaledViewPanel = new ViewPanel(painter) { Dock = DockStyle.Fill };
             timer = new Timer();
             Controls.Add(scaledViewPanel);
-            Controls.Add(HPlabel);
+            Controls.Add(TextLabel);
             KeyUp += FormKeyUp;
             KeyDown += FormKeyPress;
         }
@@ -44,22 +45,31 @@ namespace WindowsFormsApp1
             WindowState = FormWindowState.Maximized;
             Text = "Game2021";
             timer.Interval = 15;
+            initialCoins = currentLevel.Coins.Count;
             timer.Tick += (sender, args) =>
             {
                 MMouseMove();
                 player = currentLevel.Entities.Where(x => x is Player).FirstOrDefault();
                 enemies = currentLevel.Entities.Where(x => x is Enemy).ToArray();
-                if (player != null) // null - Game Over
+                if(player == null)
+                {
+                    TextLabel.Text = "Game over:(";
+                }
+                else if(player.Score == initialCoins) // winner
+                {
+                    TextLabel.Text = "You win!";
+                    physics.Iterate();
+                    Refresh();
+                }
+                else if (player != null)
                 {
                     EnemyMoving();
                     Fighting();
-                    HPlabel.Text = "HP: " + player.HP + "  Score: " + player.Score;
+                    TextLabel.Text = "HP: " + player.HP + "  Score: " + player.Score;
                     RemoveEntities();
                     physics.Iterate();
                     Refresh();
                 }
-                else
-                    Close();
             };
             timer.Start();
             music.Play();
