@@ -23,30 +23,36 @@ namespace WindowsFormsApp1
             isDead = false;
             location = entity.Location;
             gun = entity.CurrentGun;
-            var xVel = Math.Cos(gun.angle) * kostil * 6;
-            var yVel = Math.Sin(gun.angle) * kostil * 6;
+            var xVel = Math.Cos(gun.angle) * 6 * kostil;
+            var yVel = Math.Sin(gun.angle) * 6 * kostil;
             velocity = new Vector((int)xVel, (int)yVel);
             owner = entity;
         }
         public void Fly()
         {
-            if (owner.IsLeftOriented)
-                kostilVelocity = new Vector((int)Math.Round((double)velocity.X / kostil), (int)Math.Round((double)velocity.Y / kostil));
-            else
-                kostilVelocity = -1 * new Vector((int)Math.Round((double)velocity.X / kostil), (int)Math.Round((double)velocity.Y / kostil));
+            kostilVelocity = new Vector((int)Math.Round((double)velocity.X / kostil), (int)Math.Round((double)velocity.Y / kostil));
             location += kostilVelocity;
         }
     }
     public class Pistol : IGun
     {
+        public int tiredness { get; set; }
         public Entity owner { get; set; }
         public double angle { get; set; }
         public Bitmap sprite { get; set; }
         public List<Bullet> bullets { get; set; }
         public void Fire()
         {
-            var bullet = new Bullet(owner);
-            bullets.Add(bullet);
+            if (tiredness > 0)
+            {
+                tiredness--;
+            } else
+            {
+                tiredness += 6;
+                var bullet = new Bullet(owner);
+                bullets.Add(bullet);
+            }
+            
         }
         public Pistol(Bitmap sprite, Entity owner)
         {

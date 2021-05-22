@@ -61,6 +61,16 @@ namespace WindowsFormsApp1.Properties {
         }
         
         /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _1doom {
+            get {
+                object obj = ResourceManager.GetObject("_1doom", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Поиск локализованного ресурса типа System.IO.UnmanagedMemoryStream, аналогичного System.IO.MemoryStream.
         /// </summary>
         internal static System.IO.UnmanagedMemoryStream aplause {
@@ -253,7 +263,7 @@ namespace WindowsFormsApp1.Properties {
         ///   Ищет локализованную строку, похожую на BBBBBBBBBBBBBBBBBBBBB
         ///B###################B
         ///B###################B
-        ///B#############S###C#B
+        ///B#################C#B
         ///B#############GGGGG#B
         ///B###################B
         ///BP####C#############B
@@ -316,6 +326,15 @@ namespace WindowsFormsApp1.Properties {
         internal static System.IO.UnmanagedMemoryStream Monkeys_Spinning_Monkeys1 {
             get {
                 return ResourceManager.GetStream("Monkeys_Spinning_Monkeys1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.IO.UnmanagedMemoryStream, аналогичного System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream music {
+            get {
+                return ResourceManager.GetStream("music", resourceCulture);
             }
         }
         

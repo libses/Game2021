@@ -76,12 +76,12 @@ namespace WindowsFormsApp1
             {
                 hard *= 1.0001;
             }
-            foreach (var spawner in level.Spawners)
-            {
-                bool ten = false;
-                if (level.Entities.Count > 10*hard) ten = true;
-                if (random.NextDouble() > 0.99 && !ten)
+            bool ten = false;
+            if (level.Entities.Count > 10 * hard) ten = true;
+            if (random.NextDouble() > 0.99 && !ten)
+                foreach (var spawner in level.Spawners)
                 {
+                    player.Score++;
                     var dictB = new Dictionary<string, Bitmap[]>()
                                     {
                                         { "run", new Bitmap[]
@@ -110,8 +110,7 @@ namespace WindowsFormsApp1
                                         10, 10, Properties.Resources.EnemyStay,
                                         dictB, dictB, Properties.Resources.EnemyStay, map));
                 }
-            }
-            
+
             var p = level.Entities;
             if (p.Count() > 0)
             {
@@ -198,7 +197,7 @@ namespace WindowsFormsApp1
             }
             var res = Screen.PrimaryScreen.Bounds;
             var xx = (level.mousePosition.X / (double)(res.Width)) * map.GetLength(0);
-            var yy = ((level.mousePosition.Y - SystemInformation.BorderSize.Height * 2) / (double)(res.Height - SystemInformation.BorderSize.Height * 2)) * map.GetLength(1);
+            var yy = ((level.mousePosition.Y) / (double)(res.Height)) * map.GetLength(1);
             var mouse = new Vector((int)(xx), (int)(yy));
             if (player != null)
             {

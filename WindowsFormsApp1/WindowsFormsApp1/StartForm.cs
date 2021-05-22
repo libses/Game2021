@@ -37,7 +37,7 @@ namespace WindowsFormsApp1
             menuPicture = new PictureBox
             {
                 Dock = DockStyle.Fill,
-                Image = Properties.Resources.MenuPicture,
+                Image = Properties.Resources._1doom,
                 SizeMode = PictureBoxSizeMode.StretchImage
             };
             Controls.Add(menuPanel);

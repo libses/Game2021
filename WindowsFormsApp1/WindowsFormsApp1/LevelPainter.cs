@@ -12,22 +12,21 @@ namespace WindowsFormsApp1
 	{
 		public Level currentLevel;
 		public Bitmap mapImage;
-		private Bitmap rotatedGun = Properties.Resources.gun;
 
 		public SizeF Size => new SizeF(currentLevel.Map.GetLength(0), currentLevel.Map.GetLength(1));
 		public Size LevelSize => new Size(currentLevel.Map.GetLength(0), currentLevel.Map.GetLength(1));
 
-        public Painter(Level level)
-        {
+		public Painter(Level level)
+		{
 			currentLevel = level;
 			CreateMap();
-        }
+		}
 
-        private void CreateMap()
-        {
-            var blockWidth = Properties.Resources.Ground.Width;
-            var blockHeight = Properties.Resources.Ground.Height;
-            mapImage = new Bitmap(LevelSize.Width * blockWidth, LevelSize.Height * blockHeight);
+		private void CreateMap()
+		{
+			var blockWidth = Properties.Resources.Ground.Width;
+			var blockHeight = Properties.Resources.Ground.Height;
+			mapImage = new Bitmap(LevelSize.Width * blockWidth, LevelSize.Height * blockHeight);
 			using (var graphics = Graphics.FromImage(mapImage))
 			{
 				for (var x = 0; x < currentLevel.Map.GetLength(0); x++)
@@ -74,9 +73,9 @@ namespace WindowsFormsApp1
 			//return the image
 			return bmp;
 		}
-
 		private void DrawLevel(Graphics graphics)
 		{
+			//хардкодинг
 			foreach (var coin in currentLevel.Coins)
 			{
 				graphics.DrawImage(coin.Sprite, ((float)coin.Location.X - 10) / 20, ((float)coin.Location.Y - 10) / 20,
@@ -87,71 +86,30 @@ namespace WindowsFormsApp1
 			{
 				graphics.DrawImage(ent.currentSprite, ((float)ent.Location.X - 10) / 20, ((float)ent.Location.Y - 10) / 20,
 					1, 1);
-				if (!ent.IsLeftOriented)
+				if (ent.CurrentGun != null && !double.IsNaN(ent.CurrentGun.angle))
 				{
-					ent.CurrentGun.angle -= Math.PI;
-					ent.CurrentGun.sprite = Properties.Resources.gunv;
-					if (ent.CurrentGun != null && !double.IsNaN(ent.CurrentGun.angle))
+					Bitmap rotatedGun;
+					if (ent.CurrentGun.angle == 0)
 					{
-						if (ent.CurrentGun.angle >= -Math.PI / 2 && ent.CurrentGun.angle <= Math.PI / 2)
-						{
-
-							if (ent.CurrentGun.angle == 0)
-								rotatedGun = Properties.Resources.gunv;
-							else
-								rotatedGun = RotateImage(Properties.Resources.gunv, (float)ent.CurrentGun.angle);
-						}
-						else
-						{
-							if (ent.CurrentGun.angle <= -Math.PI / 2)
-								ent.CurrentGun.angle = -Math.PI / 2;
-							else if (ent.CurrentGun.angle >= Math.PI / 2)
-								ent.CurrentGun.angle = Math.PI / 2;
-						}
-						graphics.DrawImage(rotatedGun, ((float)ent.Location.X - 15) / 20, ((float)ent.Location.Y - 12) / 20,
-								1, 1);
-						foreach (var bullet in ent.CurrentGun.bullets)
-						{
-							graphics.DrawImage(Properties.Resources.bullet2, ((float)bullet.location.X - 15) / 20, ((float)bullet.location.Y - 12) / 20,
-							1, 1);
-						}
+						rotatedGun = Properties.Resources.gun;
 					}
-				}
-				else
-				{
-					if (ent.CurrentGun != null && !double.IsNaN(ent.CurrentGun.angle))
+					else
 					{
-						ent.CurrentGun.sprite = Properties.Resources.gun;
-						if ((ent.CurrentGun.angle <= Math.PI / 2 && ent.CurrentGun.angle >= 0)
-							|| (ent.CurrentGun.angle <= 2 * Math.PI && ent.CurrentGun.angle >= 1.5 * Math.PI))
-						{
-							if (ent.CurrentGun.angle == 0)
-								rotatedGun = Properties.Resources.gun;
-							else
-								rotatedGun = RotateImage(Properties.Resources.gun, (float)ent.CurrentGun.angle);
-						}
-						else
-						{
-							if (ent.CurrentGun.angle > Math.PI / 2)
-								ent.CurrentGun.angle = Math.PI / 2;
-							if (ent.CurrentGun.angle >= 1.5 * Math.PI)
-								ent.CurrentGun.angle = 1.5 * Math.PI;
-						}
-						graphics.DrawImage(rotatedGun, ((float)ent.Location.X - 5) / 20, ((float)ent.Location.Y - 15) / 20,
-								1, 1);
-
-						foreach (var bullet in ent.CurrentGun.bullets)
-						{
-							graphics.DrawImage(Properties.Resources.bullet2, ((float)bullet.location.X - 5) / 20, ((float)bullet.location.Y - 15) / 20,
-							1, 1);
-						}
+						rotatedGun = RotateImage(Properties.Resources.gun, (float)ent.CurrentGun.angle);
+					}
+					graphics.DrawImage(rotatedGun, ((float)ent.Location.X - 10) / 20, ((float)ent.Location.Y - 10) / 20,
+						1, 1);
+					foreach (var bullet in ent.CurrentGun.bullets)
+					{
+						graphics.DrawImage(Properties.Resources.bullet2, ((float)bullet.location.X - 10) / 20, ((float)bullet.location.Y - 10) / 20,
+						1, 1);
 					}
 				}
 			}
 		}
 
 		public void Paint(Graphics g)
-        {
+		{
 			g.SmoothingMode = SmoothingMode.HighSpeed;
 			g.DrawImage(mapImage, new RectangleF(0, 0, LevelSize.Width, LevelSize.Height));
 			DrawLevel(g);
