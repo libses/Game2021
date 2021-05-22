@@ -20,7 +20,7 @@ namespace WindowsFormsApp1
         public bool IsLeftOriented = true;
         public int Width;
         public int Height;
-        public int Score;
+        public int Score { get; private set; }
         private double frame = 0;
         public int HP  { get; set;}
         public Vector Location { get; set; }
@@ -128,6 +128,31 @@ namespace WindowsFormsApp1
                     currentSprite = animations["fight"][(int)frame];
                     frame++;
                 }
+            }
+        }
+
+        public void RemoveEntities(Level currentLevel)
+        {
+            var died = new List<Entity>();
+            foreach (var entity in currentLevel.Entities)
+            {
+                if (entity.HP <= 0)
+                    died.Add(entity);
+            }
+
+            foreach (var entity in died)
+            {
+                currentLevel.Remove(entity);
+            }
+
+            var coin = currentLevel.Coins
+                 .Where(x => Math.Abs(x.Location.X - this.Location.X) <= 3)
+                 .Where(x => Math.Abs(x.Location.Y - this.Location.Y) <= 3)
+                 .FirstOrDefault();
+            if (coin != null)
+            {
+                currentLevel.Coins.Remove(coin);
+                Score++;
             }
         }
     }

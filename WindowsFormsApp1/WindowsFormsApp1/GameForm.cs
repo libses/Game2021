@@ -76,7 +76,7 @@ namespace WindowsFormsApp1
                     EnemyMoving();
                     Fighting();
                     TextLabel.Text = "HP: " + player.HP + "  Score: " + player.Score;
-                    RemoveEntities();
+                    player.RemoveEntities(currentLevel);
                     physics.Iterate();
                     Refresh();
                 }
@@ -92,12 +92,14 @@ namespace WindowsFormsApp1
         public bool pressE;
         bool pressR;
         bool pressF;
+
         private void MMouseMove()
         {
             var pos = Cursor.Position;
             var vector = new Vector(pos.X, pos.Y);
             currentLevel.mousePosition = vector;
         }
+
         private void FormKeyPress(object sender, KeyEventArgs e)
         {
             Thread shot = new Thread(PlayMusic);
@@ -206,31 +208,6 @@ namespace WindowsFormsApp1
                 enemy.Fight(player, 1);
                 if (player.IsFight)
                     player.Fight(enemy, 20);
-            }
-        }
-
-        private void RemoveEntities()
-        {
-            var died = new List<Entity>();
-            foreach(var entity in currentLevel.Entities)
-            {
-                if (entity.HP <= 0)
-                    died.Add(entity);
-            }
-
-            foreach(var entity in died)
-            {
-                currentLevel.Remove(entity);
-            }
-
-           var coin = currentLevel.Coins
-                .Where(x => Math.Abs(x.Location.X - player.Location.X) <= 3)
-                .Where(x => Math.Abs(x.Location.Y - player.Location.Y) <= 3)
-                .FirstOrDefault();
-            if (coin != null)
-            {
-                currentLevel.Coins.Remove(coin);
-                player.Score++;
             }
         }
     }
