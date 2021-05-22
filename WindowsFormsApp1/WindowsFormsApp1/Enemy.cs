@@ -26,10 +26,13 @@ namespace WindowsFormsApp1
 
         public void Shoot(Player player)
         {
-            var r = (player.Location.X - Location.X) / (double)((player.Location - Location).Length);
-            var angle = Math.Acos(r);
-            CurrentGun.angle = angle;
-            CurrentGun.Fire();
+            if (player != null)
+            {
+                var r = (player.Location.X - Location.X) / (double)((player.Location - Location).Length);
+                var angle = Math.Acos(r);
+                CurrentGun.angle = angle;
+                CurrentGun.Fire();
+            }
         }
 
         public void Moving(Player player)
@@ -39,7 +42,8 @@ namespace WindowsFormsApp1
             IsRight = false;
             var path = player.Location - Location;
             var pathDerscrete = BresenhamAlgorithm(Location, player.Location, Map);
-            bool hasGround = true;
+            //bool hasGround = true;
+            var hasGround = pathDerscrete.Contains(Block.Ground);
             //тут чето сломалось
             if (path.Length >= 20 && path.Length < 200 && !hasGround) //для отладки
             {
@@ -112,11 +116,8 @@ namespace WindowsFormsApp1
             var err = dx + dy;  /* error value e_xy */
             while (true)
             {
-                if(x0 > 0 && y0 > 0)
-                    if (map.GetLength(0) < x0 - 1 && map.GetLength(1) < y0 - 1)
-                    {
-                        yield return map[x0, y0];
-                    }
+                if(x0 >= 0 && y0 >= 0 && x0 < map.GetLength(0) && y0 < map.GetLength(1))
+                    yield return map[x0, y0];
                 if (x0 == x1 && y0 == y1)
                     break;
                 var e2 = 2 * err;

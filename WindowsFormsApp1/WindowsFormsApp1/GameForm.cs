@@ -34,11 +34,16 @@ namespace WindowsFormsApp1
             TextLabel = new Label() { Dock = DockStyle.Top, Font = new Font("Arial", 15), Size = new Size(0,30) };
             scaledViewPanel = new ViewPanel(painter) { Dock = DockStyle.Fill };
             timer = new System.Windows.Forms.Timer();
-            music.URL = @".\music.wav";
             Controls.Add(scaledViewPanel);
             Controls.Add(TextLabel);
             KeyUp += FormKeyUp;
             KeyDown += FormKeyPress;
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            music.controls.stop();
         }
 
         protected override void OnLoad(EventArgs e)
@@ -48,6 +53,7 @@ namespace WindowsFormsApp1
             FormBorderStyle = FormBorderStyle.None;
             WindowState = FormWindowState.Maximized;
             Text = "Game2021";
+            music.URL = @".\music.wav";
             timer.Interval = 15;
             initialCoins = currentLevel.Coins.Count;
             timer.Tick += (sender, args) =>

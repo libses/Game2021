@@ -52,7 +52,7 @@ namespace WindowsFormsApp1
             var RT = entity.Hitbox.RT;
             if (LB.X > 6 && LB.Y > 6 && RB.X > 6 && RB.Y > 6 && LT.X > 6 && LT.Y > 6 && RT.X > 6 && RT.Y > 6)
             {
-                if (map[LB.X, LB.Y + entity.Acceleration.Y] == block || map[RB.X, RB.Y + entity.Acceleration.Y] == block)
+                if (map[LB.X + 1, LB.Y + entity.Acceleration.Y] == block || map[RB.X - 1, RB.Y + entity.Acceleration.Y] == block)
                     yield return "down";
                 if (map[LB.X - 1, LB.Y - 1] == block || map[LT.X - 1, LT.Y] == block)
                     yield return "left";
@@ -81,7 +81,6 @@ namespace WindowsFormsApp1
             if (random.NextDouble() > 0.99 && !ten)
                 foreach (var spawner in level.Spawners)
                 {
-                    player.Score++;
                     var dictB = new Dictionary<string, Bitmap[]>()
                                     {
                                         { "run", new Bitmap[]
