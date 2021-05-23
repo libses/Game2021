@@ -25,8 +25,8 @@ namespace WindowsFormsApp1
         private readonly System.Windows.Forms.Timer timer;
         private readonly Label TextLabel;
         private int initialCoins;
-        private WindowsMediaPlayer music = new WindowsMediaPlayer();
         private DispatcherTimer timeToClose = new DispatcherTimer();
+        private SoundPlayer music = new SoundPlayer(Properties.Resources.music);
 
         public GameForm(Level newLevel)
         {
@@ -46,7 +46,7 @@ namespace WindowsFormsApp1
         protected override void OnClosed(EventArgs e)
         {
             base.OnClosed(e);
-            music.controls.stop();
+            music.Stop();
         }
 
         protected override void OnLoad(EventArgs e)
@@ -56,7 +56,7 @@ namespace WindowsFormsApp1
             FormBorderStyle = FormBorderStyle.None;
             WindowState = FormWindowState.Maximized;
             Text = "Game2021";
-            music.URL = @".\music.wav";
+            Console.WriteLine(Properties.Resources.music.ToString());
             timer.Interval = 15;
             initialCoins = currentLevel.Coins.Count;
             timer.Tick += (sender, args) =>
@@ -68,14 +68,14 @@ namespace WindowsFormsApp1
                 {
                     timeToClose.Start();
                     TextLabel.Text = "Game over:(";
-                    music.controls.stop();
+                    music.Stop();
                     timeToClose.Tick += (s, a) => Close();
                 }
                 else if(player.Score == initialCoins && initialCoins != 0)
                 {
                     timeToClose.Start();
                     TextLabel.Text = "You win!";
-                    music.controls.stop();
+                    music.Stop();
                     timeToClose.Tick += (s, a) => Close();
                 }
                 else
@@ -89,7 +89,7 @@ namespace WindowsFormsApp1
                 }
             };
             timer.Start();
-            music.controls.play();
+            music.PlayLooping();
         }
 
         bool pressSpace;
@@ -109,8 +109,6 @@ namespace WindowsFormsApp1
 
         private void FormKeyPress(object sender, KeyEventArgs e)
         {
-            Thread shot = new Thread(PlayMusic);
-
             if (player != null)
             {
                 if (e.KeyData == Keys.Space && !pressSpace)
@@ -138,7 +136,6 @@ namespace WindowsFormsApp1
                 if (e.KeyData == Keys.E && !pressE)
                 {
                     pressE = true;
-                    shot.Start(Properties.Resources.shot);
                     player.IsFiring = true;
                 }
                 if (e.KeyData == Keys.F && !pressR)
@@ -150,12 +147,6 @@ namespace WindowsFormsApp1
                     player.CurrentGun.angle -= 0.78539816339744830961566084581988;
                 }
             }
-        }
-
-        private void PlayMusic(object sound)
-        {
-            var music = new SoundPlayer((UnmanagedMemoryStream)sound);
-            music.Play();
         }
 
         private void FormKeyUp(object sender, KeyEventArgs e)
