@@ -49,7 +49,7 @@ namespace WindowsFormsApp1
             base.OnLoad(e);
             DoubleBuffered = true;
             WindowState = FormWindowState.Maximized;
-            Text = "Game2021";
+            Text = "Ghost.Killer";
             DrawLevelSwitch(levels, menuPanel);
         }
 
@@ -104,6 +104,20 @@ namespace WindowsFormsApp1
                 linkLabel.Tag = levels[i];
                 i++;
             }
+        }
+
+        private void InitializeComponent()
+        {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StartForm));
+            this.SuspendLayout();
+            // 
+            // StartForm
+            // 
+            this.ClientSize = new System.Drawing.Size(282, 253);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "StartForm";
+            this.ResumeLayout(false);
+
         }
     }
 }

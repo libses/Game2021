@@ -31,8 +31,9 @@ C:\Users\liber\Source\Repos\Game2021release\WindowsFormsApp1\WindowsFormsApp1\ob
 C:\Users\liber\Source\Repos\Game2021release\WindowsFormsApp1\WindowsFormsApp1\obj\Release\Game.csproj.CopyComplete
 C:\Users\liber\Source\Repos\Game2021release\WindowsFormsApp1\WindowsFormsApp1\obj\Release\Game2021.exe
 C:\Users\liber\Source\Repos\Game2021release\WindowsFormsApp1\WindowsFormsApp1\obj\Release\Game2021.pdb
-C:\Users\Виктор Капкаев\source\repos\libses\Game2021\WindowsFormsApp1\WindowsFormsApp1\bin\Release\Ghost Killer.exe.config
-C:\Users\Виктор Капкаев\source\repos\libses\Game2021\WindowsFormsApp1\WindowsFormsApp1\bin\Release\Ghost Killer.exe
-C:\Users\Виктор Капкаев\source\repos\libses\Game2021\WindowsFormsApp1\WindowsFormsApp1\bin\Release\Ghost Killer.pdb
-C:\Users\Виктор Капкаев\source\repos\libses\Game2021\WindowsFormsApp1\WindowsFormsApp1\obj\Release\Ghost Killer.exe
-C:\Users\Виктор Капкаев\source\repos\libses\Game2021\WindowsFormsApp1\WindowsFormsApp1\obj\Release\Ghost Killer.pdb
+C:\Users\Виктор Капкаев\source\repos\libses\Game2021\WindowsFormsApp1\WindowsFormsApp1\bin\Release\Ghost.Killer.exe.config
+C:\Users\Виктор Капкаев\source\repos\libses\Game2021\WindowsFormsApp1\WindowsFormsApp1\bin\Release\Ghost.Killer.exe
+C:\Users\Виктор Капкаев\source\repos\libses\Game2021\WindowsFormsApp1\WindowsFormsApp1\bin\Release\Ghost.Killer.pdb
+C:\Users\Виктор Капкаев\source\repos\libses\Game2021\WindowsFormsApp1\WindowsFormsApp1\obj\Release\WindowsFormsApp1.StartForm.resources
+C:\Users\Виктор Капкаев\source\repos\libses\Game2021\WindowsFormsApp1\WindowsFormsApp1\obj\Release\Ghost.Killer.exe
+C:\Users\Виктор Капкаев\source\repos\libses\Game2021\WindowsFormsApp1\WindowsFormsApp1\obj\Release\Ghost.Killer.pdb
