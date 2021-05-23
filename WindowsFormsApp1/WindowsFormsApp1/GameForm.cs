@@ -9,6 +9,7 @@ using System.Media;
 using System.Threading;
 using System.Windows.Forms;
 using System.Windows.Media;
+using System.Windows.Threading;
 using WMPLib;
 
 namespace WindowsFormsApp1
@@ -25,6 +26,7 @@ namespace WindowsFormsApp1
         private readonly Label TextLabel;
         private int initialCoins;
         private WindowsMediaPlayer music = new WindowsMediaPlayer();
+        private DispatcherTimer timeToClose = new DispatcherTimer();
 
         public GameForm(Level newLevel)
         {
@@ -34,6 +36,7 @@ namespace WindowsFormsApp1
             TextLabel = new Label() { Dock = DockStyle.Top, Font = new Font("Arial", 15), Size = new Size(0,30) };
             scaledViewPanel = new ViewPanel(painter) { Dock = DockStyle.Fill };
             timer = new System.Windows.Forms.Timer();
+            timeToClose.Interval = new TimeSpan(0, 0, 10);
             Controls.Add(scaledViewPanel);
             Controls.Add(TextLabel);
             KeyUp += FormKeyUp;
@@ -63,13 +66,17 @@ namespace WindowsFormsApp1
                 enemies = currentLevel.Entities.Where(x => x is Enemy).ToArray();
                 if(player == null)
                 {
+                    timeToClose.Start();
                     TextLabel.Text = "Game over:(";
                     music.controls.stop();
+                    timeToClose.Tick += (s, a) => Close();
                 }
                 else if(player.Score == initialCoins && initialCoins != 0)
                 {
+                    timeToClose.Start();
                     TextLabel.Text = "You win!";
                     music.controls.stop();
+                    timeToClose.Tick += (s, a) => Close();
                 }
                 else
                 {
