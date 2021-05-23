@@ -56,7 +56,6 @@ namespace WindowsFormsApp1
             FormBorderStyle = FormBorderStyle.None;
             WindowState = FormWindowState.Maximized;
             Text = "Game2021";
-            Console.WriteLine(Properties.Resources.music.ToString());
             timer.Interval = 15;
             initialCoins = currentLevel.Coins.Count;
             timer.Tick += (sender, args) =>
